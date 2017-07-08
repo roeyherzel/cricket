@@ -5,23 +5,25 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    app: [path.resolve("src/index.jsx")],
+    app: [
+      "react-hot-loader/patch",
+      path.resolve("src/index.jsx"),
+    ],
   },
 
   output: {
     path: path.resolve("build"),
-    filename: "[name].[hash].js",
+    filename: "[name].js",
     chunkFilename: "[name].[chunkhash].js",
-    publicPath: "/",
   },
 
   resolve: {
     extensions: [".js", ".jsx"],
   },
 
-  plugins: [
-    // new webpack.EnvironmentPlugin(["NODE_ENV"]),
-  ],
+  // plugins: [
+  //   new webpack.EnvironmentPlugin(["NODE_ENV"]),
+  // ],
 
   module: {
     rules: [

@@ -1,22 +1,12 @@
 const path              = require("path");
 const webpack           = require("webpack");
+const merge             = require("webpack-merge");
 const DashboardPlugin   = require("webpack-dashboard/plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const config            = require("./webpack.config");
+const commonConfig      = require("./webpack.config");
 
-module.exports = {
+module.exports = merge(commonConfig, {
   devtool: "cheap-eval-source-map",
-
-  entry: {
-    app: [
-      "react-hot-loader/patch",
-      ...config.entry.app,
-    ],
-  },
-
-  resolve: config.resolve,
-
-  output: config.output,
 
   plugins: [
     new DashboardPlugin(),
@@ -25,7 +15,6 @@ module.exports = {
       template: path.resolve("src/index.html"),
       minify: { collapseWhitespace: true },
     }),
-    ...config.plugins,
   ],
 
   module: {
@@ -49,8 +38,6 @@ module.exports = {
           "postcss-loader",
         ],
       },
-
-      ...config.module.rules,
     ],
   },
-};
+});

@@ -1,37 +1,32 @@
-const webpack = require("webpack");
-const path = require("path");
+const webpack           = require("webpack");
+const path              = require("path");
+const merge             = require("webpack-merge");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const config = require("./webpack.config");
+const commonConfig      = require("./webpack.config");
 
-const extractText = (fallback, use) =>
-  ExtractTextPlugin.extract({ fallback, use });
+const extractSass = new ExtractTextPlugin({ filename: "styles.css", allChunks: true });
 
-const CSS_LOADER_OPTIONS = "sourceMaps&minimize";
-
-module.exports = {
+module.exports = merge(commonConfig, {
   devtool: "source-map",
 
-  entry: config.entry,
-
-  resolve: config.resolve,
-
-  output: config.output,
-
   plugins: [
+    extractSass,
     new webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true, comments: false }),
-    new ExtractTextPlugin({ filename: "styles.[hash].css", allChunks: true }),
     new HTMLWebpackPlugin({
       template: path.resolve("src/index.html"),
-      minify: { collapseWhitespace: true },
     }),
-    ...config.plugins,
   ],
 
   module: {
     rules: [
-      { test: /\.css$/, use: extractText("style-loader", `css-loader?${CSS_LOADER_OPTIONS}!postcss-loader`) },
-      ...config.module.rules,
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: ["css-loader", "sass-loader"],
+          fallback: "style-loader",
+        }),
+      },
     ],
   },
-};
+});
