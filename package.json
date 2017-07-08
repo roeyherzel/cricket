@@ -1,0 +1,64 @@
+{
+  "name": "react-boilerplate-lite",
+  "version": "0.0.0",
+  "description": "Minimal boilerplate for React apps",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack/webpack.dev.config.js --hot",
+    "start:dashboard": "webpack-dashboard node server/server.js",
+    "postinstall": "npm run build",
+    "build": "webpack --config webpack/webpack.prod.config.js",
+    "clean": "rm -rf build",
+    "lint": "eslint src --ext .js*",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roey Herzel",
+  "engines": {
+    "node": "~8.1.2"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-hot-loader": "^3.0.0-beta.7",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.28.0",
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.3",
+    "postcss": "^6.0.1",
+    "postcss-browser-reporter": "^0.5.0",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.5",
+    "postcss-nested": "^2.0.2",
+    "postcss-reporter": "^3.0.0",
+    "postcss-url": "^6.0.4",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.17.0",
+    "webpack-dashboard": "^0.4.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-hot-middleware": "^2.12.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
+  }
+}
