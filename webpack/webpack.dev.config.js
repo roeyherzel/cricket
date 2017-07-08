@@ -1,5 +1,6 @@
-const webpack           = require("webpack");
 const path              = require("path");
+const webpack           = require("webpack");
+const DashboardPlugin   = require("webpack-dashboard/plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const config            = require("./webpack.config");
 
@@ -18,6 +19,7 @@ module.exports = {
   output: config.output,
 
   plugins: [
+    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: path.resolve("src/index.html"),

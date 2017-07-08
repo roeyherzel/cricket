@@ -5,10 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.dev.config.js --hot",
-    "start:dashboard": "webpack-dashboard node server/server.js",
-    "postinstall": "npm run build",
+    "dev": "webpack-dashboard -- npm start",
     "build": "webpack --config webpack/webpack.prod.config.js",
-    "clean": "rm -rf build",
     "lint": "eslint src --ext .js*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +21,8 @@
     "react-dom": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "html-webpack-plugin": "^2.22.0",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dashboard": "^0.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -52,11 +51,7 @@
     "postcss-reporter": "^3.0.0",
     "postcss-url": "^6.0.4",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.17.0",
-    "webpack-dashboard": "^0.4.0",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^2.5.0",
-    "webpack-hot-middleware": "^2.12.2"
+    "style-loader": "^0.17.0"
   },
   "optionalDependencies": {
     "fsevents": "*"
