@@ -16,14 +16,17 @@
   },
   "license": "MIT",
   "dependencies": {
+    "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.22.0",
+    "normalize.css": "^7.0.0",
+    "normalize.sass": "^3.0.3-2",
     "prop-types": "^15.5.10",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "webpack": "^2.2.1",
     "webpack-dashboard": "^0.4.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
@@ -43,6 +46,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "node-sass": "^4.5.3",
+    "normalize": "^0.3.1",
     "postcss": "^6.0.1",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^2.10.0",

@@ -1,0 +1,13 @@
+// panel.scss
+// ---------
+
+#panel {
+    @extend %row;
+    align-content: center;
+    border-top: $border;
+    padding-top: 1rem;
+    
+    button {
+        margin-left: auto;
+    }
+}

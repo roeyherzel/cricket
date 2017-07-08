@@ -13,7 +13,6 @@ module.exports = merge(commonConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       template: path.resolve("src/index.html"),
-      minify: { collapseWhitespace: true },
     }),
   ],
 
@@ -25,17 +24,12 @@ module.exports = merge(commonConfig, {
           "style-loader",
           {
             loader: "css-loader",
-            options: {
-              sourceMap: true,
-              modules: true,
-              localIdentName: "[name]__[local]--[hash:base64:5]",
-            },
+            options: { sourceMap: true },
           },
           {
             loader: "sass-loader",
             options: { sourceMap: true },
           },
-          "postcss-loader",
         ],
       },
     ],

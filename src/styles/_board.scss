@@ -1,0 +1,61 @@
+// board.scss
+// ----------
+
+.row {
+  display: flex;
+  border: $border;
+  border-top: none;
+
+  > div {
+    align-items: center;
+  }
+}
+
+.row-info {
+  display: flex;
+}
+
+.row-stats {
+  display: flex;
+  margin-left: auto;
+}
+
+.row-targets {
+  display: flex;
+}
+
+%cell {
+  padding: .5rem;
+}
+
+%cell-fixed {
+  @extend %cell;
+  width: 3rem;
+  text-align: center;
+}
+
+.name {
+  @extend %cell;
+}
+
+.score, .target {
+  @extend %cell-fixed;
+}
+
+.row-stats,
+.row-targets {
+  border-left: $border;
+}
+
+.target {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    font-size: .5rem;
+  }
+}
+
+.hits {
+  text-align: center;
+}
