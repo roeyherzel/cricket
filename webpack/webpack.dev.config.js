@@ -19,7 +19,7 @@ module.exports = merge(commonConfig, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           "style-loader",
           {

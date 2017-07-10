@@ -1,7 +1,7 @@
 import React from "react";
 
 // Styles
-import "normalize.sass";
+import "normalize.css/normalize.css";
 import "./styles.scss";
 
 import Game from "./Game";

@@ -7,21 +7,18 @@ body {
   background-color: lightblue;
 }
 
-$border: 1px solid black;
-
 #game {
   width: 375px;
-  height: 100vh;
+  height: 667px;
   margin: auto;
   display: grid;
   grid-template-rows: 1fr 3fr 3rem;
-  border: $border;
   background-color: white;
 }
 
 #header {
   padding: 1rem;
-  border: $border;
+  border: 1px solid black;
 }
 
 #footer {
