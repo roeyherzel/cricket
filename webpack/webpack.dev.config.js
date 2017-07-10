@@ -1,18 +1,27 @@
-const path              = require("path");
-const webpack           = require("webpack");
-const merge             = require("webpack-merge");
-const DashboardPlugin   = require("webpack-dashboard/plugin");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const commonConfig      = require("./webpack.config");
+const path              = require('path');
+const webpack           = require('webpack');
+const merge             = require('webpack-merge');
+const DashboardPlugin   = require('webpack-dashboard/plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const commonConfig      = require('./webpack.config');
 
 module.exports = merge(commonConfig, {
-  devtool: "cheap-eval-source-map",
+  devtool: 'cheap-eval-source-map',
+
+  devServer: {
+    historyApiFallback: true,
+    stats: 'errors-only',
+    overlay: {
+      errors: true,
+      warnings: true,
+    },
+  },
 
   plugins: [
     new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
-      template: path.resolve("src/index.html"),
+      template: path.resolve('src/index.html'),
     }),
   ],
 
@@ -21,13 +30,13 @@ module.exports = merge(commonConfig, {
       {
         test: /\.(css|scss)$/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: { sourceMap: true },
           },
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: { sourceMap: true },
           },
         ],

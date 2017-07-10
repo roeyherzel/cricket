@@ -1,37 +1,41 @@
-// require("dotenv").config({ silent: true });
-
-// const webpack = require("webpack");
-const path = require("path");
+const path = require('path');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: {
     app: [
-      "react-hot-loader/patch",
-      path.resolve("src/index.jsx"),
+      'react-hot-loader/patch',
+      path.resolve('src/index.jsx'),
     ],
   },
 
   output: {
-    path: path.resolve("build"),
-    filename: "[name].js",
-    chunkFilename: "[name].[chunkhash].js",
+    path: path.resolve('build'),
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash].js',
   },
 
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx'],
   },
-
-  // plugins: [
-  //   new webpack.EnvironmentPlugin(["NODE_ENV"]),
-  // ],
 
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
       },
     ],
   },
+
+  // plugins: [
+  //   new StyleLintPlugin(),
+  // ],
 };

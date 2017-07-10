@@ -24,6 +24,7 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-hot-loader": "^3.0.0-beta.7",
+    "stylelint-config-sass-guidelines": "^2.2.0",
     "webpack": "^2.2.1",
     "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.5.1",
@@ -42,6 +43,7 @@
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
@@ -56,7 +58,10 @@
     "postcss-reporter": "^3.0.0",
     "postcss-url": "^6.0.4",
     "sass-loader": "^6.0.6",
-    "style-loader": "^0.17.0"
+    "style-loader": "^0.17.0",
+    "stylelint": "^7.12.0",
+    "stylelint-scss": "^1.5.1",
+    "stylelint-webpack-plugin": "^0.8.0"
   },
   "optionalDependencies": {
     "fsevents": "*"
