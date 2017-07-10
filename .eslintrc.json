@@ -14,6 +14,8 @@
     "quotes": ["error", "double"],
     "no-unused-vars": ["error", { "vars": "local", "args": "after-used", "argsIgnorePattern": "^_" }],
     "no-confusing-arrow": 0,
+    "no-plusplus":"off",
+    "max-len":"warn",
     "no-multi-spaces": "off",
     "global-require": 0
   }

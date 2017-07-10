@@ -1,0 +1,30 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightblue;
+}
+
+$border: 1px solid black;
+
+#game {
+  width: 375px;
+  height: 100vh;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  border: $border;
+  background-color: white;
+}
+
+#header {
+  // background: lightseagreen;
+  text-align: center;
+  border: $border;
+}
+
+#main {
+  // background: lightcoral;
+}
