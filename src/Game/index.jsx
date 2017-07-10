@@ -5,7 +5,10 @@ export default class Game extends React.Component {
   constructor(props) {
     super(props);
     this.getCleanTargets = this.getCleanTargets.bind(this);
-    this.targetNumbers = ["20", "19", "18", "17", "16", "15", "B"];
+    this.updateScore     = this.updateScore.bind(this);
+    this.addHit          = this.addHit.bind(this);
+
+    this.targetNums = ["20", "19", "18", "17", "16", "15", "B"];
     this.playerCounter = 0;
     this.state = {
       players: [
@@ -21,6 +24,18 @@ export default class Game extends React.Component {
           score: 0,
           targets: this.getCleanTargets(),
         },
+        {
+          id: 3,
+          name: "Herzel",
+          score: 0,
+          targets: this.getCleanTargets(),
+        },
+        {
+          id: 4,
+          name: "Davis",
+          score: 0,
+          targets: this.getCleanTargets(),
+        },
       ],
       winner: null,
       leader: null,
@@ -29,7 +44,50 @@ export default class Game extends React.Component {
   }
 
   getCleanTargets() {
-    return this.targetNumbers.map(t => ({ number: t, hits: 0 }));
+    return this.targetNums.map(t => ({ number: t, hits: 0 }));
+  }
+
+  addHit(playerId, targetNum) {
+    this.updateScore(playerId, targetNum, +1);
+  }
+
+  updateScore(playerId, targetNum, hit) {
+    // find indexes for updating players state. this is done becaue of setState mechanizem
+    const playerIdx  = this.state.players.findIndex(p => p.id === playerId);
+    const targetIdx  = this.state.players[playerIdx].targets.findIndex(t => t.number === targetNum);
+    const targetHits = this.state.players[playerIdx].targets[targetIdx].hits;
+
+    // on add, exit if target is closed
+    // TODO: disable button when target is closed
+    if (hit > 0 && targetHits >= 3) {
+      console.log("Target is closed");
+      return;
+    }
+    // on remove, exit if target is empty
+    // TODO: disable button when target is empty
+    if (hit < 0 && targetHits === 0) {
+      console.log("Target is empty");
+      return;
+    }
+    // Update taget hit count and score
+    this.setState((prevState) => {
+      // copy previous state
+      const newState = {};
+      const players = prevState.players.slice();
+
+      // update player's target and score
+      players[playerIdx].targets[targetIdx].hits += hit;
+      players[playerIdx].score += hit;
+
+      // do we have a winner?
+      if (players[playerIdx].score === 21) {
+        newState.status = "over";
+        newState.winner = players[playerIdx].name;
+      }
+      // return new state
+      newState.players = players;
+      return newState;
+    });
   }
 
   render() {
@@ -40,10 +98,12 @@ export default class Game extends React.Component {
         </div>
         <div id="main">
           <Scoreboard
-            numbers={this.targetNumbers}
+            numbers={this.targetNums}
             players={this.state.players}
+            onAddHit={this.addHit}
           />
         </div>
+        <div id="footer" />
       </div>
     );
   }

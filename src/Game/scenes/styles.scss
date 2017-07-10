@@ -2,7 +2,7 @@
 
 #scoreboard {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 1rem;
   height: 100%;
 }
@@ -10,16 +10,18 @@
 .player {
   text-align: center;
   display: grid;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 1fr 3fr;
   border: 1px solid black;
 
   .info {
     display: grid;
-    grid-template-rows: 2fr 1fr 1fr;
-    grid-row-gap: 5px;
-    border: 1px solid black;
+    grid-template-rows: 1fr 2fr 1fr;
     align-items: center;
-    justify-content: center;
+    border-bottom: 1px solid black;
+  }
+
+  .score {
+    border-bottom: 1px solid black;
   }
 
   .avatar {
@@ -36,14 +38,15 @@
   grid-template-rows: repeat(7, 40px);
   grid-gap: 10px;
   align-content: space-evenly;
-  border: 1px solid black;
-  padding: 8px;
   
   button {
     height: 100%;
-    width: 100%;
+    padding: 0 1rem;
     font-size: 2rem;
     font-weight: lighter;
+    background-color: transparent;
+    border: 1px solid lightgray;
+    border-radius: 4px;
   }
 
 }
