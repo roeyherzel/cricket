@@ -31,6 +31,8 @@
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "no-unused-vars":"warn",
-    "no-console": 0
+    "no-console": 0,
+
+    "react/prop-types":"warn"
   }
 }

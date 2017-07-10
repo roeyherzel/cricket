@@ -1,5 +1,5 @@
-import React from "react";
-import "./styles.scss";
+import React from 'react';
+import './styles.scss';
 
 export default function Scoreboard(props) {
   const players = props.players.map(player => (
@@ -17,6 +17,7 @@ export default function Scoreboard(props) {
     </div>
   );
 }
+
 
 function Player(props) {
   const targets = props.targets.map((t) => {

@@ -13,7 +13,7 @@ module.exports = merge(commonConfig, {
     stats: 'errors-only',
     overlay: {
       errors: true,
-      warnings: true,
+      // warnings: true,
     },
   },
 

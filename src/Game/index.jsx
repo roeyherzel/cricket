@@ -1,5 +1,5 @@
-import React from "react";
-import Scoreboard from "./scenes/Scoreboard";
+import React from 'react';
+import Scoreboard from './scenes/Scoreboard';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -10,38 +10,38 @@ export default class Game extends React.Component {
     this.startGame        = this.startGame.bind(this);
     this.restartGame      = this.restartGame.bind(this);
 
-    this.targetNums = ["20", "19", "18", "17", "16", "15", "B"];
+    this.targetNums = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerCounter = 0;
     this.state = {
       players: [
         {
           id: 1,
-          name: "Roey",
+          name: 'Roey',
           score: 0,
           targets: this.getCleanTargets(),
         },
         {
           id: 2,
-          name: "Alizah",
+          name: 'Alizah',
           score: 0,
           targets: this.getCleanTargets(),
         },
         {
           id: 3,
-          name: "Herzel",
+          name: 'Herzel',
           score: 0,
           targets: this.getCleanTargets(),
         },
         {
           id: 4,
-          name: "Davis",
+          name: 'Davis',
           score: 0,
           targets: this.getCleanTargets(),
         },
       ],
       winner: null,
       leader: null,
-      status: "new",
+      status: 'new',
     };
   }
 
@@ -55,8 +55,8 @@ export default class Game extends React.Component {
 
   updateScore(playerId, targetNum, hit) {
     // check if game is on
-    if (this.state.status !== "running") {
-      console.log("Cannot add hit. game is not running");
+    if (this.state.status !== 'running') {
+      console.log('Cannot add hit. game is not running');
       return;
     }
 
@@ -68,13 +68,13 @@ export default class Game extends React.Component {
     // on add, exit if target is closed
     // TODO: disable button when target is closed
     if (hit > 0 && targetHits >= 3) {
-      console.log("Target is closed");
+      console.log('Target is closed');
       return;
     }
     // on remove, exit if target is empty
     // TODO: disable button when target is empty
     if (hit < 0 && targetHits === 0) {
-      console.log("Target is empty");
+      console.log('Target is empty');
       return;
     }
     // Update taget hit count and score
@@ -89,7 +89,7 @@ export default class Game extends React.Component {
 
       // do we have a winner?
       if (players[playerIdx].score === 21) {
-        newState.status = "over";
+        newState.status = 'over';
         newState.winner = players[playerIdx].name;
       }
       // return new state
@@ -99,13 +99,13 @@ export default class Game extends React.Component {
   }
 
   startGame() {
-    if (this.state.status !== "new") {
-      throw new Error("Cannot start game, game is not new");
+    if (this.state.status !== 'new') {
+      throw new Error('Cannot start game, game is not new');
     }
     if (this.state.players.length === 0) {
-      throw new Error("Cannot start game, please add players");
+      throw new Error('Cannot start game, please add players');
     }
-    this.setState({ status: "running" });
+    this.setState({ status: 'running' });
   }
 
   restartGame() {
@@ -117,13 +117,13 @@ export default class Game extends React.Component {
     this.setState((prevState) => {
       const newState = {};
       newState.players = prevState.players.map(player => Object.assign(player, cleanPlayer));
-      newState.status = "new";
+      newState.status = 'new';
       return newState;
     });
   }
 
   render() {
-    const isNew = (this.state.status === "new");
+    const isNew = (this.state.status === 'new');
     return (
       <div id="game">
         <div id="header">
