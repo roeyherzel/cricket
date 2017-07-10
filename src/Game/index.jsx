@@ -7,6 +7,8 @@ export default class Game extends React.Component {
     this.getCleanTargets = this.getCleanTargets.bind(this);
     this.updateScore     = this.updateScore.bind(this);
     this.addHit          = this.addHit.bind(this);
+    this.startGame        = this.startGame.bind(this);
+    this.restartGame      = this.restartGame.bind(this);
 
     this.targetNums = ["20", "19", "18", "17", "16", "15", "B"];
     this.playerCounter = 0;
@@ -52,6 +54,12 @@ export default class Game extends React.Component {
   }
 
   updateScore(playerId, targetNum, hit) {
+    // check if game is on
+    if (this.state.status !== "running") {
+      console.log("Cannot add hit. game is not running");
+      return;
+    }
+
     // find indexes for updating players state. this is done becaue of setState mechanizem
     const playerIdx  = this.state.players.findIndex(p => p.id === playerId);
     const targetIdx  = this.state.players[playerIdx].targets.findIndex(t => t.number === targetNum);
@@ -90,11 +98,45 @@ export default class Game extends React.Component {
     });
   }
 
+  startGame() {
+    if (this.state.status !== "new") {
+      throw new Error("Cannot start game, game is not new");
+    }
+    if (this.state.players.length === 0) {
+      throw new Error("Cannot start game, please add players");
+    }
+    this.setState({ status: "running" });
+  }
+
+  restartGame() {
+    const cleanPlayer = {
+      score: 0,
+      targets: this.getClearnTargets(),
+    };
+
+    this.setState((prevState) => {
+      const newState = {};
+      newState.players = prevState.players.map(player => Object.assign(player, cleanPlayer));
+      newState.status = "new";
+      return newState;
+    });
+  }
+
   render() {
+    const isNew = (this.state.status === "new");
     return (
       <div id="game">
         <div id="header">
           <h1>Jiminy Cricket</h1>
+          <div>
+            {
+              isNew ? (
+                <button type="button" onClick={this.startGame}>Start</button>
+              ) : (
+                <button type="button" onClick={this.restartGame}>Restart</button>
+              )
+            }
+          </div>
         </div>
         <div id="main">
           <Scoreboard
