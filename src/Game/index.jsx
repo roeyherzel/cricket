@@ -1,5 +1,7 @@
+import styles from './styles.scss';
+
 import React from 'react';
-import Scoreboard from './scenes/Scoreboard';
+import Scoreboard from './components/Main/components/Scoreboard';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -125,9 +127,19 @@ export default class Game extends React.Component {
   render() {
     const isNew = (this.state.status === 'new');
     return (
-      <div id="game">
-        <div id="header">
+      <div className={styles.game}>
+        <div className={styles.header}>
           <h1>Jiminy Cricket</h1>
+          
+        </div>
+        <div className={styles.main}>
+          <Scoreboard
+            numbers={this.targetNums}
+            players={this.state.players}
+            onAddHit={this.addHit}
+          />
+        </div>
+        <div className={styles.footer}>
           <div>
             {
               isNew ? (
@@ -138,14 +150,6 @@ export default class Game extends React.Component {
             }
           </div>
         </div>
-        <div id="main">
-          <Scoreboard
-            numbers={this.targetNums}
-            players={this.state.players}
-            onAddHit={this.addHit}
-          />
-        </div>
-        <div id="footer" />
       </div>
     );
   }

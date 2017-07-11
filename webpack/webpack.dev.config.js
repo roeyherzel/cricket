@@ -33,11 +33,24 @@ module.exports = merge(commonConfig, {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { sourceMap: true },
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[folder]__[local]___[hash:base64:5]',
+            },
           },
           {
             loader: 'sass-loader',
             options: { sourceMap: true },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                require('autoprefixer')(),
+              ]),
+            },
           },
         ],
       },
