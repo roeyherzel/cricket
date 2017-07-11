@@ -7,22 +7,22 @@ body {
 }
 
 .game {
-  width: 375px;
+  background-color: white;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
   height: 667px;
   margin: auto;
-  display: grid;
-  grid-template-rows: 1fr 3fr 3rem;
-  background-color: white;
+  width: 375px;
 }
 
 .header {
-  padding: 1rem;
   border: 1px solid black;
+  padding: 1rem;
 }
 
 .footer {
+  align-items: center;
   border: 1px solid black;
   display: flex;
   justify-content: center;
-  align-items: center;
 }

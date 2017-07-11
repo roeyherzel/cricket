@@ -1,6 +1,12 @@
 const path = require('path');
 
+const PATHS = {
+  src: path.resolve(__dirname, '../src'),
+};
+
 module.exports = {
+  context: PATHS.src,
+
   entry: {
     app: [
       'react-hot-loader/patch',

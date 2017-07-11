@@ -130,16 +130,6 @@ export default class Game extends React.Component {
       <div className={styles.game}>
         <div className={styles.header}>
           <h1>Jiminy Cricket</h1>
-          
-        </div>
-        <div className={styles.main}>
-          <Scoreboard
-            numbers={this.targetNums}
-            players={this.state.players}
-            onAddHit={this.addHit}
-          />
-        </div>
-        <div className={styles.footer}>
           <div>
             {
               isNew ? (
@@ -149,6 +139,13 @@ export default class Game extends React.Component {
               )
             }
           </div>
+        </div>
+        <div className={styles.main}>
+          <Scoreboard
+            numbers={this.targetNums}
+            players={this.state.players}
+            onAddHit={this.addHit}
+          />
         </div>
       </div>
     );

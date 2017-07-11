@@ -3,6 +3,7 @@ const webpack           = require('webpack');
 const merge             = require('webpack-merge');
 const DashboardPlugin   = require('webpack-dashboard/plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const StyleLintPlugin   = require('stylelint-webpack-plugin');
 const commonConfig      = require('./webpack.config');
 
 module.exports = merge(commonConfig, {
@@ -18,6 +19,9 @@ module.exports = merge(commonConfig, {
   },
 
   plugins: [
+    new StyleLintPlugin({
+      emitErrors: false,
+    }),
     new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
@@ -44,14 +48,8 @@ module.exports = merge(commonConfig, {
             loader: 'sass-loader',
             options: { sourceMap: true },
           },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => ([
-                require('autoprefixer')(),
-              ]),
-            },
-          },
+          'postcss-loader',
+          'stylefmt-loader',
         ],
       },
     ],
