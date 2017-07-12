@@ -1,4 +1,4 @@
-import styles from './styles.scss';
+import styles from './game.scss';
 
 import React from 'react';
 import Header from './components/Header';
@@ -53,8 +53,29 @@ export default class Game extends React.Component {
     return (
       <div className={styles.game}>
         <Header>
-          {
-            (isNew) ? (
+          const isNew = (this.state.status === 'new');
+          return (
+            <div className={styles.game}>
+              <Header>
+                {
+                  (isNew) ? (
+                    <button type="button" onClick={this.handleStartGame}>Start</button>
+                  ) : (
+                    <button type="button" onClick={this.handleNewGame}>New</button>
+                  )
+                } 
+              </Header>
+              <main>
+                {
+                  (isNew) ? (
+                    <Settings />
+                  ) : (
+                    <Scoreboard players={this.state.players}/>
+                  )
+                }
+              </main>
+            </div>
+          );
               <button type="button" onClick={this.handleStartGame}>Start</button>
             ) : (
               <button type="button" onClick={this.handleNewGame}>New</button>

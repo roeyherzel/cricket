@@ -2,6 +2,7 @@ const path = require('path');
 
 const PATHS = {
   src: path.resolve(__dirname, '../src'),
+  app: path.resolve(__dirname, '../src/App'),
 };
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      path.resolve('src/index.jsx'),
+      path.resolve(PATHS.src, 'index.jsx'),
     ],
   },
 
@@ -22,6 +23,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: ['node_modules', PATHS.app],
   },
 
   module: {

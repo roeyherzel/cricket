@@ -6,8 +6,9 @@ body {
   background-color: lightblue;
 }
 
-.game {
+.app {
   background-color: white;
+  // composes: box from './styles/layout.scss';
   display: grid;
   grid-template-rows: 1fr 3fr;
   height: 667px;

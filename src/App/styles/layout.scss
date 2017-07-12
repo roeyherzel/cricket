@@ -1,0 +1,9 @@
+
+.padding {
+  padding: 1rem;
+}
+
+.box {
+  composes: padding;
+  border: 1px solid black;
+}
