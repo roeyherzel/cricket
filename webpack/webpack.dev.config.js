@@ -11,7 +11,6 @@ module.exports = merge(commonConfig, {
 
   devServer: {
     historyApiFallback: true,
-    stats: 'errors-only',
     overlay: {
       errors: true,
       // warnings: true,
