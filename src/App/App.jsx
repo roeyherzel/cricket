@@ -1,7 +1,7 @@
 import styles from './app.scss';
 
 import React from 'react';
-import Home from './containers/Home';
+import Players from './containers/Players';
 
 const initialPlayers = [
   {
@@ -27,6 +27,7 @@ export default class App extends React.Component {
     super();
     this.handleStartGame = this.handleStartGame.bind(this);
     this.initPlayer = this.initPlayer.bind(this);
+    this.updatePlayer = this.updatePlayer.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.state = {
       gameState: 'new',
@@ -41,6 +42,20 @@ export default class App extends React.Component {
     return player;
   }
 
+  updatePlayer(playerId, newName) {
+    this.setState(prevState => {
+      const players = prevState.players.slice();
+      const idx = players.findIndex(p => p.id === playerId);
+
+      if (!idx) {
+        throw new Error('didn\'t find player by playerId');
+      }
+      console.log('kaki',playerId, idx, players[idx]);
+      players[idx].name = newName;
+      return {players};
+    });
+  }
+
   handleStartGame() {
     this.setState({gameState: 'on'});
   }
@@ -51,9 +66,11 @@ export default class App extends React.Component {
       <div className={styles.app}>
          {
           (isNew) ? (
-            <Home
+            <Players
               gameState={this.state.gameState}
-              players={this.state.players} />
+              players={this.state.players}
+              updatePlayer={this.updatePlayer}
+            />
           ) : 'Board'
         } 
       </div>

@@ -1,13 +1,13 @@
-import styles from './home.scss';
+import styles from './players.scss';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import defs from 'utils/defs';
 import Header from 'components/Header';
-import PlayerInfo from 'components/PlayerInfo';
+import Edit from './components/Edit';
 
-export default  function Home(props) {
+export default function Players(props) {
   const isNew = (props.gameState === 'new');
   return (
     <div>
@@ -24,9 +24,12 @@ export default  function Home(props) {
         <div className={styles.playersList}>
           {
             props.players.map(p => (
-              <PlayerInfo
+              <Edit
                 key={p.id}
-                name={p.name} />
+                id={p.id}
+                name={p.name}
+                updatePlayer={props.updatePlayer}
+              />
             ))
           }
         </div>
@@ -35,7 +38,8 @@ export default  function Home(props) {
   );
 }
 
-Home.propTypes = {
+Players.propTypes = {
   gameState: PropTypes.oneOf(defs.GAME_STATES).isRequired,
   players: PropTypes.array.isRequired,
+  updatePlayer: PropTypes.func.isRequired,
 };

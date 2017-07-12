@@ -1,6 +1,7 @@
 import styles from './header.scss';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Header(props) {
   return (
@@ -12,3 +13,7 @@ export default function Header(props) {
     </div>
   );
 }
+
+Header.propTypes = {
+  children: PropTypes.object,
+};
