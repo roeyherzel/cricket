@@ -1,4 +1,4 @@
-import styles from './game.scss';
+import styles from './game.css';
 
 import React from 'react';
 import Header from './components/Header';

@@ -1,3 +1,5 @@
+import styles from './add.css';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -20,7 +22,7 @@ export default class Add extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={this.state.value}

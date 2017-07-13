@@ -1,4 +1,4 @@
-import styles from './header.scss';
+import styles from './header.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';

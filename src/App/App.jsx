@@ -1,4 +1,4 @@
-import styles from './app.scss';
+import styles from './app.css';
 
 import React from 'react';
 import Players from 'Players';

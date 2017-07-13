@@ -1,0 +1,7 @@
+.players {
+  composes: box from 'common/styles/layout.css';
+}
+
+.playersList {
+  composes: box from 'common/styles/layout.css';
+}

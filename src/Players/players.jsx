@@ -1,4 +1,4 @@
-import styles from './players.scss';
+import styles from './players.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
