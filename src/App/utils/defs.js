@@ -4,4 +4,6 @@ const GAME_STATES = [
   'over',
 ];
 
-export default {GAME_STATES};
+const DEMO_PLAYERS = ['Roey', 'Alizah', 'Herzel', 'Davis'];
+
+export default {GAME_STATES, DEMO_PLAYERS};

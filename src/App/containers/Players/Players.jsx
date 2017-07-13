@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import defs from 'utils/defs';
 import Header from 'components/Header';
 import Edit from './components/Edit';
+import Add from './components/Add';
 
 export default function Players(props) {
   const isNew = (props.gameState === 'new');
@@ -34,6 +35,7 @@ export default function Players(props) {
             ))
           }
         </div>
+        <Add addPlayer={props.addPlayer} />
       </div>
     </div>
   );
@@ -44,4 +46,5 @@ Players.propTypes = {
   players: PropTypes.array.isRequired,
   updatePlayer: PropTypes.func.isRequired,
   removePlayer: PropTypes.func.isRequired,
+  addPlayer: PropTypes.func.isRequired,
 };

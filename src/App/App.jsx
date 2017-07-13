@@ -2,25 +2,7 @@ import styles from './app.scss';
 
 import React from 'react';
 import Players from './containers/Players';
-
-const initialPlayers = [
-  {
-    id: 1,
-    name: 'Roey',
-  },
-  {
-    id: 2,
-    name: 'Alizah',
-  },
-  {
-    id: 3,
-    name: 'Herzel',
-  },
-  {
-    id: 4,
-    name: 'Davis',
-  },
-];
+import defs from './utils/defs';
 
 export default class App extends React.Component {
   constructor() {
@@ -29,12 +11,14 @@ export default class App extends React.Component {
     this.initPlayer = this.initPlayer.bind(this);
     this.updatePlayer = this.updatePlayer.bind(this);
     this.removePlayer = this.removePlayer.bind(this);
+    this.addPlayer = this.addPlayer.bind(this);
     this.findPlayerIndex = this.findPlayerIndex.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
+    this.playerIDs = 0;
     this.state = {
       gameState: 'new',
       winner: null,
-      players: initialPlayers.map(this.initPlayer),
+      players: [],
     };
   }
 
@@ -42,6 +26,32 @@ export default class App extends React.Component {
     player.score = 0;
     player.targets = this.targetIDs.map(t => ({ id: t, hitCount: 0 }));
     return player;
+  }
+
+  addPlayer(name) {
+    // validate name
+    if (name === '' || name === 0 || !name) {
+      throw new Error(`invalid player name (${name})`);
+    }
+    this.setState(prevState => {
+      const players = prevState.players.slice();
+      if (players.length > 0) {
+        // check if name already exsist
+        const found = players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
+        if (found !== undefined) {
+          console.error(`player name already found (${name})`);
+          return false;
+        }
+      }
+      // pass validations, add player
+      players.push({
+        id: this.playerIDs++,
+        name: name,
+        score: 0,
+        targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
+      });
+      return {players};
+    });
   }
 
   findPlayerIndex(playerId, players) {
@@ -74,6 +84,10 @@ export default class App extends React.Component {
     this.setState({gameState: 'on'});
   }
 
+  componentDidMount() {
+    defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
+  }
+
   render() {
     const isNew = (this.state.gameState === 'new');
     return (
@@ -85,6 +99,7 @@ export default class App extends React.Component {
               players={this.state.players}
               updatePlayer={this.updatePlayer}
               removePlayer={this.removePlayer}
+              addPlayer={this.addPlayer}
             />
           ) : 'Board'
         } 
