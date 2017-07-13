@@ -7,7 +7,7 @@ import defs from 'utils/defs';
 export default class App extends React.Component {
   constructor() {
     super();
-    this.handleStartGame = this.handleStartGame.bind(this);
+    this.startGame = this.startGame.bind(this);
     this.initPlayer = this.initPlayer.bind(this);
     this.updatePlayer = this.updatePlayer.bind(this);
     this.removePlayer = this.removePlayer.bind(this);
@@ -86,7 +86,11 @@ export default class App extends React.Component {
     });
   }
 
-  handleStartGame() {
+  startGame() {
+    if (this.state.players.length === 0) {
+      console.error('cannot start game, need at least 1 player');
+      return false;
+    }
     this.setState({gameState: 'on'});
   }
 
@@ -106,6 +110,7 @@ export default class App extends React.Component {
               updatePlayer={this.updatePlayer}
               removePlayer={this.removePlayer}
               addPlayer={this.addPlayer}
+              startGame={this.startGame}
             />
           ) : 'Board'
         } 
