@@ -15,6 +15,7 @@ export default class App extends React.Component {
     this.findPlayerIndex = this.findPlayerIndex.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerIDs = 0;
+    this.maxPlayers = 4;
     this.state = {
       gameState: 'new',
       winner: null,
@@ -29,6 +30,11 @@ export default class App extends React.Component {
   }
 
   addPlayer(name) {
+    // validate max players
+    if (this.state.players.length === this.maxPlayers) {
+      console.error(`cannot add player, reached max-players (${this.maxPlayers})`);
+      return false;
+    }
     // validate name
     if (name === '' || name === 0 || !name) {
       throw new Error(`invalid player name (${name})`);

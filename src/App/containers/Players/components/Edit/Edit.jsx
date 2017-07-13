@@ -5,8 +5,8 @@ export default class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleSave = this.handleSave.bind(this);
+    this.handleEdit   = this.handleEdit.bind(this);
+    this.handleSave   = this.handleSave.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.state = {
       value: this.props.name,
