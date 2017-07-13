@@ -29,6 +29,7 @@ export default function Players(props) {
                 id={p.id}
                 name={p.name}
                 updatePlayer={props.updatePlayer}
+                removePlayer={props.removePlayer}
               />
             ))
           }
@@ -42,4 +43,5 @@ Players.propTypes = {
   gameState: PropTypes.oneOf(defs.GAME_STATES).isRequired,
   players: PropTypes.array.isRequired,
   updatePlayer: PropTypes.func.isRequired,
+  removePlayer: PropTypes.func.isRequired,
 };

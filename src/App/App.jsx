@@ -28,6 +28,8 @@ export default class App extends React.Component {
     this.handleStartGame = this.handleStartGame.bind(this);
     this.initPlayer = this.initPlayer.bind(this);
     this.updatePlayer = this.updatePlayer.bind(this);
+    this.removePlayer = this.removePlayer.bind(this);
+    this.findPlayerIndex = this.findPlayerIndex.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.state = {
       gameState: 'new',
@@ -42,16 +44,28 @@ export default class App extends React.Component {
     return player;
   }
 
+  findPlayerIndex(playerId, players) {
+    const index = players.findIndex(p => p.id === playerId);
+    if (index === -1) {
+      throw new Error(`didn\'t find playerId (${playerId})`);
+    }
+    return index;
+  }
+
   updatePlayer(playerId, newName) {
     this.setState(prevState => {
       const players = prevState.players.slice();
-      const idx = players.findIndex(p => p.id === playerId);
-
-      if (!idx) {
-        throw new Error('didn\'t find player by playerId');
-      }
-      console.log('kaki',playerId, idx, players[idx]);
+      const idx = this.findPlayerIndex(playerId, players);
       players[idx].name = newName;
+      return {players};
+    });
+  }
+
+  removePlayer(playerId) {
+    this.setState(prevState => {
+      const players = prevState.players.slice();
+      const idx = this.findPlayerIndex(playerId, players);
+      players.splice(idx, 1);
       return {players};
     });
   }
@@ -70,6 +84,7 @@ export default class App extends React.Component {
               gameState={this.state.gameState}
               players={this.state.players}
               updatePlayer={this.updatePlayer}
+              removePlayer={this.removePlayer}
             />
           ) : 'Board'
         } 

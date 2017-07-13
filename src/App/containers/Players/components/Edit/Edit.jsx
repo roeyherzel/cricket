@@ -7,6 +7,7 @@ export default class Edit extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.state = {
       value: this.props.name,
       disabled: true,
@@ -27,7 +28,7 @@ export default class Edit extends React.Component {
   }
 
   handleRemove() {
-    // this.props.removePlayer();
+    this.props.removePlayer(this.props.id);
   }
 
   render() {
@@ -56,4 +57,5 @@ Edit.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   updatePlayer: PropTypes.func.isRequired,
+  removePlayer: PropTypes.func.isRequired,
 };
