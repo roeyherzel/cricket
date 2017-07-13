@@ -1,6 +1,6 @@
 .header {
   align-items: center;
-  composes: box from 'styles/layout.scss';
+  composes: box from 'common/styles/layout.scss';
   display: flex;
   justify-content: space-between;
 }

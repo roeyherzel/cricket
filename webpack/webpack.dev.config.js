@@ -7,8 +7,8 @@ const StyleLintPlugin   = require('stylelint-webpack-plugin');
 const commonConfig      = require('./webpack.config');
 
 module.exports = merge(commonConfig, {
-  // devtool: 'cheap-eval-source-map',
-  devtool: 'source-map',
+  devtool: 'cheap-eval-source-map',
+  // devtool: 'source-map',
 
   devServer: {
     historyApiFallback: true,

@@ -1,8 +1,8 @@
 import styles from './app.scss';
 
 import React from 'react';
-import Players from './containers/Players';
-import defs from './utils/defs';
+import Players from 'Players';
+import defs from 'utils/defs';
 
 export default class App extends React.Component {
   constructor() {

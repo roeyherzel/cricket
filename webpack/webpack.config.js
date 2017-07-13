@@ -2,7 +2,6 @@ const path = require('path');
 
 const PATHS = {
   src: path.resolve(__dirname, '../src'),
-  app: path.resolve(__dirname, '../src/App'),
 };
 
 module.exports = {
@@ -23,7 +22,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: ['node_modules', PATHS.app],
+    modules: ['node_modules', PATHS.src],
   },
 
   module: {

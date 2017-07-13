@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import defs from 'utils/defs';
-import Header from 'components/Header';
+import Header from 'common/components/Header';
 import Edit from './components/Edit';
 import Add from './components/Add';
 
