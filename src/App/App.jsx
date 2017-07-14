@@ -14,6 +14,8 @@ export default class App extends React.Component {
     this.removePlayer = this.removePlayer.bind(this);
     this.addPlayer = this.addPlayer.bind(this);
     this.findPlayerIndex = this.findPlayerIndex.bind(this);
+    this.addHit = this.addHit.bind(this);
+    this.updateTargetScore = this.updateTargetScore.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerIDs = 0;
     this.maxPlayers = 4;
@@ -87,6 +89,45 @@ export default class App extends React.Component {
     });
   }
 
+  addHit(playerId, targetId) {
+    this.updateTargetScore(playerId, targetId, 1);
+  }
+
+  updateTargetScore(playerId, targetId, amount) {
+    // Update taget hit count and score
+    this.setState(prevState => {
+      if (prevState.gameState !== 'on') {
+        return false;
+      }
+      const players = prevState.players.slice();
+      const playerIdx = this.findPlayerIndex(playerId, players);
+      const targetIdx = players[playerIdx].targets.findIndex(t => t.id === targetId);
+      const hitCount = players[playerIdx].targets[targetIdx].hitCount;
+
+      // on add, exit if target is closed
+      if (amount > 0 && hitCount >= 3) {
+        console.log('Target is closed');
+        return;
+      }
+      // on remove, exit if target is empty
+      if (amount < 0 && hitCount === 0) {
+        console.log('Target is empty');
+        return;
+      }
+      // update target and score
+      players[playerIdx].targets[targetIdx].hitCount += amount;
+      players[playerIdx].score += amount;
+
+      // do we have a winner?
+      const newState = {players};
+      if (players[playerIdx].score === 21) {
+        newState.gameState = 'over';
+        newState.winner = playerId;
+      }
+      return newState;
+    });
+  }
+
   startGame() {
     if (this.state.players.length === 0) {
       console.error('cannot start game, need at least 1 player');
@@ -113,7 +154,10 @@ export default class App extends React.Component {
               startGame={this.startGame}
             />
           ) : (
-            <Scoreboard players={this.state.players} />
+            <Scoreboard
+              players={this.state.players}
+              addHit={this.addHit}
+            />
           )
         } 
       </div>

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Target(props) {
-  const handleHit = () => props.handleHit(props.playerId, props.targetId);
+  const addHit = () => props.addHit(props.playerId, props.targetId);
   return (
     <div>
       <button
-        onClick={handleHit}>
+        onClick={addHit}>
         {props.hitCount}
       </button>
     </div>
@@ -15,7 +15,7 @@ export default function Target(props) {
 
 Target.propTypes = {
   hitCount: PropTypes.number.isRequired,
-  handleHit: PropTypes.func,
+  addHit: PropTypes.func,
   targetId: PropTypes.string.isRequired,
   playerId: PropTypes.number.isRequired,
 };
