@@ -1,6 +1,3 @@
 .header {
-  align-items: center;
   composes: box from 'common/styles/layout.css';
-  display: flex;
-  justify-content: space-between;
 }

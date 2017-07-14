@@ -1,4 +1,4 @@
-.players {
+.playersMgr {
   composes: box from 'common/styles/layout.css';
 }
 

@@ -1,7 +1,7 @@
 import styles from './app.css';
 
 import React from 'react';
-import Players from 'Players';
+import PlayersMgr from 'PlayersMgr';
 import Scoreboard from 'Scoreboard';
 import defs from 'utils/defs';
 
@@ -105,7 +105,7 @@ export default class App extends React.Component {
       <div className={styles.app}>
          {
           (isNew) ? (
-            <Players
+            <PlayersMgr
               players={this.state.players}
               updatePlayer={this.updatePlayer}
               removePlayer={this.removePlayer}
