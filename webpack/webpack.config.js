@@ -26,6 +26,7 @@ module.exports = {
   plugins: [
     new StyleLintPlugin({
       emitErrors: false,
+      files: '**/*.css',  // fix globing issue
     }),
   ],
 

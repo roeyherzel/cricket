@@ -3,25 +3,25 @@
   display: grid;
   grid-template-rows: 1fr 3fr;
   text-align: center;
+}
 
-  .info {
-    align-items: center;
-    border-bottom: 1px solid black;
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
+.info {
+  align-items: center;
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+}
 
-  .score {
-    border-bottom: 1px solid black;
-  }
+.score {
+  border-bottom: 1px solid black;
+}
 
-  .avatar {
-    border: 1px solid black;
-    border-radius: 50%;
-    height: 3rem;
-    margin: auto;
-    width: 3rem;
-  }
+.avatar {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 3rem;
+  margin: auto;
+  width: 3rem;
 }
 
 .targets {
@@ -31,7 +31,7 @@
   grid-template-rows: repeat(7, 40px);
   padding: 1rem;
 
-  button {
+  & button {
     background-color: transparent;
     border: 1px solid lightgray;
     border-radius: 4px;

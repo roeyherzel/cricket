@@ -1,10 +1,9 @@
-import styles from './styles.css';
+import styles from './player.css';
 
 import React from 'react';
-import Target from '../Target';
+import PropTypes from 'prop-types';
 
 export default function Player(props) {
-
   return (
     <div className={styles.player}>
       <div className={styles.info}>
@@ -16,3 +15,9 @@ export default function Player(props) {
     </div>
   );
 }
+
+Player.propTypes = {
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  children: PropTypes.array,
+};

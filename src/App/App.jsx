@@ -2,6 +2,7 @@ import styles from './app.css';
 
 import React from 'react';
 import Players from 'Players';
+import Scoreboard from 'Scoreboard';
 import defs from 'utils/defs';
 
 export default class App extends React.Component {
@@ -105,14 +106,15 @@ export default class App extends React.Component {
          {
           (isNew) ? (
             <Players
-              gameState={this.state.gameState}
               players={this.state.players}
               updatePlayer={this.updatePlayer}
               removePlayer={this.removePlayer}
               addPlayer={this.addPlayer}
               startGame={this.startGame}
             />
-          ) : 'Board'
+          ) : (
+            <Scoreboard players={this.state.players} />
+          )
         } 
       </div>
     );
