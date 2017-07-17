@@ -1,13 +1,10 @@
-const webpack           = require('webpack');
-const merge             = require('webpack-merge');
-const DashboardPlugin   = require('webpack-dashboard/plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const commonConfig      = require('./webpack.config');
+const webpack         = require('webpack');
+const merge           = require('webpack-merge');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const baseConfig      = require('./webpack.base.config');
+const parts           = require('./parts');
 
-module.exports = merge(commonConfig, {
-  devtool: 'cheap-eval-source-map',
-  // devtool: 'source-map',
-
+const devConfig = {
   devServer: {
     hot: true,
     historyApiFallback: true,
@@ -20,8 +17,13 @@ module.exports = merge(commonConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(),
-    new HTMLWebpackPlugin({
-      template: 'index.html',
-    }),
   ],
-});
+};
+console.log(baseConfig.module.rules);
+
+
+module.exports = merge([
+  baseConfig,
+  devConfig,
+  parts.srcMaps('cheap-eval-source-map'),
+]);
