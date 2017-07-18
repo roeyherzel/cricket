@@ -2,8 +2,6 @@
   composes: padding from 'common/styles/layout.css';
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center;
 }
 
 .list {

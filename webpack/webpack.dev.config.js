@@ -23,5 +23,6 @@ const devConfig = {
 module.exports = merge([
   baseConfig,
   devConfig,
-  parts.srcMaps('cheap-eval-source-map'),
+  // parts.srcMaps('cheap-eval-source-map'),
+  parts.srcMaps('source-map'),
 ]);

@@ -18,6 +18,7 @@ export default class Add extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.addPlayer(this.state.value);
+    this.setState({value: ''});
   }
 
   render() {
@@ -25,6 +26,7 @@ export default class Add extends React.Component {
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <input
           type="text"
+          placeholder="Name"
           value={this.state.value}
           onChange={this.handleChange}
         />

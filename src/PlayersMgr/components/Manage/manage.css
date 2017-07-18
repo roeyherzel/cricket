@@ -1,10 +1,6 @@
 .player {
   composes: form from 'common/styles/form.css';
   margin-bottom: 0.5rem;
-
-  & input {
-    padding: 1rem;
-  }
 }
 
 .actions {

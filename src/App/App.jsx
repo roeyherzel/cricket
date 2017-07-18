@@ -3,19 +3,19 @@ import styles from './app.css';
 import React from 'react';
 import PlayersMgr from 'PlayersMgr';
 import Scoreboard from 'Scoreboard';
+import Alert from 'common/components/Alert';
 import CTA from 'common/components/CTA';
 import defs from 'utils/defs';
 
 export default class App extends React.Component {
   constructor() {
     super();
-    this.startGame = this.startGame.bind(this);
-    this.initPlayer = this.initPlayer.bind(this);
-    this.updatePlayer = this.updatePlayer.bind(this);
-    this.removePlayer = this.removePlayer.bind(this);
-    this.addPlayer = this.addPlayer.bind(this);
-    this.findPlayerIndex = this.findPlayerIndex.bind(this);
-    this.addHit = this.addHit.bind(this);
+    this.startGame         = this.startGame.bind(this);
+    this.updatePlayer      = this.updatePlayer.bind(this);
+    this.removePlayer      = this.removePlayer.bind(this);
+    this.addPlayer         = this.addPlayer.bind(this);
+    this.findPlayerIndex   = this.findPlayerIndex.bind(this);
+    this.addHit            = this.addHit.bind(this);
     this.updateTargetScore = this.updateTargetScore.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerIDs = 0;
@@ -24,43 +24,49 @@ export default class App extends React.Component {
       gameState: 'new',
       winner: null,
       players: [],
+      alertMessage: '',
     };
   }
 
-  initPlayer(player) {
-    player.score = 0;
-    player.targets = this.targetIDs.map(t => ({ id: t, hitCount: 0 }));
-    return player;
-  }
-
   addPlayer(name) {
-    // validate max players
-    if (this.state.players.length === this.maxPlayers) {
-      console.error(`cannot add player, reached max-players (${this.maxPlayers})`);
-      return false;
-    }
-    // validate name
-    if (name === '' || name === 0 || !name) {
-      throw new Error(`invalid player name (${name})`);
-    }
+
     this.setState(prevState => {
+      // validate name
+      if (name === '' || name === 0 || !name) {
+        // new state
+        return {
+          alertMessage: `invalid player name (${name})`,
+        };
+      }
+      // validate players count
       const players = prevState.players.slice();
-      if (players.length > 0) {
+      if (players.length === this.maxPlayers) {
+        // new state
+        return {
+          alertMessage: `cannot add player, reached max-players (${this.maxPlayers})`,
+        };
+      } else if (players.length > 0) {
         // check if name already exsist
         const found = players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
         if (found !== undefined) {
-          console.error(`player name already found (${name})`);
-          return false;
+          // new state
+          return {
+            alertMessage: `player name already exists (${name})`,
+          };
         }
       }
-      // pass validations, add player
+      // pass validations adding player
       players.push({
         id: this.playerIDs++,
         name: name,
         score: 0,
         targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
       });
-      return {players};
+      // new state
+      return {
+        players,
+        alertMessage: '',
+      };
     });
   }
 
@@ -97,9 +103,6 @@ export default class App extends React.Component {
   updateTargetScore(playerId, targetId, amount) {
     // Update taget hit count and score
     this.setState(prevState => {
-      if (prevState.gameState !== 'on') {
-        return false;
-      }
       const players = prevState.players.slice();
       const playerIdx = this.findPlayerIndex(playerId, players);
       const targetIdx = players[playerIdx].targets.findIndex(t => t.id === targetId);
@@ -131,10 +134,10 @@ export default class App extends React.Component {
 
   startGame() {
     if (this.state.players.length === 0) {
-      console.error('cannot start game, need at least 1 player');
-      return false;
+      this.setState({alertMessage: 'cannot start game, need at least 1 player'});
+    } else {
+      this.setState({alertMessage: '', gameState: 'on'});
     }
-    this.setState({gameState: 'on'});
   }
 
   componentDidMount() {
@@ -149,6 +152,9 @@ export default class App extends React.Component {
           <h1 className={styles.title}>Jiminy Cricket</h1>
         </header>
         <main>
+          <Alert
+            message={this.state.alertMessage}
+          />
           {
             (isNew) ? (
               <PlayersMgr
