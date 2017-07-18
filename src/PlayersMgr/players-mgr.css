@@ -1,7 +1,11 @@
-.playersMgr {
-  composes: box from 'common/styles/layout.css';
+.manager {
+  composes: padding from 'common/styles/layout.css';
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 
-.playersList {
+.list {
   composes: box from 'common/styles/layout.css';
 }

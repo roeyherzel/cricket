@@ -1,0 +1,11 @@
+.form {
+  display: flex;
+
+  & input {
+    flex: 1 1;
+  }
+}
+
+.btnGroup {
+  display: flex;
+}

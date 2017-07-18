@@ -19,8 +19,6 @@ const devConfig = {
     new DashboardPlugin(),
   ],
 };
-console.log(baseConfig.module.rules);
-
 
 module.exports = merge([
   baseConfig,

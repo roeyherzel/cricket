@@ -28,7 +28,7 @@ export default class Add extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <button type="submit">Add</button>
+        <button type="submit">+</button>
       </form>
     );
   }

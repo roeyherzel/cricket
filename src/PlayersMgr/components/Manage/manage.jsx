@@ -1,7 +1,9 @@
+import styles from './manage.css';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Edit extends React.Component {
+export default class Manage extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -33,8 +35,9 @@ export default class Edit extends React.Component {
 
   render() {
     return (
-      <form>
+      <form className={styles.player}>
         <input
+          className={styles.name}
           type="text"
           value={this.state.value}
           disabled={this.state.disabled}
@@ -42,18 +45,20 @@ export default class Edit extends React.Component {
         />
         {
           (this.state.disabled) ? (
-            <button type="button" onClick={this.handleEdit}>Edit</button>
+            <button className={styles.edit} type="button" onClick={this.handleEdit}>Edit</button>
           ) : (
-            <button type="button" onClick={this.handleSave}>Save</button>
+            <span className={styles.actions}>
+              <button className={styles.save} type="button" onClick={this.handleSave}>V</button>
+              <button className={styles.remove} type="button" onClick={this.handleRemove}>X</button>
+            </span>
           )
         }
-        <button type="button" onClick={this.handleRemove}>X</button>
       </form>
     );
   }
 }
 
-Edit.propTypes = {
+Manage.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   updatePlayer: PropTypes.func.isRequired,

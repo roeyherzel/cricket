@@ -3,6 +3,7 @@ import styles from './app.css';
 import React from 'react';
 import PlayersMgr from 'PlayersMgr';
 import Scoreboard from 'Scoreboard';
+import CTA from 'common/components/CTA';
 import defs from 'utils/defs';
 
 export default class App extends React.Component {
@@ -144,22 +145,29 @@ export default class App extends React.Component {
     const isNew = (this.state.gameState === 'new');
     return (
       <div className={styles.app}>
-         {
-          (isNew) ? (
-            <PlayersMgr
-              players={this.state.players}
-              updatePlayer={this.updatePlayer}
-              removePlayer={this.removePlayer}
-              addPlayer={this.addPlayer}
-              startGame={this.startGame}
-            />
-          ) : (
-            <Scoreboard
-              players={this.state.players}
-              addHit={this.addHit}
-            />
-          )
-        } 
+        <header>
+          <h1 className={styles.title}>Jiminy Cricket</h1>
+        </header>
+        <main>
+          {
+            (isNew) ? (
+              <PlayersMgr
+                players={this.state.players}
+                updatePlayer={this.updatePlayer}
+                removePlayer={this.removePlayer}
+                addPlayer={this.addPlayer}
+              />
+            ) : (
+              <Scoreboard
+                players={this.state.players}
+                addHit={this.addHit}
+              />
+            )
+          }
+        </main>
+        <footer>
+          <CTA handleClick={this.startGame}>Start Game</CTA>
+        </footer>
       </div>
     );
   }

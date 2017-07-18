@@ -1,3 +1,5 @@
 .form {
   composes: box from 'common/styles/layout.css';
+  composes: form from 'common/styles/form.css';
+  margin-top: 1rem;
 }
