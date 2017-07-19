@@ -13,19 +13,11 @@ body {
   height: 667px;
   width: 375px;
   margin: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
 }
 
 .app header {
   text-align: center;
   border-bottom: 1px solid black;
-}
-
-.app main {
-  height: 100%;
-}
-
-.app footer {
-  margin-top: auto;
 }

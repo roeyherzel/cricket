@@ -1,5 +1,5 @@
 .scoreboard {
   display: grid;
-  grid-row-gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
+  height: 100%;
 }

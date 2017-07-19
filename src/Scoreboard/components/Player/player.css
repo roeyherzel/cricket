@@ -1,34 +1,39 @@
 .player {
-  border: 1px solid black;
   display: grid;
-  grid-template-rows: 1fr 3fr;
-  text-align: center;
+  grid-template-rows: min-content 1fr;
 }
 
 .info {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   border-bottom: 1px solid black;
-  display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
+  text-align: center;
 }
 
 .score {
-  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 5px;
+  /* border-top: 1px solid black; */
 }
 
 .avatar {
   border: 1px solid black;
   border-radius: 50%;
   height: 3rem;
-  margin: auto;
   width: 3rem;
+  margin: 10px;
+}
+
+.name {
+  width: 100%;
+  padding: 5px;
 }
 
 .targets {
-  align-content: space-evenly;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-rows: repeat(7, 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 1rem;
 
   & button {

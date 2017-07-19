@@ -29,10 +29,8 @@ export default function Scoreboard(props) {
   });
 
   return (
-    <div>
-      <div className={styles.scoreboard}>
-        {players}
-      </div>
+    <div className={styles.scoreboard}>
+      {players}
     </div>
   );
 }
