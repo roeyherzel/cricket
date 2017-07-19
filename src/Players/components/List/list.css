@@ -1,0 +1,12 @@
+.container {
+  & h2 {
+    text-align: center;
+  }
+}
+
+.list {
+  composes: box from 'common/styles/layout.css';
+  display: grid;
+  grid-template-rows: repeat(4, 40px);
+  grid-row-gap: 1rem;
+}

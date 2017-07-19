@@ -3,10 +3,8 @@ import styles from './scoreboard.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from 'common/components/Header';
 import Player from './components/Player';
 import Target from './components/Target';
-
 
 
 export default function Scoreboard(props) {
@@ -32,10 +30,6 @@ export default function Scoreboard(props) {
 
   return (
     <div>
-      <Header>
-        <button>Restart Game</button>
-      </Header>
-
       <div className={styles.scoreboard}>
         {players}
       </div>

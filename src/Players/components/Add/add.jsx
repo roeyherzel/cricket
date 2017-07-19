@@ -23,15 +23,18 @@ export default class Add extends React.Component {
 
   render() {
     return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <button type="submit">+</button>
-      </form>
+      <div className={styles.container}>
+        <h2>Add Player</h2>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+          <button type="submit">Add</button>
+        </form>
+      </div>
     );
   }
 }

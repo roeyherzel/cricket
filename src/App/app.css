@@ -20,11 +20,6 @@ body {
 .app header {
   text-align: center;
   border-bottom: 1px solid black;
-
-  & h1 {
-    padding: 1rem;
-    margin: 0;
-  }
 }
 
 .app main {

@@ -1,0 +1,5 @@
+.container {
+  composes: padding from 'common/styles/layout.css';
+  display: grid;
+  grid-template-rows: minmax(min-content, 320px) auto;
+}

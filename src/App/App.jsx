@@ -1,7 +1,7 @@
 import styles from './app.css';
 
 import React from 'react';
-import PlayersMgr from 'PlayersMgr';
+import Players from 'Players';
 import Scoreboard from 'Scoreboard';
 import Alert from 'common/components/Alert';
 import CTA from 'common/components/CTA';
@@ -157,7 +157,7 @@ export default class App extends React.Component {
           />
           {
             (isNew) ? (
-              <PlayersMgr
+              <Players
                 players={this.state.players}
                 updatePlayer={this.updatePlayer}
                 removePlayer={this.removePlayer}

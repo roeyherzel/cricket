@@ -1,9 +1,0 @@
-.manager {
-  composes: padding from 'common/styles/layout.css';
-  display: flex;
-  flex-direction: column;
-}
-
-.list {
-  composes: box from 'common/styles/layout.css';
-}
