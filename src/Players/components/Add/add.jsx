@@ -24,7 +24,7 @@ export default class Add extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <h2>Add Player</h2>
+        {/* <h2>Add Player</h2> */}
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <input
             type="text"

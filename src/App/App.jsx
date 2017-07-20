@@ -10,6 +10,8 @@ import defs from 'utils/defs';
 export default class App extends React.Component {
   constructor() {
     super();
+    this.isGameStatus      = this.isGameStatus.bind(this);
+    this.newGame           = this.newGame.bind(this);
     this.startGame         = this.startGame.bind(this);
     this.updatePlayer      = this.updatePlayer.bind(this);
     this.removePlayer      = this.removePlayer.bind(this);
@@ -24,18 +26,17 @@ export default class App extends React.Component {
       gameState: 'new',
       winner: null,
       players: [],
-      alertMessage: '',
+      alert: '',
     };
   }
 
   addPlayer(name) {
-
     this.setState(prevState => {
       // validate name
       if (name === '' || name === 0 || !name) {
         // new state
         return {
-          alertMessage: `invalid player name (${name})`,
+          alert: `invalid player name (${name})`,
         };
       }
       // validate players count
@@ -43,7 +44,7 @@ export default class App extends React.Component {
       if (players.length === this.maxPlayers) {
         // new state
         return {
-          alertMessage: `cannot add player, reached max-players (${this.maxPlayers})`,
+          alert: `cannot add player, reached max-players (${this.maxPlayers})`,
         };
       } else if (players.length > 0) {
         // check if name already exsist
@@ -51,7 +52,7 @@ export default class App extends React.Component {
         if (found !== undefined) {
           // new state
           return {
-            alertMessage: `player name already exists (${name})`,
+            alert: `player name already exists (${name})`,
           };
         }
       }
@@ -65,7 +66,7 @@ export default class App extends React.Component {
       // new state
       return {
         players,
-        alertMessage: '',
+        alert: '',
       };
     });
   }
@@ -134,10 +135,18 @@ export default class App extends React.Component {
 
   startGame() {
     if (this.state.players.length === 0) {
-      this.setState({alertMessage: 'cannot start game, need at least 1 player'});
+      this.setState({alert: 'cannot start game, need at least 1 player'});
     } else {
-      this.setState({alertMessage: '', gameState: 'on'});
+      this.setState({alert: '', gameState: 'on'});
     }
+  }
+
+  newGame() {
+    this.setState({gameState: 'new'});
+  }
+
+  isGameStatus(status) {
+    return (this.state.gameState === status);
   }
 
   componentDidMount() {
@@ -145,18 +154,24 @@ export default class App extends React.Component {
   }
 
   render() {
-    const isNew = (this.state.gameState === 'new');
     return (
       <div className={styles.app}>
         <header>
           <h1 className={styles.title}>Jiminy Cricket</h1>
+          {
+            (this.isGameStatus('new')) ? (
+              <button type="button" onClick={this.startGame}>Start Game</button>
+            ) : (
+              <button type="button" onClick={this.newGame}>New Game</button>
+            )
+          }
         </header>
         <main>
           <Alert
-            message={this.state.alertMessage}
+            message={this.state.alert}
           />
           {
-            (isNew) ? (
+            (this.isGameStatus('new')) ? (
               <Players
                 players={this.state.players}
                 updatePlayer={this.updatePlayer}
@@ -172,7 +187,6 @@ export default class App extends React.Component {
           }
         </main>
         <footer>
-          <CTA handleClick={this.startGame}>Start Game</CTA>
         </footer>
       </div>
     );

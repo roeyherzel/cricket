@@ -7,7 +7,7 @@ export default class List extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <h2>Players</h2>
+        {/* <h2>Players</h2> */}
         <div className={styles.list}>
           {this.props.children}
         </div>

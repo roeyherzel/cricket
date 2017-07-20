@@ -22,6 +22,7 @@ export default function Players(props) {
 
   return (
     <div className={styles.container}>
+      <Add addPlayer={props.addPlayer} />
       {
         (players.length === 0) ? (
           <Logo />
@@ -31,7 +32,6 @@ export default function Players(props) {
           </List>
         )
       }
-      <Add addPlayer={props.addPlayer} />
     </div>
   );
 }

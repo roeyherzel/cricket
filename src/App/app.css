@@ -13,11 +13,27 @@ body {
   height: 667px;
   width: 375px;
   margin: auto;
+  margin-top: 2rem;
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: min-content 1fr minmax(2rem, min-content);
 }
 
 .app header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
   text-align: center;
   border-bottom: 1px solid black;
+
+  & button {
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 4px;
+  }
+}
+
+.app footer {
+  background: lightgray;
+  border-top: 1px solid gray;
 }
