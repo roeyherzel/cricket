@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   padding: 1rem;
 
   & button {
@@ -42,7 +42,7 @@
     border-radius: 4px;
     font-size: 2rem;
     font-weight: lighter;
-    height: 100%;
     padding: 0 1rem;
+    width: 100%;
   }
 }
