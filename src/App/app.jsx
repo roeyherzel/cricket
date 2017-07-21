@@ -4,7 +4,6 @@ import React from 'react';
 import Players from 'Players';
 import Scoreboard from 'Scoreboard';
 import Alert from 'common/components/Alert';
-import CTA from 'common/components/CTA';
 import defs from 'utils/defs';
 
 export default class App extends React.Component {

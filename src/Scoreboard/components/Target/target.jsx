@@ -1,23 +1,26 @@
-import styles from './target.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Target(props) {
-  const addHit = () => props.addHit(props.playerId, props.targetId);
-  return (
-    <div className={styles.container}>
-      <button
-        onClick={addHit}>
-        {props.hitCount}
-      </button>
-    </div>
-  );
+import styles from './target.css';
+
+export default class Target extends React.Component {
+
+  render() {
+    return (
+      <div className={styles.container}>
+        <button
+          type="button"
+          onClick={this.props.handleClick}
+          >
+            {this.props.hitCount}
+          </button>
+      </div>
+    );
+  }
+
 }
 
 Target.propTypes = {
   hitCount: PropTypes.number.isRequired,
-  addHit: PropTypes.func,
-  targetId: PropTypes.string.isRequired,
-  playerId: PropTypes.number.isRequired,
+  handleClick: PropTypes.func,
 };

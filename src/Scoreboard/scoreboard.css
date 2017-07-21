@@ -5,7 +5,7 @@
   grid-auto-columns: 1fr;
   grid-template-columns: min-content;
   grid-template-rows: max-content repeat(7, 1fr);
-  grid-column-gap: 5px;
+  position: relative;
 
   & ul {
     list-style: none;
@@ -15,37 +15,38 @@
 .legend {
   display: contents;
   color: white;
+  font-weight: lighter;
 }
 
 .info {
   display: flex;
   align-items: center;
-  background: black;
+  background: lightgray;
+  border-bottom: 1px solid black;
+  border-right: 1px solid gray;
+  padding: 0 5px;
 
   & img {
     max-height: 2rem;
     max-width: 2rem;
-    margin: 2px;
   }
 }
 
-.targets {
+.headers {
   display: contents;
 }
 
-.target {
+.header {
   padding: 0 0.5rem;
   display: flex;
   flex-direction: flex;
-  border-top: 1px solid black;
-  border-right: 1px solid black;
 
   &:nth-child(odd) {
     background: red;
   }
 
   &:nth-child(even) {
-    background: green;
+    background: black;
   }
 
   & span {
