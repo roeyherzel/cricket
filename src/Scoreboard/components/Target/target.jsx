@@ -1,10 +1,12 @@
+import styles from './target.css';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Target(props) {
   const addHit = () => props.addHit(props.playerId, props.targetId);
   return (
-    <div>
+    <div className={styles.container}>
       <button
         onClick={addHit}>
         {props.hitCount}

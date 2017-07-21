@@ -180,6 +180,7 @@ export default class App extends React.Component {
               />
             ) : (
               <Scoreboard
+                targetIDs={this.targetIDs}
                 players={this.state.players}
                 addHit={this.addHit}
               />

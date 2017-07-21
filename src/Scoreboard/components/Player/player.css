@@ -1,13 +1,11 @@
 .player {
-  display: grid;
-  grid-template-rows: min-content 1fr;
+  display: contents;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid black;
   text-align: center;
 }
 
@@ -21,7 +19,6 @@
   border-radius: 50%;
   height: 3rem;
   width: 3rem;
-  margin: 10px;
 }
 
 .name {
@@ -30,19 +27,5 @@
 }
 
 .targets {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 1rem;
-
-  & button {
-    background-color: transparent;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-    font-size: 2rem;
-    font-weight: lighter;
-    padding: 0 1rem;
-    width: 100%;
-  }
+  display: contents;
 }

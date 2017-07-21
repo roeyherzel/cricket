@@ -1,5 +1,54 @@
-.scoreboard {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.container {
   height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  grid-template-columns: min-content;
+  grid-template-rows: max-content repeat(7, 1fr);
+  grid-column-gap: 5px;
+
+  & ul {
+    list-style: none;
+  }
+}
+
+.legend {
+  display: contents;
+  color: white;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  background: black;
+
+  & img {
+    max-height: 2rem;
+    max-width: 2rem;
+    margin: 2px;
+  }
+}
+
+.targets {
+  display: contents;
+}
+
+.target {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: flex;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+
+  &:nth-child(odd) {
+    background: red;
+  }
+
+  &:nth-child(even) {
+    background: green;
+  }
+
+  & span {
+    margin: auto;
+  }
 }
