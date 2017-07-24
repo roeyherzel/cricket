@@ -37,4 +37,5 @@ module.exports = merge([
   parts.css(),
   parts.javaScript(),
   parts.images(),
+  parts.svg(),
 ]);

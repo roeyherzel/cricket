@@ -46,7 +46,7 @@ export default class App extends React.Component {
           alert: `cannot add player, reached max-players (${this.maxPlayers})`,
         };
       } else if (players.length > 0) {
-        // check if name already exsist
+        // check if name already exists
         const found = players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
         if (found !== undefined) {
           // new state
@@ -101,7 +101,7 @@ export default class App extends React.Component {
   }
 
   updateTargetScore(playerId, targetId, amount) {
-    // Update taget hit count and score
+    // Update target hit count and score
     this.setState(prevState => {
       const players = prevState.players.slice();
       const playerIdx = this.findPlayerIndex(playerId, players);
@@ -156,7 +156,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.app}>
         <header>
-          <h1 className={styles.title}>Jiminy Cricket</h1>
+          <h1 className={styles.title}>Cricket</h1>
           {
             (this.isGameStatus('new')) ? (
               <button type="button" onClick={this.startGame}>Start Game</button>

@@ -14,17 +14,16 @@
 
 .legend {
   display: contents;
-  color: white;
   font-weight: lighter;
 }
 
 .info {
   display: flex;
   align-items: center;
-  background: lightgray;
   border-bottom: 1px solid black;
-  border-right: 1px solid gray;
+  border-right: 1px solid black;
   padding: 0 5px;
+  background: #f0f0f0;
 
   & img {
     max-height: 2rem;
@@ -40,14 +39,9 @@
   padding: 0 0.5rem;
   display: flex;
   flex-direction: flex;
-
-  &:nth-child(odd) {
-    background: red;
-  }
-
-  &:nth-child(even) {
-    background: black;
-  }
+  background: #f0f0f0;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 
   & span {
     margin: auto;

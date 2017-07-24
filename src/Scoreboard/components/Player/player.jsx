@@ -8,7 +8,6 @@ export default function Player(props) {
     <div className={styles.player}>
        <div className={styles.info}>
         <div className={styles.score}>{props.score}</div>
-        <div className={styles.avatar} />
         <div className={styles.name}>{props.name}</div>
       </div>
       <div className={styles.targets}>{props.children}</div>

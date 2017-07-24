@@ -6,6 +6,6 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "transform-runtime",
+    "transform-runtime"
   ]
 }
