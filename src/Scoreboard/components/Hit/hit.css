@@ -23,13 +23,13 @@
 
 section.info {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 5px 1rem;
 }
 
 .dartIcon {
   width: 2rem;
-  margin-left: -10px; /* TODO: fix viewBox */
 }
 
 section.actions {
