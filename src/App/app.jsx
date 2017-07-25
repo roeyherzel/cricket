@@ -156,7 +156,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.app}>
         <header>
-          <h1 className={styles.title}>Cricket</h1>
+          <h1 className={styles.title}>Cricket Darts</h1>
           {
             (this.isGameStatus('new')) ? (
               <button type="button" onClick={this.startGame}>Start Game</button>

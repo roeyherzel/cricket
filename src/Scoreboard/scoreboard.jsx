@@ -41,7 +41,6 @@ export default class Scoreboard extends React.Component {
 
     const targetBtn =(
       <Target
-        bigsize={true}
         hitCount={targetInfo.hitCount}
         handleClick={handleHit} />
     );

@@ -5,40 +5,40 @@
   position: absolute; /* relative to Scoreboard */
   top: 0;
   width: 100%;
-
-  & section {
-    display: contents;
-  }
 }
 
 .dialog {
   composes: responsive-img from 'common/styles/layout.css';
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  margin: 4rem auto;
-  text-align: center;
   width: 60%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  margin: 4rem auto;
+  padding-top: .5rem;
+  border: 1px solid black;
+  text-align: center;
 }
 
 section.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 1rem;
+  display: contents;
 }
 
 .dartIcon {
-  width: 2rem;
+  width: 3rem;
+}
+
+section.targetBtn {
+  grid-column: span 4;
 }
 
 section.actions {
+  height: 4rem;
   grid-column: span 4;
   display: flex;
   justify-self: stretch;
   justify-content: space-between;
   padding: 1rem;
-  margin-top: 1rem;
   border-top: 1px solid black;
 
   & button {
@@ -48,11 +48,12 @@ section.actions {
 }
 
 .undoBtn {
-  flex: 1 1;
+  width: 20%;
+  max-height: 100%;
   padding: 5px;
 }
 
 .doneBtn {
-  flex: 2 2;
-  margin-left: 4rem;
+  width: 50%;
+  margin-left: 30%;
 }

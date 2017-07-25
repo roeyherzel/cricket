@@ -29,11 +29,12 @@ export default class Hit extends React.Component {
         <div className={styles.dialog}>
           <section className={styles.info}>
              <div className={styles.playerName}>{this.props.playerName}</div>
-             {/* <img className={styles.dartIcon} src={dartIcon} /> */}
              <DartSVG className={styles.dartIcon} />
              <div className={styles.targetID}>{this.props.targetID}</div>
           </section>
-          { this.props.targetBtn }
+          <section className={styles.targetBtn}>
+            { this.props.targetBtn }
+          </section>
           <section className={styles.actions}>
             <button className={styles.undoBtn} >
               <img src={undoIcon} />
