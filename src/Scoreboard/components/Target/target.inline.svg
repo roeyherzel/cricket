@@ -3,6 +3,6 @@
   <ellipse style="fill: none; stroke-width: 25;" cx="390.267" cy="328.244" rx="221.181" ry="221.181">
     <title>Circle</title>
   </ellipse>
-  <line style="stroke-linecap: round; fill: rgba(242, 223, 223, 0.933); stroke-width: 40;" x1="291.476" y1="427.035" x2="489.058" y2="229.453"/>
+  <line style="stroke-linecap: round; stroke-width: 40;" x1="291.476" y1="427.035" x2="489.058" y2="229.453"/>
   <line style="stroke-linecap: round; stroke-width: 40;" x1="291.476" y1="229.453" x2="489.058" y2="427.035"/>
 </svg>

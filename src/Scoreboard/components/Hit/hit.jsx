@@ -18,9 +18,6 @@ export default class Hit extends React.Component {
   }
 
   render() {
-    const playerInfo = this.props.allplayers.find(p => p.id === this.props.playerID);
-    const targetInfo = playerInfo.targets.find(t => t.id === this.props.targetID);
-
     return (
       <div
         className={styles.container}
@@ -28,19 +25,9 @@ export default class Hit extends React.Component {
         onClick={this.handleClickOut}>
 
         <div className={styles.dialog}>
-          <div className={styles.name}>{playerInfo.name}</div>
-          <button
-            type="button"
-            className={styles.hitCount}
-            onClick={() => this.props.handleHit(playerInfo.id, targetInfo.id)}
-            >
-            {targetInfo.hitCount}
-          </button>
-          <button
-            type="button"
-            className={styles.done}
-            onClick={this.props.handleDone}
-            >
+          <div className={styles.name}>{this.props.playerName}</div>
+          { this.props.children }
+          <button type="button" className={styles.done} onClick={this.props.handleDone}>
             Done
           </button>
         </div>
@@ -51,9 +38,8 @@ export default class Hit extends React.Component {
 }
 
 Hit.propTypes = {
-  allplayers: PropTypes.array.isRequired,
-  playerID: PropTypes.number.isRequired,
+  children: PropTypes.element.isRequired,
   targetID: PropTypes.string.isRequired,
+  playerName: PropTypes.string.isRequired,
   handleDone: PropTypes.func.isRequired,
-  handleHit: PropTypes.func.isRequired,
 };

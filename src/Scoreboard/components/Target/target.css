@@ -10,30 +10,29 @@
 }
 
 /* defaults */
-.container svg {
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  stroke: #dfdfdf;
-}
+svg.target {
+  max-width: 60%;
+  max-height: 60%;
+  stroke: #f0f0f0;
 
-/* 1 or more hits */
-.container:not([data-hits="0"]) svg {
-  max-width: 3rem;
-  max-height: 3rem;
-  stroke: none;
-}
+  /* 1 hit mark 1 line */
+  &[data-hits="1"] line:last-of-type {
+    stroke: black;
+  }
 
-/* 1 hit mark 1 line */
-.container[data-hits="1"] svg line:first-of-type {
-  stroke: black;
-}
+  /* 2 hits mark lines */
+  &[data-hits="2"] line {
+    stroke: black;
+  }
 
-/* 2 hits mark lines */
-.container[data-hits="2"] svg line {
-  stroke: black;
-}
+  /* 3 hits mark lines & ellipse */
+  &[data-hits="3"] {
+    stroke: black;
+  }
 
-/* 3 hits mark lines & ellipse */
-.container[data-hits="3"] svg {
-  stroke: black;
+  /* full size svg */
+  &[data-maxsize="true"] {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }

@@ -11,8 +11,9 @@ import dartboardImg from 'images/dartboard.png';
 export default class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
-    this.openDialog = this.openDialog.bind(this);
+    this.openDialog  = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
+    this.getDialog   = this.getDialog.bind(this);
     this.state = {
       hitDialogOpen: false,
       hitDialogPlayerID: null,
@@ -32,22 +33,44 @@ export default class Scoreboard extends React.Component {
     this.setState({hitDialogOpen: false});
   }
 
+  getDialog() {
+    const playerInfo = this.props.players.find(p => p.id === this.state.hitDialogPlayerID);
+    const targetInfo = playerInfo.targets.find(t => t.id === this.state.hitDialogTargetID);
+    const handleHit = () => this.props.addHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
+    // const handleUndo = () => this.props.removeHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
+
+    return (
+      <Hit
+        targetID={this.state.hitDialogTargetID}
+        playerName={playerInfo.name}
+        handleDone={this.closeDialog}
+        >
+        <Target
+          maxsize={true}
+          hitCount={targetInfo.hitCount}
+          handleClick={handleHit}
+        />
+      </Hit>
+    );
+  }
+
   render() {
     const players = this.props.players.map(player => {
-      const targets = player.targets.map(target => (
-        <Target
-          key={target.id}
-          hitCount={target.hitCount}
-          handleClick={() => this.openDialog(player.id, target.id)}
-        />
-      ));
       return (
         <Player
           key={player.id}
           name={player.name}
           score={player.score}
           >
-          {targets}
+          {
+            player.targets.map(target => (
+              <Target
+                key={target.id}
+                hitCount={target.hitCount}
+                handleClick={() => this.openDialog(player.id, target.id)}
+              />
+            ))
+          }
         </Player>
       );
     });
@@ -68,18 +91,8 @@ export default class Scoreboard extends React.Component {
             }
           </div>
         </div>
-        {players}
-        {
-          (this.state.hitDialogOpen) && (
-            <Hit
-              allplayers={this.props.players}
-              targetID={this.state.hitDialogTargetID}
-              playerID={this.state.hitDialogPlayerID}
-              handleDone={this.closeDialog}
-              handleHit={this.props.addHit}
-            />
-          )
-        }
+        { players }
+        { (this.state.hitDialogOpen) && this.getDialog() }
       </div>
     );
   }
