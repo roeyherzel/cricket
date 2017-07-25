@@ -1,16 +1,12 @@
 .container {
   font-weight: lighter;
-  align-self: stretch;
-  justify-self: stretch;
   border: none;
   padding: 0;
-  width: 100%;
-  height: 100%;
   background: none;
 }
 
 /* defaults */
-svg.target {
+.target {
   max-width: 60%;
   max-height: 60%;
   stroke: #f0f0f0;
@@ -30,9 +26,8 @@ svg.target {
     stroke: black;
   }
 
-  /* full size svg */
-  &[data-maxsize="true"] {
-    max-width: 100%;
-    max-height: 100%;
+  &[data-bigsize="true"] {
+    max-width: 90%;
+    max-height: 90%;
   }
 }

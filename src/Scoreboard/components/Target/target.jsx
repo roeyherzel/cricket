@@ -9,7 +9,7 @@ export default class Target extends React.Component {
   render() {
     return (
       <button type="button" className={styles.container} onClick={this.props.handleClick}>
-        <TargetSVG className={styles.target} data-hits={this.props.hitCount} data-maxsize={this.props.maxsize} />
+         <TargetSVG className={styles.target} data-hits={this.props.hitCount} data-bigsize={this.props.bigsize} />
       </button>
     );
   }
@@ -18,11 +18,11 @@ export default class Target extends React.Component {
 
 Target.defaultProps = {
   hitCount: 0,
-  maxsize: false,
+  bigsize: false,
 };
 
 Target.propTypes = {
   hitCount: PropTypes.number,
   handleClick: PropTypes.func,
-  maxsize: PropTypes.bool,
+  bigsize: PropTypes.bool,
 };

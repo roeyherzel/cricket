@@ -39,18 +39,20 @@ export default class Scoreboard extends React.Component {
     const handleHit = () => this.props.addHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
     // const handleUndo = () => this.props.removeHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
 
+    const targetBtn =(
+      <Target
+        bigsize={true}
+        hitCount={targetInfo.hitCount}
+        handleClick={handleHit} />
+    );
+
     return (
       <Hit
+        targetBtn={targetBtn}
         targetID={this.state.hitDialogTargetID}
         playerName={playerInfo.name}
         handleDone={this.closeDialog}
-        >
-        <Target
-          maxsize={true}
-          hitCount={targetInfo.hitCount}
-          handleClick={handleHit}
-        />
-      </Hit>
+      />
     );
   }
 
