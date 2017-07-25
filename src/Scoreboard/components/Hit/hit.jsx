@@ -27,16 +27,19 @@ export default class Hit extends React.Component {
         onClick={this.handleClickOut}>
 
         <div className={styles.dialog}>
+
           <section className={styles.info}>
              <div className={styles.playerName}>{this.props.playerName}</div>
              <DartSVG className={styles.dartIcon} />
              <div className={styles.targetID}>{this.props.targetID}</div>
           </section>
+
           <section className={styles.targetBtn}>
             { this.props.targetBtn }
           </section>
+
           <section className={styles.actions}>
-            <button className={styles.undoBtn} >
+            <button className={styles.undoBtn} onClick={this.props.handleUndo}>
               <img src={undoIcon} />
             </button>
             <button type="button" className={styles.doneBtn} onClick={this.props.handleDone}>
@@ -56,4 +59,5 @@ Hit.propTypes = {
   targetID: PropTypes.string.isRequired,
   playerName: PropTypes.string.isRequired,
   handleDone: PropTypes.func.isRequired,
+  handleUndo: PropTypes.func.isRequired,
 };

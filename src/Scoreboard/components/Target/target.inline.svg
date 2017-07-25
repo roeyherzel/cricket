@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="140.2671356201172 78.2442626953125 500 500" xmlns="http://www.w3.org/2000/svg">
-  <ellipse style="fill: none; stroke-width: 25;" cx="390.267" cy="328.244" rx="221.181" ry="221.181">
+  <ellipse style="stroke-width: 25;" cx="390.267" cy="328.244" rx="221.181" ry="221.181">
     <title>Circle</title>
   </ellipse>
   <line style="stroke-linecap: round; stroke-width: 40;" x1="291.476" y1="427.035" x2="489.058" y2="229.453"/>

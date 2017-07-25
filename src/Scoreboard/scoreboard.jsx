@@ -36,8 +36,8 @@ export default class Scoreboard extends React.Component {
   getDialog() {
     const playerInfo = this.props.players.find(p => p.id === this.state.hitDialogPlayerID);
     const targetInfo = playerInfo.targets.find(t => t.id === this.state.hitDialogTargetID);
-    const handleHit = () => this.props.addHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
-    // const handleUndo = () => this.props.removeHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
+    const handleHit  = () => this.props.updateHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
+    const handleUndo = () => this.props.updateHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID, -1);
 
     const targetBtn =(
       <Target
@@ -50,6 +50,7 @@ export default class Scoreboard extends React.Component {
         targetBtn={targetBtn}
         targetID={this.state.hitDialogTargetID}
         playerName={playerInfo.name}
+        handleUndo={handleUndo}
         handleDone={this.closeDialog}
       />
     );
@@ -103,5 +104,5 @@ export default class Scoreboard extends React.Component {
 Scoreboard.propTypes = {
   targetIDs: PropTypes.array.isRequired,
   players: PropTypes.array.isRequired,
-  addHit: PropTypes.func.isRequired,
+  updateHit: PropTypes.func.isRequired,
 };

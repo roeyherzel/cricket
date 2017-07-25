@@ -12,12 +12,11 @@ export default class App extends React.Component {
     this.isGameStatus      = this.isGameStatus.bind(this);
     this.newGame           = this.newGame.bind(this);
     this.startGame         = this.startGame.bind(this);
-    this.updatePlayer      = this.updatePlayer.bind(this);
-    this.removePlayer      = this.removePlayer.bind(this);
     this.addPlayer         = this.addPlayer.bind(this);
+    this.removePlayer      = this.removePlayer.bind(this);
+    this.updatePlayer      = this.updatePlayer.bind(this);
     this.findPlayerIndex   = this.findPlayerIndex.bind(this);
-    this.addHit            = this.addHit.bind(this);
-    this.updateTargetScore = this.updateTargetScore.bind(this);
+    this.updateHit         = this.updateHit.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerIDs = 0;
     this.maxPlayers = 4;
@@ -96,11 +95,7 @@ export default class App extends React.Component {
     });
   }
 
-  addHit(playerId, targetId) {
-    this.updateTargetScore(playerId, targetId, 1);
-  }
-
-  updateTargetScore(playerId, targetId, amount) {
+  updateHit(playerId, targetId, amount = 1) {
     // Update target hit count and score
     this.setState(prevState => {
       const players = prevState.players.slice();
@@ -166,9 +161,7 @@ export default class App extends React.Component {
           }
         </header>
         <main>
-          <Alert
-            message={this.state.alert}
-          />
+          <Alert message={this.state.alert} />
           {
             (this.isGameStatus('new')) ? (
               <Players
@@ -181,13 +174,12 @@ export default class App extends React.Component {
               <Scoreboard
                 targetIDs={this.targetIDs}
                 players={this.state.players}
-                addHit={this.addHit}
+                updateHit={this.updateHit}
               />
             )
           }
         </main>
-        <footer>
-        </footer>
+        <footer></footer>
       </div>
     );
   }
