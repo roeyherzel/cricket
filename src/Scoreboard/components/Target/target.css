@@ -2,17 +2,38 @@
   font-weight: lighter;
   align-self: stretch;
   justify-self: stretch;
+  border: none;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+}
 
-  & button {
-    border: none;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background: none;
+/* defaults */
+.container svg {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  stroke: #dfdfdf;
+}
 
-    & svg {
-      width: 30%;
-      height: 30%;
-    }
-  }
+/* 1 or more hits */
+.container:not([data-hits="0"]) svg {
+  max-width: 3rem;
+  max-height: 3rem;
+  stroke: none;
+}
+
+/* 1 hit mark 1 line */
+.container[data-hits="1"] svg line:first-of-type {
+  stroke: black;
+}
+
+/* 2 hits mark lines */
+.container[data-hits="2"] svg line {
+  stroke: black;
+}
+
+/* 3 hits mark lines & ellipse */
+.container[data-hits="3"] svg {
+  stroke: black;
 }

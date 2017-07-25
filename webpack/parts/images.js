@@ -2,7 +2,8 @@ module.exports = () => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|^(?!.*\.inline\.svg$).*\.svg)$/,
+        test: /\.(png|jpg|svg)$/,
+        exclude: /\.inline.svg$/,
         use: {
           loader: 'file-loader',
         },
