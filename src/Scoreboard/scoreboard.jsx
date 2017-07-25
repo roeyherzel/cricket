@@ -6,7 +6,7 @@ import Target from './components/Target';
 import Hit from './components/Hit';
 
 import styles from './scoreboard.css';
-import dartboardImg from 'images/dartboard.png';
+import DartboardSVG from './components/Hit/dart.inline.svg';
 
 export default class Scoreboard extends React.Component {
   constructor(props) {
@@ -81,7 +81,7 @@ export default class Scoreboard extends React.Component {
       <div className={styles.container}>
         <div className={styles.legend}>
           <div className={styles.info}>
-            <img src={dartboardImg} />
+            <DartboardSVG />
           </div>
           <div className={styles.headers}>
             {

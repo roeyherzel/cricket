@@ -12,11 +12,7 @@ export default class Hit extends React.Component {
   }
 
   handleClickOut(e) {
-    if (e.target === this.el) {
-      this.props.handleDone();
-    } else {
-      console.log(this.el);
-    }
+    if (e.target === this.el) this.props.handleDone();
   }
 
   render() {
