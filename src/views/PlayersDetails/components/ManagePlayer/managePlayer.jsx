@@ -1,4 +1,4 @@
-import styles from './manage.css';
+import styles from './managePlayer.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
