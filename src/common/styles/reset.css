@@ -1,0 +1,17 @@
+@import 'normalize.css';
+
+@value primary from './typography.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightblue;
+}
+
+body,
+input,
+button {
+  font-family: primary;
+}

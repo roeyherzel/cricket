@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './add.css';
+import styles from './addPlayer.css';
 
 export default class Add extends React.Component {
   constructor(props) {

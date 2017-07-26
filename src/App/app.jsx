@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Players from 'Players';
-import Scoreboard from 'Scoreboard';
+import PlayersDetails from 'views/PlayersDetails';
+import Scoreboard from 'views/Scoreboard';
 import Alert from 'common/components/Alert';
 import defs from 'utils/defs';
 
@@ -31,34 +31,6 @@ export default class App extends React.Component {
     };
   }
 
-  addPlayer(name) {
-    this.setState(prevState => {
-      // validate name
-      if (name === '' || name === 0 || !name) {
-        return { alert: `invalid player name (${name})` };
-      }
-      // validate players count
-      const players = prevState.players.slice();
-      if (players.length === this.maxPlayers) {
-        return { alert: `cannot add player, reached max-players (${this.maxPlayers})` };
-      } else if (players.length > 0) {
-        // check if name already exists
-        const found = players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
-        if (found !== undefined) {
-          return { alert: `player name already exists (${name})` };
-        }
-      }
-      // pass validations adding player
-      players.push({
-        id: this.playerIDs++,
-        name: name,
-        score: 0,
-        targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
-      });
-      return { players, alert: '' };
-    });
-  }
-
   findPlayerIndex(playerId, players) {
     const index = players.findIndex(p => p.id === playerId);
     if (index === -1) {
@@ -67,21 +39,62 @@ export default class App extends React.Component {
     return index;
   }
 
+  addPlayer(name) {
+    this.setState(prevState => {
+      const newState = {alert: ''};
+
+      // Validate name
+      if (name === '' || name === 0 || !name) {
+        newState.alert = `invalid player name (${name})`;
+        return newState;
+      }
+      // Validate players count
+      if (prevState.players.length === this.maxPlayers) {
+        newState.alert = `cannot add player, reached max-players (${this.maxPlayers})`;
+        return newState;
+      }
+      // Check if name already exists
+      if (prevState.players.length > 0) {
+        const found = prevState.players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
+        if (found !== undefined) {
+          newState.alert = `player name already exists (${name})`;
+          return newState;
+        }
+      }
+      // Pass validations adding player
+      newState.players = prevState.players.slice();
+      newState.players.push({
+        id: this.playerIDs++,
+        name: name,
+        score: 0,
+        targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
+      });
+      return newState;
+    });
+  }
+
   updatePlayer(playerId, newName) {
     this.setState(prevState => {
-      const players = prevState.players.slice();
-      const idx = this.findPlayerIndex(playerId, players);
-      players[idx].name = newName;
-      return {players};
+      // TODO: validate player name
+      const newState = {
+        alert: '',
+        players: prevState.players.slice(),
+      };
+      const idx = this.findPlayerIndex(playerId, newState.players);
+      newState.players[idx].name = newName;
+      return newState;
     });
   }
 
   removePlayer(playerId) {
     this.setState(prevState => {
-      const players = prevState.players.slice();
-      const idx = this.findPlayerIndex(playerId, players);
-      players.splice(idx, 1);
-      return {players};
+      const newState = {
+        alert: '',
+        players: prevState.players.slice(),
+      };
+      const idx = this.findPlayerIndex(playerId, newState.players);
+      newState.players.splice(idx, 1);
+      return newState;
     });
   }
 
@@ -105,7 +118,7 @@ export default class App extends React.Component {
         console.log('Target is empty');
         return;
       }
-      // Update target and score
+      // Pass vlidations, update target and score
       players[playerIdx].targets[targetIdx].hitCount += amount;
       players[playerIdx].score += amount;
 
@@ -148,21 +161,21 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        <header>
+        <header className={styles.header}>
           <h1 className={styles.title}>Cricket Darts</h1>
           {
             (this.isGameStatus('new')) ? (
-              <button type="button" onClick={this.startGame}>Start Game</button>
+              <button className={styles.ctaBtn} type="button" onClick={this.startGame}>Start Game</button>
             ) : (
-              <button type="button" onClick={this.newGame}>New Game</button>
+              <button className={styles.ctaBtn} type="button" onClick={this.newGame}>New Game</button>
             )
           }
         </header>
-        <main>
+        <main className={styles.main}>
           <Alert message={this.state.alert} />
           {
             (this.isGameStatus('new')) ? (
-              <Players
+              <PlayersDetails
                 players={this.state.players}
                 updatePlayer={this.updatePlayer}
                 removePlayer={this.removePlayer}
@@ -177,8 +190,7 @@ export default class App extends React.Component {
             )
           }
         </main>
-        <DartboardSVG className={styles.dartboard}/>
-        <footer></footer>
+        <DartboardSVG className={styles.dartboardSVG}/>
       </div>
     );
   }

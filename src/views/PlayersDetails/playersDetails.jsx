@@ -1,19 +1,18 @@
-import styles from './players.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
+import ManagePlayer from './components/ManagePlayer';
+import AddPlayer from './components/AddPlayer';
 
-import Manage from './components/Manage';
-import Add from './components/Add';
+import styles from './playersDetails.css';
 
-export default function Players(props) {
+export default function PlayersDetails(props) {
   return (
     <div className={styles.container}>
-      <Add handleAdd={props.addPlayer} />
+      <AddPlayer handleAdd={props.addPlayer} />
       <div className={styles.list}>
         {
           props.players.map(p => (
-            <Manage
+            <ManagePlayer
               key={p.id}
               id={p.id}
               name={p.name}
@@ -26,7 +25,7 @@ export default function Players(props) {
   );
 }
 
-Players.propTypes = {
+PlayersDetails.propTypes = {
   players: PropTypes.array.isRequired,
   updatePlayer: PropTypes.func.isRequired,
   removePlayer: PropTypes.func.isRequired,

@@ -56,6 +56,7 @@
     "postcss": "^6.0.6",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^3.0.2",
+    "postcss-icss-values": "^2.0.1",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.6",
     "postcss-local-scope": "0.0.5",

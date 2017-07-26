@@ -31,7 +31,7 @@ export default class Hit extends React.Component {
           </section>
 
           <section className={styles.targetBtn}>
-            { this.props.targetBtn }
+            { this.props.target }
           </section>
 
           <section className={styles.actions}>
@@ -51,7 +51,7 @@ export default class Hit extends React.Component {
 }
 
 Hit.propTypes = {
-  targetBtn: PropTypes.element.isRequired,
+  target: PropTypes.element.isRequired,
   targetID: PropTypes.string.isRequired,
   playerName: PropTypes.string.isRequired,
   handleDone: PropTypes.func.isRequired,

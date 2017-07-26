@@ -1,14 +1,5 @@
-@import 'normalize.css/normalize.css';
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: lightblue;
-}
-
 .app {
+  position: relative;
   background-color: white;
   background: url('images/background.svg');
   height: 667px;
@@ -19,39 +10,35 @@ body {
   grid-template-rows: min-content 1fr;
 }
 
-.app header {
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
   text-align: center;
-
-  & h1 {
-    font-family: 'Montserrat Subrayada', sans-serif;
-  }
-
-  & button {
-    padding: 8px;
-    margin-bottom: 1rem;
-    background: #eaffa9;
-    border: 1px solid black;
-    border-radius: 4px;
-    font-family: 'Unica One', cursive;
-  }
 }
 
-.app main {
+.ctaBtn {
+  padding: 8px;
+  margin-bottom: 1rem;
+  background: #eaffa9;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-family: 'Unica One', cursive;
+}
+
+.title {
+  composes: title from 'common/styles/typography.css';
+}
+
+.main {
   z-index: 100;
 }
 
-.app {
-  position: relative;
-}
-
-.dartboard {
+.dartboardSVG {
   position: absolute;
-  bottom: 0;
   left: 0;
   max-height: 50%;
   max-width: 100%;
+  bottom: 0;
 }

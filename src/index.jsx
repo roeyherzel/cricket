@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-
 import App from './App';
+
+import 'common/styles/reset.css';
 
 function render(Root) {
   ReactDOM.render(
