@@ -6,6 +6,8 @@
   grid-template-columns: min-content;
   grid-template-rows: max-content repeat(7, 1fr);
   position: relative;
+  background: white;
+  border: 1px solid black;
 
   & ul {
     list-style: none;
@@ -20,10 +22,10 @@
 .info {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   border-right: 1px solid black;
   padding: 0 5px;
-  background: #f0f0f0;
+  background: black;
 
   & img {
     max-height: 2rem;

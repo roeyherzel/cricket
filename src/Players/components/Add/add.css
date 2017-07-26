@@ -1,4 +1,3 @@
-.form {
-  composes: box from 'common/styles/layout.css';
+.container {
   composes: form from 'common/styles/form.css';
 }

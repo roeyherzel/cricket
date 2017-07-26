@@ -1,10 +1,12 @@
-import styles from './app.css';
-
 import React from 'react';
+
 import Players from 'Players';
 import Scoreboard from 'Scoreboard';
 import Alert from 'common/components/Alert';
 import defs from 'utils/defs';
+
+import DartboardSVG from 'images/dartboard.inline.svg';
+import styles from './app.css';
 
 export default class App extends React.Component {
   constructor() {
@@ -23,6 +25,7 @@ export default class App extends React.Component {
     this.state = {
       gameState: 'new',
       winner: null,
+      leader: null,
       players: [],
       alert: '',
     };
@@ -32,26 +35,17 @@ export default class App extends React.Component {
     this.setState(prevState => {
       // validate name
       if (name === '' || name === 0 || !name) {
-        // new state
-        return {
-          alert: `invalid player name (${name})`,
-        };
+        return { alert: `invalid player name (${name})` };
       }
       // validate players count
       const players = prevState.players.slice();
       if (players.length === this.maxPlayers) {
-        // new state
-        return {
-          alert: `cannot add player, reached max-players (${this.maxPlayers})`,
-        };
+        return { alert: `cannot add player, reached max-players (${this.maxPlayers})` };
       } else if (players.length > 0) {
         // check if name already exists
         const found = players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
         if (found !== undefined) {
-          // new state
-          return {
-            alert: `player name already exists (${name})`,
-          };
+          return { alert: `player name already exists (${name})` };
         }
       }
       // pass validations adding player
@@ -61,11 +55,7 @@ export default class App extends React.Component {
         score: 0,
         targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
       });
-      // new state
-      return {
-        players,
-        alert: '',
-      };
+      return { players, alert: '' };
     });
   }
 
@@ -95,14 +85,16 @@ export default class App extends React.Component {
     });
   }
 
-  updateHit(playerId, targetId, amount = 1) {
-    // Update target hit count and score
+  updateHit(playerID, targetId, amount = 1) {
+    // Update players target hit count and score
     this.setState(prevState => {
-      const players = prevState.players.slice();
-      const playerIdx = this.findPlayerIndex(playerId, players);
+      // Get prev state and cache indexes
+      const players   = prevState.players.slice();
+      const playerIdx = this.findPlayerIndex(playerID, players);
       const targetIdx = players[playerIdx].targets.findIndex(t => t.id === targetId);
-      const hitCount = players[playerIdx].targets[targetIdx].hitCount;
+      const hitCount  = players[playerIdx].targets[targetIdx].hitCount;
 
+      // Validate hit count
       // on add, exit if target is closed
       if (amount > 0 && hitCount >= 3) {
         console.log('Target is closed');
@@ -113,15 +105,21 @@ export default class App extends React.Component {
         console.log('Target is empty');
         return;
       }
-      // update target and score
+      // Update target and score
       players[playerIdx].targets[targetIdx].hitCount += amount;
       players[playerIdx].score += amount;
 
-      // do we have a winner?
+      // Prepare new state object
       const newState = {players};
+
+      // Update leading player
+      const leadingPlayer = players.reduce((prev, curr, idx, arr) => (curr.score > prev.score) ? curr : prev);
+      newState.leader = leadingPlayer;
+
+      // Do we have a winner?
       if (players[playerIdx].score === 21) {
         newState.gameState = 'over';
-        newState.winner = playerId;
+        newState.winner = playerID;
       }
       return newState;
     });
@@ -179,6 +177,7 @@ export default class App extends React.Component {
             )
           }
         </main>
+        <DartboardSVG className={styles.dartboard}/>
         <footer></footer>
       </div>
     );

@@ -1,6 +1,17 @@
 .container {
-  composes: padding from 'common/styles/layout.css';
+  width: 80%;
+  margin: 1rem auto;
   display: grid;
-  grid-template-rows: min-content minmax(min-content, 320px);
+  grid-template-rows: repeat(min-content, 2);
   grid-row-gap: 2rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, .8);
+  border-radius: 10px;
+}
+
+.list {
+  display: grid;
+  grid-row-gap: .5rem;
+  background: rgba(0, 0, 0, .8);
+  z-index: 100;
 }
