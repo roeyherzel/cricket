@@ -1,0 +1,21 @@
+.container {
+  display: grid;
+  grid-template-columns: [text] 1fr [remove] min-content [toggle] min-content;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.textField {
+  grid-area: text;
+}
+
+.toggleEdit {
+  grid-area: toggle;
+}
+
+.removeBtn {
+  grid-area: remove;
+}

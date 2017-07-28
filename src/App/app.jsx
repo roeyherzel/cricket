@@ -5,7 +5,6 @@ import Scoreboard from 'views/Scoreboard';
 import Alert from 'common/components/Alert';
 import defs from 'utils/defs';
 
-import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './app.css';
 
 export default class App extends React.Component {
@@ -170,7 +169,6 @@ export default class App extends React.Component {
           }
         </header>
         <main className={styles.main}>
-          <Alert message={this.state.alert} />
           {
             (this.isGameStatus('new')) ? (
               <PlayersDetails
@@ -189,7 +187,6 @@ export default class App extends React.Component {
             )
           }
         </main>
-        <DartboardSVG className={styles.dartboardSVG}/>
       </div>
     );
   }

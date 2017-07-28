@@ -1,3 +1,0 @@
-.container {
-  composes: form from 'common/styles/form.css';
-}

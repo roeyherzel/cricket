@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import styles from './addPlayer.css';
+import styles from './add.css';
 
 export default class Add extends React.Component {
   constructor(props) {
@@ -25,16 +26,17 @@ export default class Add extends React.Component {
 
   render() {
     return (
-      <form className={styles.container} onSubmit={this.handleSubmit}>
-        <TextField
-          type="text"
-          name="add"
-          placeholder="Name"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Add</button>
-      </form>
+      <section className={styles.container}>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <TextField
+            type="text"
+            name="add"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+          <RaisedButton type="submit" label="add player" secondary={true}/>
+        </form>
+      </section>
     );
   }
 }

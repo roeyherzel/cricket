@@ -1,7 +1,0 @@
-.player {
-  composes: form from 'common/styles/form.css';
-}
-
-.actions {
-  composes: btnGroup from 'common/styles/form.css';
-}

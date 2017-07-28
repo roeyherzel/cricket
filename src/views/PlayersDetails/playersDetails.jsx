@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ManagePlayer from './components/ManagePlayer';
-import AddPlayer from './components/AddPlayer';
+import List from './components/List';
+import Edit from './components/Edit';
+import Add from './components/Add';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
+import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
   return (
     <div className={styles.container}>
-      <AddPlayer handleAdd={props.addPlayer} />
-      <div className={styles.list}>
+      <DartboardSVG className={styles.dartboardSVG}/>
+      <List>
         {
           props.players.map(p => (
-            <ManagePlayer
+            <Edit
               key={p.id}
               id={p.id}
               name={p.name}
@@ -22,8 +24,13 @@ export default function PlayersDetails(props) {
               removePlayer={props.removePlayer}
             />))
         }
-      </div>
-      <RaisedButton label="Start Game" primary={true} onClick={props.startGame}/>
+      </List>
+
+      <Add handleAdd={props.addPlayer} />
+      <RaisedButton
+        label="Start Game"
+        onClick={props.startGame}
+      />
     </div>
   );
 }

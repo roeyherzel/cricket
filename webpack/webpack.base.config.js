@@ -1,7 +1,8 @@
-const merge             = require('webpack-merge');
-const path              = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const parts             = require('./parts');
+const merge                      = require('webpack-merge');
+const path                       = require('path');
+const HTMLWebpackPlugin          = require('html-webpack-plugin');
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+const parts                      = require('./parts');
 
 const base = {
   // change webpack root context to src/
@@ -26,6 +27,10 @@ const base = {
   },
 
   plugins: [
+    new WebpackBuildNotifierPlugin({
+      suppressWarning: true,
+      sound: false,
+    }),
     new HTMLWebpackPlugin({
       template: 'index.html',
     }),
