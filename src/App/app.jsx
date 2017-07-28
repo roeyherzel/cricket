@@ -154,7 +154,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
+    // defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
   }
 
   render() {

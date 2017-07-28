@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: [text] 1fr [remove] min-content [toggle] min-content;
   align-items: center;
+  /* width: 240px; */
+  margin-top: 1rem;
 }
 
 .hidden {

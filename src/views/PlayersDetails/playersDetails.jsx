@@ -6,13 +6,11 @@ import Add from './components/Add';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
   return (
     <div className={styles.container}>
-      <DartboardSVG className={styles.dartboardSVG}/>
       <List>
         {
           props.players.map(p => (
@@ -25,12 +23,16 @@ export default function PlayersDetails(props) {
             />))
         }
       </List>
-
       <Add handleAdd={props.addPlayer} />
-      <RaisedButton
-        label="Start Game"
-        onClick={props.startGame}
-      />
+      {
+        (props.players.length > 0) && (
+          <RaisedButton
+            label="Start Game"
+            onClick={props.startGame}
+            primary={true}
+          />
+        )
+      }
     </div>
   );
 }

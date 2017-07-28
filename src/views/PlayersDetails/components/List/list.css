@@ -1,9 +1,12 @@
 .container {
-  position: absolute;
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   margin-top: 1rem;
+  width: 70%;
 }
 
+.dartboardSVG {
+  max-height: 60%;
+  margin: auto;
+}
