@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ManagePlayer from './components/ManagePlayer';
 import AddPlayer from './components/AddPlayer';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
 import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
@@ -21,6 +23,7 @@ export default function PlayersDetails(props) {
             />))
         }
       </div>
+      <RaisedButton label="Start Game" primary={true} onClick={props.startGame}/>
     </div>
   );
 }
@@ -30,4 +33,5 @@ PlayersDetails.propTypes = {
   updatePlayer: PropTypes.func.isRequired,
   removePlayer: PropTypes.func.isRequired,
   addPlayer: PropTypes.func.isRequired,
+  startGame: PropTypes.func.isRequired,
 };

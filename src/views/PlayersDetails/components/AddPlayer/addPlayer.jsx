@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TextField from 'material-ui/TextField';
+
 import styles from './addPlayer.css';
 
 export default class Add extends React.Component {
@@ -24,8 +26,9 @@ export default class Add extends React.Component {
   render() {
     return (
       <form className={styles.container} onSubmit={this.handleSubmit}>
-        <input
+        <TextField
           type="text"
+          name="add"
           placeholder="Name"
           value={this.state.value}
           onChange={this.handleChange}

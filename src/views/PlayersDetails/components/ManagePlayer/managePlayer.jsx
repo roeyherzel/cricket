@@ -1,7 +1,9 @@
-import styles from './managePlayer.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import TextField from 'material-ui/TextField';
+
+import styles from './managePlayer.css';
 
 export default class Manage extends React.Component {
   constructor(props) {
@@ -36,9 +38,10 @@ export default class Manage extends React.Component {
   render() {
     return (
       <form className={styles.player}>
-        <input
+        <TextField
           className={styles.name}
           type="text"
+          name="edit"
           value={this.state.value}
           disabled={this.state.disabled}
           onChange={this.handleChange}

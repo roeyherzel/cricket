@@ -164,9 +164,7 @@ export default class App extends React.Component {
         <header className={styles.header}>
           <h1 className={styles.title}>Cricket Darts</h1>
           {
-            (this.isGameStatus('new')) ? (
-              <button className={styles.ctaBtn} type="button" onClick={this.startGame}>Start Game</button>
-            ) : (
+            (!this.isGameStatus('new')) && (
               <button className={styles.ctaBtn} type="button" onClick={this.newGame}>New Game</button>
             )
           }
@@ -180,6 +178,7 @@ export default class App extends React.Component {
                 updatePlayer={this.updatePlayer}
                 removePlayer={this.removePlayer}
                 addPlayer={this.addPlayer}
+                startGame={this.startGame}
               />
             ) : (
               <Scoreboard

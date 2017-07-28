@@ -1,15 +1,8 @@
-@value primary: 'Lato', sans-serif;
-
 .title {
   font-family: 'Montserrat Subrayada', sans-serif;
   font-size: 2rem;
 }
 
-.default {
-  font-family: primary;
-}
-
 .md {
-  composes: default;
   font-size: 1rem;
 }
