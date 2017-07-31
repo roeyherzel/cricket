@@ -4,13 +4,16 @@ import List from './components/List';
 import Edit from './components/Edit';
 import Add from './components/Add';
 
+import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
   return (
-    <div className={styles.container}>
+    <Paper className={styles.container}>
+      <Add handleAdd={props.addPlayer} />
       <List>
         {
           props.players.map(p => (
@@ -23,17 +26,12 @@ export default function PlayersDetails(props) {
             />))
         }
       </List>
-      <Add handleAdd={props.addPlayer} />
-      {
+      {/* {
         (props.players.length > 0) && (
-          <RaisedButton
-            label="Start Game"
-            onClick={props.startGame}
-            primary={true}
-          />
+          <RaisedButton label="start game" onClick={props.startGame} secondary={true}/>
         )
-      }
-    </div>
+      } */}
+    </Paper>
   );
 }
 

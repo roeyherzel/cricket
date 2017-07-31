@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, CardHeader, CardText } from 'material-ui/Card';
-
 import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './list.css';
 
@@ -14,12 +12,9 @@ export default class List extends React.Component {
       );
     }
     return (
-      <Card className={styles.container}>
-        <CardHeader title="Players" />
-        <CardText>
-          {this.props.children}
-        </CardText>
-      </Card>
+      <div className={styles.container}>
+        {this.props.children}
+      </div>
     );
   }
 }

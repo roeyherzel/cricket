@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+import SVGIconAdd from 'material-ui/svg-icons/content/add';
 
 import styles from './add.css';
 
@@ -11,7 +12,10 @@ export default class Add extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+      errorMsg: '',
+    };
   }
 
   handleChange(e) {
@@ -20,23 +24,27 @@ export default class Add extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleAdd(this.state.value);
-    this.setState({value: ''});
+    const errorMsg = this.props.handleAdd(this.state.value);
+    this.setState({value: '', errorMsg});
   }
 
   render() {
     return (
-      <section className={styles.container}>
-        <form className={styles.form} onSubmit={this.handleSubmit}>
-          <TextField
-            type="text"
-            name="add"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <RaisedButton type="submit" label="add player" secondary={true}/>
-        </form>
-      </section>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
+        <IconButton className={styles.button} type="submit">
+          <SVGIconAdd />
+        </IconButton>
+        <TextField
+          className={styles.input}
+          type="text"
+          name="add"
+          hintText="Add Player"
+          value={this.state.value}
+          onChange={this.handleChange}
+          errorText={this.state.errorMsg}
+          fullWidth={true}
+        />
+      </form>
     );
   }
 }

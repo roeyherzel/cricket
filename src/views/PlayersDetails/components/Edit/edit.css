@@ -1,23 +1,15 @@
 .container {
-  display: grid;
-  grid-template-columns: [text] 1fr [remove] min-content [toggle] min-content;
-  align-items: center;
-  /* width: 240px; */
-  margin-top: 1rem;
-}
-
-.hidden {
-  visibility: hidden;
+  display: contents;
 }
 
 .textField {
-  grid-area: text;
+  grid-column: 2;
 }
 
 .toggleEdit {
-  grid-area: toggle;
+  grid-column: 1;
 }
 
 .removeBtn {
-  grid-area: remove;
+  grid-column: 3;
 }

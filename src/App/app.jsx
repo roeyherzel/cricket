@@ -2,10 +2,33 @@ import React from 'react';
 
 import PlayersDetails from 'views/PlayersDetails';
 import Scoreboard from 'views/Scoreboard';
-import Alert from 'common/components/Alert';
 import defs from 'utils/defs';
 
 import styles from './app.css';
+
+const validatePlayerName = (name, allnames, maxPlayers = 4) => {
+  let errorMsg = undefined;
+
+  // Validate name
+  if (name === '' || name === 0 || !name) {
+    errorMsg = `invalid player name (${name})`;
+    return errorMsg;
+  }
+  // Validate players count
+  if (allnames.length === maxPlayers) {
+    errorMsg = `cannot add player, reached max-players (${maxPlayers})`;
+    return errorMsg;
+  }
+  // Check if name already exists
+  if (allnames.length > 0) {
+    const found = allnames.find(x => (x.toLowerCase() === name.toLowerCase()));
+    if (found !== undefined) {
+      errorMsg = `player name already exists (${name})`;
+      return errorMsg;
+    }
+  }
+  return errorMsg;
+};
 
 export default class App extends React.Component {
   constructor() {
@@ -39,36 +62,19 @@ export default class App extends React.Component {
   }
 
   addPlayer(name) {
-    this.setState(prevState => {
-      const newState = {alert: ''};
+    const error = validatePlayerName(name, this.state.players.map(p => p.name));
+    if (error) return error;
 
-      // Validate name
-      if (name === '' || name === 0 || !name) {
-        newState.alert = `invalid player name (${name})`;
-        return newState;
-      }
-      // Validate players count
-      if (prevState.players.length === this.maxPlayers) {
-        newState.alert = `cannot add player, reached max-players (${this.maxPlayers})`;
-        return newState;
-      }
-      // Check if name already exists
-      if (prevState.players.length > 0) {
-        const found = prevState.players.find(p => (p.name.toLowerCase() === name.toLowerCase()));
-        if (found !== undefined) {
-          newState.alert = `player name already exists (${name})`;
-          return newState;
-        }
-      }
-      // Pass validations adding player
-      newState.players = prevState.players.slice();
-      newState.players.push({
+    // Pass validations adding player
+    this.setState(prevState => {
+      const players = prevState.players.slice();
+      players.push({
         id: this.playerIDs++,
         name: name,
         score: 0,
         targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
       });
-      return newState;
+      return {players};
     });
   }
 
@@ -154,7 +160,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    // defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
+    defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
   }
 
   render() {

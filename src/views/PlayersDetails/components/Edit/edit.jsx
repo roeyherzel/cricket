@@ -44,6 +44,7 @@ export default class Edit extends React.Component {
   render() {
     return (
       <div className={styles.container}>
+        <Toggle className={styles.toggleEdit} onToggle={this.toggleEdit} />
         <TextField
           className={styles.textField}
           name="edit"
@@ -59,7 +60,6 @@ export default class Edit extends React.Component {
             </IconButton>
           )
         }
-        <Toggle className={styles.toggleEdit} onToggle={this.toggleEdit} />
       </div>
     );
   }
