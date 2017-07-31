@@ -5,9 +5,11 @@
 .button {
   grid-column: 1;
   align-self: start;
+  margin-bottom: 1rem;
 }
 
 .input {
   grid-column: 2;
   align-self: start;
+  margin-bottom: 1rem;
 }

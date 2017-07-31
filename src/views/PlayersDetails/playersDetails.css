@@ -1,10 +1,21 @@
-.container {
+.players {
+  position: relative;
   max-width: 100%;
   display: grid;
   grid-template-columns: min-content 1fr min-content;
-  grid-template-rows: 5rem;
-  align-items: center;
   grid-column-gap: 1rem;
+  align-items: center;
   padding: 1rem;
   margin: 1rem;
+}
+
+.startGameBtn {
+  grid-column: span 3;
+  margin-top: 2rem;
+}
+
+.dartboardSVG {
+  position: absolute;
+  top: 100%;
+  margin: 1rem auto;
 }

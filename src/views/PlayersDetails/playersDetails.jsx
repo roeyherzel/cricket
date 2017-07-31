@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import List from './components/List';
 import Edit from './components/Edit';
 import Add from './components/Add';
+import DartboardSVG from 'images/dartboard.inline.svg';
 
 import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
   return (
-    <Paper className={styles.container}>
+    <Paper className={styles.players}>
       <Add handleAdd={props.addPlayer} />
       <List>
         {
@@ -26,12 +26,20 @@ export default function PlayersDetails(props) {
             />))
         }
       </List>
-      {/* {
-        (props.players.length > 0) && (
-          <RaisedButton label="start game" onClick={props.startGame} secondary={true}/>
+      {
+        (props.players.length > 0) ? (
+          <RaisedButton
+            className={styles.startGameBtn}
+            label="start game"
+            onClick={props.startGame}
+            secondary={true}
+          />
+        ) : (
+          <DartboardSVG className={styles.dartboardSVG}/>
         )
-      } */}
+      }
     </Paper>
+
   );
 }
 
