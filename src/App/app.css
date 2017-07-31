@@ -32,7 +32,9 @@
 }
 
 .main {
-  z-index: 100;
+  /* z-index: 100; */
+  /* for catching issues with scoreboard grid  */
+  overflow: hidden;
 }
 
 .dartboardSVG {
