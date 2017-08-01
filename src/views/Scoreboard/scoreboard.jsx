@@ -5,40 +5,36 @@ import TargetHeaders from './components/TargetHeaders';
 import Player from './components/Player';
 import Target from './components/Target';
 import HitDialog from './components/HitDialog';
+import WinnerDialog from './components/WinnerDialog';
 
-import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import WinnerSVG from 'images/winner.inline.svg';
 import styles from './scoreboard.css';
 
 export default class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
-    this.openDialog     = this.openDialog.bind(this);
-    this.closeDialog    = this.closeDialog.bind(this);
-    this.getDialogProps = this.getDialogProps.bind(this);
+    this.openHitDialog        = this.openHitDialog.bind(this);
+    this.closeHitDialog       = this.closeHitDialog.bind(this);
+    this.getHitDialogProps    = this.getHitDialogProps.bind(this);
+    this.getWinnerDialogProps = this.getWinnerDialogProps.bind(this);
     this.state = {
-      open: false,
+      hitDialogOpen: false,
       playerID: null,
       targetID: null,
     };
   }
 
-  openDialog(playerID, targetID) {
-    this.setState({
-      open: true,
-      playerID: playerID,
-      targetID: targetID,
-    });
+  openHitDialog(playerID, targetID) {
+    this.setState({ hitDialogOpen: true, playerID, targetID });
   }
 
-  closeDialog() {
-    this.setState({open: false});
+  closeHitDialog() {
+    this.setState({ hitDialogOpen: false });
   }
 
-  getDialogProps() {
-    if (!this.state.open) return {};
+  getHitDialogProps() {
+    if (!this.state.hitDialogOpen) return {};
 
     const playerInfo = this.props.players.find(p => p.id === this.state.playerID);
     const targetInfo = playerInfo.targets.find(t => t.id === this.state.targetID);
@@ -50,6 +46,15 @@ export default class Scoreboard extends React.Component {
       targetID: this.state.targetID,
       playerName: playerInfo.name,
       handleUndo,
+    };
+  }
+
+  getWinnerDialogProps() {
+    if (this.props.winnerID === null) return {};
+
+    const playerInfo = this.props.players.find(p => p.id === this.props.winnerID);
+    return {
+      playerName: playerInfo.name,
     };
   }
 
@@ -67,7 +72,7 @@ export default class Scoreboard extends React.Component {
               <Target
                 key={target.id}
                 hitCount={target.hitCount}
-                handleClick={() => this.openDialog(player.id, target.id)}
+                handleClick={() => this.openHitDialog(player.id, target.id)}
               />
             ))
           }
@@ -78,11 +83,7 @@ export default class Scoreboard extends React.Component {
     return (
       <div className={styles.container}>
         <Header>
-          <RaisedButton
-            label="new game"
-            className={styles.restartGameBtn}
-            onClick={this.props.restartGame}
-          />
+          <RaisedButton className={styles.restartGameBtn} label="new game" onClick={this.props.restartGame} />
         </Header>
 
         <main className={styles.board}>
@@ -91,21 +92,16 @@ export default class Scoreboard extends React.Component {
           { players }
 
           <HitDialog
-            open={this.state.open}
-            closeDialog={this.closeDialog}
-            {...this.getDialogProps()}
+            open={this.state.hitDialogOpen}
+            closeDialog={this.closeHitDialog}
+            { ...this.getHitDialogProps() }
           />
 
-          <Dialog
-            modal={true}
+          <WinnerDialog
             open={(this.props.winnerID !== null)}
-            contentClassName={styles.winnerDialog}
-            overlayClassName={styles.winnerDialogOverlay}
-            >
-            <WinnerSVG />
-            <h1>{this.state.winnerID}</h1>
-
-          </Dialog>
+            closeDialog={this.props.restartGame}
+            { ...this.getWinnerDialogProps() }
+          />
         </main>
       </div>
     );
