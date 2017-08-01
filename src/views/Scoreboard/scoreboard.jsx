@@ -9,14 +9,15 @@ import HitDialog from './components/HitDialog';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import WinnerSVG from 'images/winner.inline.svg';
 import styles from './scoreboard.css';
 
 export default class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
-    this.openDialog  = this.openDialog.bind(this);
-    this.closeDialog = this.closeDialog.bind(this);
-    this.getDialog   = this.getDialog.bind(this);
+    this.openDialog     = this.openDialog.bind(this);
+    this.closeDialog    = this.closeDialog.bind(this);
+    this.getDialogProps = this.getDialogProps.bind(this);
     this.state = {
       open: false,
       playerID: null,
@@ -36,24 +37,20 @@ export default class Scoreboard extends React.Component {
     this.setState({open: false});
   }
 
-  getDialog() {
-    if (!this.state.open) return (<div></div>);
+  getDialogProps() {
+    if (!this.state.open) return {};
 
     const playerInfo = this.props.players.find(p => p.id === this.state.playerID);
     const targetInfo = playerInfo.targets.find(t => t.id === this.state.targetID);
-    const handleHit  = () => this.props.updateHit(this.state.playerID, this.state.targetID);
     const handleUndo = () => this.props.updateHit(this.state.playerID, this.state.targetID, -1);
-    const target = (<Target hitCount={targetInfo.hitCount} handleClick={handleHit} />);
+    const handleHit  = () => this.props.updateHit(this.state.playerID, this.state.targetID);
 
-    return (
-      <HitDialog
-        target={target}
-        targetID={this.state.targetID}
-        playerName={playerInfo.name}
-        handleUndo={handleUndo}
-        handleDone={this.closeDialog}
-      />
-    );
+    return {
+      target: (<Target hitCount={targetInfo.hitCount} handleClick={handleHit} />),
+      targetID: this.state.targetID,
+      playerName: playerInfo.name,
+      handleUndo,
+    };
   }
 
   render() {
@@ -63,7 +60,7 @@ export default class Scoreboard extends React.Component {
           key={player.id}
           name={player.name}
           score={player.score}
-          isLeader={(this.props.leadPlayerID === player.id)}
+          isLeader={(this.props.leaderID === player.id)}
           >
           {
             player.targets.map(target => (
@@ -93,12 +90,21 @@ export default class Scoreboard extends React.Component {
 
           { players }
 
-          <Dialog
-            modal={false}
+          <HitDialog
             open={this.state.open}
-            onRequestClose={this.closeDialog}
-          >
-             { this.getDialog() }
+            closeDialog={this.closeDialog}
+            {...this.getDialogProps()}
+          />
+
+          <Dialog
+            modal={true}
+            open={(this.props.winnerID !== null)}
+            contentClassName={styles.winnerDialog}
+            overlayClassName={styles.winnerDialogOverlay}
+            >
+            <WinnerSVG />
+            <h1>{this.state.winnerID}</h1>
+
           </Dialog>
         </main>
       </div>
@@ -112,5 +118,6 @@ Scoreboard.propTypes = {
   players: PropTypes.array.isRequired,
   updateHit: PropTypes.func.isRequired,
   restartGame: PropTypes.func.isRequired,
-  leadPlayerID: PropTypes.number,
+  leaderID: PropTypes.number,
+  winnerID: PropTypes.number,
 };

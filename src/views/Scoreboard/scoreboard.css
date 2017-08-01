@@ -13,3 +13,12 @@
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.2);
 }
+
+.winnerDialog {
+  /* width: 100% !important;
+  max-width: none !important; */
+}
+
+.winnerDialogOverlay {
+  background-color: black !important;
+}

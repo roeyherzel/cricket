@@ -34,7 +34,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.isGameStatus      = this.isGameStatus.bind(this);
-    this.newGame           = this.newGame.bind(this);
+    this.restartGame           = this.restartGame.bind(this);
     this.startGame         = this.startGame.bind(this);
     this.addPlayer         = this.addPlayer.bind(this);
     this.removePlayer      = this.removePlayer.bind(this);
@@ -47,8 +47,8 @@ export default class App extends React.Component {
     this.maxPlayers = 4;
     this.state = {
       gameState: 'new',
-      winner: null,
-      leadPlayerID: null,
+      winnerID: null,
+      leaderID: null,
       players: [],
       alert: '',
     };
@@ -139,12 +139,12 @@ export default class App extends React.Component {
 
       // Update leading player
       const leadingPlayer = players.reduce((prev, curr) => (curr.score > prev.score) ? curr : prev);
-      newState.leadPlayerID = leadingPlayer.id;
+      newState.leaderID = leadingPlayer.id;
 
-      // Do we have a winner?
+      // Do we have a ID?
       if (players[playerIdx].score === 21) {
         newState.gameState = 'over';
-        newState.winner = playerID;
+        newState.winnerID = playerID;
       }
       return newState;
     });
@@ -154,13 +154,13 @@ export default class App extends React.Component {
     this.setState({gameState: 'on'});
   }
 
-  newGame() {
+  restartGame() {
     const players = this.state.players.map(p => ( { ...p, ...this.getCleanStats() }));
     this.setState({
       players,
       gameState: 'new',
-      winner: null,
-      leadPlayerID: null,
+      winnerID: null,
+      leaderID: null,
     });
   }
 
@@ -189,8 +189,9 @@ export default class App extends React.Component {
               targetIDs={this.targetIDs}
               players={this.state.players}
               updateHit={this.updateHit}
-              restartGame={this.newGame}
-              leadPlayerID={this.state.leadPlayerID}
+              restartGame={this.restartGame}
+              leaderID={this.state.leaderID}
+              winnerID={this.state.winnerID}
             />
           )
         }

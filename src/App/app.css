@@ -8,7 +8,6 @@
   height: 667px;
   width: 375px;
   margin: auto;
-  margin-top: 2rem;
   display: grid;
   grid-template-rows: min-content 1fr;
 }

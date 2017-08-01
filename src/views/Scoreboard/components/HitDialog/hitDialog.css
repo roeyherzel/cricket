@@ -30,3 +30,11 @@ section.actions {
   justify-content: space-between;
   padding: 1rem 0;
 }
+
+.undoBtn {
+  flex: 1 1;
+}
+
+.doneBtn {
+  flex: 2 2;
+}
