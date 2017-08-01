@@ -20,6 +20,11 @@
   color: black;
 }
 
+.header[data-leader="true"] .score {
+  background: #ed5564;
+  color: white;
+}
+
 .name {
   padding: 5px;
 }

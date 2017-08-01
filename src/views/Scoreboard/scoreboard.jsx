@@ -63,6 +63,7 @@ export default class Scoreboard extends React.Component {
           key={player.id}
           name={player.name}
           score={player.score}
+          isLeader={(this.props.leadPlayerID === player.id)}
           >
           {
             player.targets.map(target => (
@@ -111,4 +112,5 @@ Scoreboard.propTypes = {
   players: PropTypes.array.isRequired,
   updateHit: PropTypes.func.isRequired,
   restartGame: PropTypes.func.isRequired,
+  leadPlayerID: PropTypes.number,
 };

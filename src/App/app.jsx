@@ -40,6 +40,7 @@ export default class App extends React.Component {
     this.removePlayer      = this.removePlayer.bind(this);
     this.updatePlayer      = this.updatePlayer.bind(this);
     this.findPlayerIndex   = this.findPlayerIndex.bind(this);
+    this.getCleanStats     = this.getCleanStats.bind(this);
     this.updateHit         = this.updateHit.bind(this);
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     this.playerIDs = 0;
@@ -47,7 +48,7 @@ export default class App extends React.Component {
     this.state = {
       gameState: 'new',
       winner: null,
-      leader: null,
+      leadPlayerID: null,
       players: [],
       alert: '',
     };
@@ -61,6 +62,13 @@ export default class App extends React.Component {
     return index;
   }
 
+  getCleanStats() {
+    return {
+      score: 0,
+      targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
+    };
+  }
+
   addPlayer(name) {
     const error = validatePlayerName(name, this.state.players.map(p => p.name));
     if (error) return error;
@@ -71,8 +79,7 @@ export default class App extends React.Component {
       players.push({
         id: this.playerIDs++,
         name: name,
-        score: 0,
-        targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
+        ...this.getCleanStats(),
       });
       return {players};
     });
@@ -131,8 +138,8 @@ export default class App extends React.Component {
       const newState = {players};
 
       // Update leading player
-      const leadingPlayer = players.reduce((prev, curr, idx, arr) => (curr.score > prev.score) ? curr : prev);
-      newState.leader = leadingPlayer;
+      const leadingPlayer = players.reduce((prev, curr) => (curr.score > prev.score) ? curr : prev);
+      newState.leadPlayerID = leadingPlayer.id;
 
       // Do we have a winner?
       if (players[playerIdx].score === 21) {
@@ -144,15 +151,17 @@ export default class App extends React.Component {
   }
 
   startGame() {
-    if (this.state.players.length === 0) {
-      this.setState({alert: 'cannot start game, need at least 1 player'});
-    } else {
-      this.setState({alert: '', gameState: 'on'});
-    }
+    this.setState({gameState: 'on'});
   }
 
   newGame() {
-    this.setState({gameState: 'new'});
+    const players = this.state.players.map(p => ( { ...p, ...this.getCleanStats() }));
+    this.setState({
+      players,
+      gameState: 'new',
+      winner: null,
+      leadPlayerID: null,
+    });
   }
 
   isGameStatus(status) {
@@ -181,6 +190,7 @@ export default class App extends React.Component {
               players={this.state.players}
               updateHit={this.updateHit}
               restartGame={this.newGame}
+              leadPlayerID={this.state.leadPlayerID}
             />
           )
         }
