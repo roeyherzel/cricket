@@ -1,0 +1,32 @@
+.dialog {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: min-content 1fr min-content;
+  justify-items: center;
+  align-items: center;
+  margin: auto;
+  /* padding-top: .5rem; */
+  /* border: 1px solid black; */
+  text-align: center;
+}
+
+section.info {
+  display: contents;
+}
+
+.dartIcon {
+  width: 3rem;
+}
+
+section.targetBtn {
+  grid-column: span 4;
+  border-bottom: 1px solid;
+}
+
+section.actions {
+  grid-column: span 4;
+  display: flex;
+  justify-self: stretch;
+  justify-content: space-between;
+  padding: 1rem 0;
+}

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from 'common/components/header';
+import TargetHeaders from './components/TargetHeaders';
 import Player from './components/Player';
 import Target from './components/Target';
-import Hit from './components/Hit';
+import HitDialog from './components/HitDialog';
 
+import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import styles from './scoreboard.css';
-import DartboardSVG from './components/Hit/dart.inline.svg';
 
 export default class Scoreboard extends React.Component {
   constructor(props) {
@@ -17,35 +18,37 @@ export default class Scoreboard extends React.Component {
     this.closeDialog = this.closeDialog.bind(this);
     this.getDialog   = this.getDialog.bind(this);
     this.state = {
-      hitDialogOpen: false,
-      hitDialogPlayerID: null,
-      hitDialogTargetID: null,
+      open: false,
+      playerID: null,
+      targetID: null,
     };
   }
 
   openDialog(playerID, targetID) {
     this.setState({
-      hitDialogOpen: true,
-      hitDialogPlayerID: playerID,
-      hitDialogTargetID: targetID,
+      open: true,
+      playerID: playerID,
+      targetID: targetID,
     });
   }
 
   closeDialog() {
-    this.setState({hitDialogOpen: false});
+    this.setState({open: false});
   }
 
   getDialog() {
-    const playerInfo = this.props.players.find(p => p.id === this.state.hitDialogPlayerID);
-    const targetInfo = playerInfo.targets.find(t => t.id === this.state.hitDialogTargetID);
-    const handleHit  = () => this.props.updateHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID);
-    const handleUndo = () => this.props.updateHit(this.state.hitDialogPlayerID, this.state.hitDialogTargetID, -1);
+    if (!this.state.open) return (<div></div>);
+
+    const playerInfo = this.props.players.find(p => p.id === this.state.playerID);
+    const targetInfo = playerInfo.targets.find(t => t.id === this.state.targetID);
+    const handleHit  = () => this.props.updateHit(this.state.playerID, this.state.targetID);
+    const handleUndo = () => this.props.updateHit(this.state.playerID, this.state.targetID, -1);
     const target = (<Target hitCount={targetInfo.hitCount} handleClick={handleHit} />);
 
     return (
-      <Hit
+      <HitDialog
         target={target}
-        targetID={this.state.hitDialogTargetID}
+        targetID={this.state.targetID}
         playerName={playerInfo.name}
         handleUndo={handleUndo}
         handleDone={this.closeDialog}
@@ -83,23 +86,19 @@ export default class Scoreboard extends React.Component {
             onClick={this.props.restartGame}
           />
         </Header>
+
         <main className={styles.board}>
-          <div className={styles.targetHeaders}>
-            <div className={styles.colHeader}>
-              <DartboardSVG className={styles.dartboardSVG} />
-            </div>
-            <div className={styles.targetIDs}>
-              {
-                this.props.targetIDs.map(id => (
-                  <div key={id} className={styles.rowHeader}>
-                    <span>{id}</span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+          <TargetHeaders targetIDs={this.props.targetIDs} />
+
           { players }
-          { (this.state.hitDialogOpen) && this.getDialog() }
+
+          <Dialog
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.closeDialog}
+          >
+             { this.getDialog() }
+          </Dialog>
         </main>
       </div>
     );

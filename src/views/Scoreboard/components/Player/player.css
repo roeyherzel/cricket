@@ -15,10 +15,11 @@
 
 .score {
   padding: 5px;
-  color: #ff4081; /* material color */
+  align-self: stretch;
+  background: white;
+  color: black;
 }
 
 .name {
-  border-top: 1px solid #f0f0f0;
   padding: 5px;
 }
