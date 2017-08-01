@@ -166,33 +166,24 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Cricket Darts</h1>
-          {
-            (!this.isGameStatus('new')) && (
-              <button className={styles.ctaBtn} type="button" onClick={this.newGame}>New Game</button>
-            )
-          }
-        </header>
-        <main className={styles.main}>
-          {
-            (this.isGameStatus('new')) ? (
-              <PlayersDetails
-                players={this.state.players}
-                updatePlayer={this.updatePlayer}
-                removePlayer={this.removePlayer}
-                addPlayer={this.addPlayer}
-                startGame={this.startGame}
-              />
-            ) : (
-              <Scoreboard
-                targetIDs={this.targetIDs}
-                players={this.state.players}
-                updateHit={this.updateHit}
-              />
-            )
-          }
-        </main>
+        {
+          (this.isGameStatus('new')) ? (
+            <PlayersDetails
+              players={this.state.players}
+              updatePlayer={this.updatePlayer}
+              removePlayer={this.removePlayer}
+              addPlayer={this.addPlayer}
+              startGame={this.startGame}
+            />
+          ) : (
+            <Scoreboard
+              targetIDs={this.targetIDs}
+              players={this.state.players}
+              updateHit={this.updateHit}
+              restartGame={this.newGame}
+            />
+          )
+        }
       </div>
     );
   }

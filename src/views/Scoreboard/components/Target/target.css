@@ -5,7 +5,7 @@
   font-weight: lighter;
   border: none;
   padding: 0;
-  margin: 1rem;
+  margin: 10px;
   background: none;
 }
 
@@ -15,6 +15,7 @@
   max-height: 100%; /* makes grid cell fluid*/
   stroke: #f0f0f0;
   fill: none;
+  padding: 5px;
 
   /* 1 hit mark 1 line */
   &[data-hits="1"] line:last-of-type {
@@ -29,6 +30,7 @@
   /* 3 hits mark lines & ellipse */
   &[data-hits="3"] {
     stroke: black;
-    fill: lightgreen;
+    fill: #eaffa9;
+    padding: 0;
   }
 }

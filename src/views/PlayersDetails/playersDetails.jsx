@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from 'common/components/header';
 import List from './components/List';
 import Edit from './components/Edit';
 import Add from './components/Add';
@@ -12,34 +13,38 @@ import styles from './playersDetails.css';
 
 export default function PlayersDetails(props) {
   return (
-    <Paper className={styles.players}>
-      <Add handleAdd={props.addPlayer} />
-      <List>
-        {
-          props.players.map(p => (
-            <Edit
-              key={p.id}
-              id={p.id}
-              name={p.name}
-              updatePlayer={props.updatePlayer}
-              removePlayer={props.removePlayer}
-            />))
-        }
-      </List>
-      {
-        (props.players.length > 0) ? (
-          <RaisedButton
-            className={styles.startGameBtn}
-            label="start game"
-            onClick={props.startGame}
-            secondary={true}
-          />
-        ) : (
-          <DartboardSVG className={styles.dartboardSVG}/>
-        )
-      }
-    </Paper>
-
+    <div>
+      <Header />
+      <main>
+        <Paper className={styles.players}>
+          <Add handleAdd={props.addPlayer} />
+          <List>
+            {
+              props.players.map(p => (
+                <Edit
+                  key={p.id}
+                  id={p.id}
+                  name={p.name}
+                  updatePlayer={props.updatePlayer}
+                  removePlayer={props.removePlayer}
+                />))
+            }
+          </List>
+          {
+            (props.players.length > 0) ? (
+              <RaisedButton
+                className={styles.startGameBtn}
+                label="start game"
+                onClick={props.startGame}
+                secondary={true}
+              />
+            ) : (
+              <DartboardSVG className={styles.dartboardSVG}/>
+            )
+          }
+        </Paper>
+      </main>
+    </div>
   );
 }
 

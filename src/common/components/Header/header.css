@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+
+  &[data-child="true"] {
+    justify-content: space-between;
+    padding-bottom: 2rem;
+  }
+}
+
+.title {
+  composes: title from 'common/styles/typography.css';
+}
+
+.header[data-child="true"] .title {
+  font-size: 1.5rem;
+}

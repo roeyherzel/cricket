@@ -1,9 +1,11 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from 'common/components/header';
 import Player from './components/Player';
 import Target from './components/Target';
 import Hit from './components/Hit';
+
+import FlatButton from 'material-ui/FlatButton';
 
 import styles from './scoreboard.css';
 import DartboardSVG from './components/Hit/dart.inline.svg';
@@ -74,22 +76,33 @@ export default class Scoreboard extends React.Component {
 
     return (
       <div className={styles.container}>
-        <div className={styles.legend}>
-          <div className={styles.info}>
-            <DartboardSVG />
+        <Header>
+          <FlatButton
+            label="new game"
+            className={styles.restartGameBtn}
+            onClick={this.props.restartGame}
+            backgroundColor="#fff"
+            primary={true}
+          />
+        </Header>
+        <main className={styles.board}>
+          <div className={styles.targetHeaders}>
+            <div className={styles.colHeader}>
+              <DartboardSVG className={styles.dartboardSVG} />
+            </div>
+            <div className={styles.targetIDs}>
+              {
+                this.props.targetIDs.map(id => (
+                  <div key={id} className={styles.rowHeader}>
+                    <span>{id}</span>
+                  </div>
+                ))
+              }
+            </div>
           </div>
-          <div className={styles.headers}>
-            {
-              this.props.targetIDs.map(id => (
-                <div key={id} className={styles.header}>
-                  <span>{id}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-        { players }
-        { (this.state.hitDialogOpen) && this.getDialog() }
+          { players }
+          { (this.state.hitDialogOpen) && this.getDialog() }
+        </main>
       </div>
     );
   }
@@ -100,4 +113,5 @@ Scoreboard.propTypes = {
   targetIDs: PropTypes.array.isRequired,
   players: PropTypes.array.isRequired,
   updateHit: PropTypes.func.isRequired,
+  restartGame: PropTypes.func.isRequired,
 };

@@ -1,27 +1,24 @@
-.player {
+.player,
+.targets {
   display: contents;
 }
 
-.info {
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  background: #f0f0f0;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
   padding: 5px;
+  background: #333;
+  color: antiquewhite;
+  text-align: center;
 }
 
 .score {
   padding: 5px;
+  color: #ed5564;
 }
 
 .name {
+  border-top: 1px solid #f0f0f0;
   padding: 5px;
-  border-bottom: 1px solid black;
-}
-
-.targets {
-  display: contents;
 }

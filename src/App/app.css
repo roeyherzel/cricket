@@ -1,4 +1,7 @@
+@import 'common/styles/reset.css';
+
 .app {
+  composes: body from 'common/styles/typography.css';
   position: relative;
   background-color: white;
   background: url('images/background.svg');
@@ -8,33 +11,6 @@
   margin-top: 2rem;
   display: grid;
   grid-template-rows: min-content 1fr;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  text-align: center;
-}
-
-.ctaBtn {
-  padding: 8px;
-  margin-bottom: 1rem;
-  background: #eaffa9;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-family: 'Unica One', cursive;
-}
-
-.title {
-  composes: title from 'common/styles/typography.css';
-}
-
-.main {
-  /* z-index: 100; */
-  /* for catching issues with scoreboard grid  */
-  overflow: hidden;
 }
 
 .dartboardSVG {
