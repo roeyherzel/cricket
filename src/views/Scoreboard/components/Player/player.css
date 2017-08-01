@@ -9,13 +9,13 @@
   align-items: center;
   padding: 5px;
   background: #333;
-  color: antiquewhite;
+  color: #f0f0f0;
   text-align: center;
 }
 
 .score {
   padding: 5px;
-  color: #ed5564;
+  color: #ff4081; /* material color */
 }
 
 .name {

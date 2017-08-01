@@ -31,7 +31,7 @@
   padding: 0 0.5rem;
   display: flex;
   background: #333;
-  color: antiquewhite;
+  color: #f0f0f0;
 
   & span {
     margin: auto;

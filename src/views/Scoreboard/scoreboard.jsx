@@ -5,7 +5,7 @@ import Player from './components/Player';
 import Target from './components/Target';
 import Hit from './components/Hit';
 
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import styles from './scoreboard.css';
 import DartboardSVG from './components/Hit/dart.inline.svg';
@@ -77,12 +77,10 @@ export default class Scoreboard extends React.Component {
     return (
       <div className={styles.container}>
         <Header>
-          <FlatButton
+          <RaisedButton
             label="new game"
             className={styles.restartGameBtn}
             onClick={this.props.restartGame}
-            backgroundColor="#fff"
-            primary={true}
           />
         </Header>
         <main className={styles.board}>
