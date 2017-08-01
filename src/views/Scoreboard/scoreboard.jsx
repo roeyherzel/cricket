@@ -83,7 +83,11 @@ export default class Scoreboard extends React.Component {
     return (
       <div className={styles.container}>
         <Header>
-          <RaisedButton className={styles.restartGameBtn} label="new game" onClick={this.props.restartGame} />
+          <RaisedButton
+            label="new game"
+            labelStyle={{fontSize: '12px'}}
+            onClick={this.props.restartGame}
+          />
         </Header>
 
         <main className={styles.board}>
