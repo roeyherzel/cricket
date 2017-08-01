@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import WinnerSVG from './winner.inline.svg';
 import styles from './winnerDialog.css';
 
+/*
+  WinnerDialog
+  ------------
+  - Renders dialog with:
+   - winners name
+   - new game button
+  - Dialog controls is managed by externaly (by prop)
+*/
 export default class WinnerDialog extends React.Component {
   render() {
     return (

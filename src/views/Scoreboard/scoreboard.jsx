@@ -6,10 +6,18 @@ import Player from './components/Player';
 import Target from './components/Target';
 import HitDialog from './components/HitDialog';
 import WinnerDialog from './components/WinnerDialog';
-
 import RaisedButton from 'material-ui/RaisedButton';
-
 import styles from './scoreboard.css';
+
+/*
+  Scoreboard
+  ----------
+  - Renders grid scoreboard with
+    - target headers column
+    - columns containing a player and it's targets
+  - render & manage the state of hit dialog open/close
+  - render winner dialog
+*/
 
 export default class Scoreboard extends React.Component {
   constructor(props) {
@@ -18,6 +26,7 @@ export default class Scoreboard extends React.Component {
     this.closeHitDialog       = this.closeHitDialog.bind(this);
     this.getHitDialogProps    = this.getHitDialogProps.bind(this);
     this.getWinnerDialogProps = this.getWinnerDialogProps.bind(this);
+    // HitDialog related states
     this.state = {
       hitDialogOpen: false,
       playerID: null,
@@ -34,6 +43,7 @@ export default class Scoreboard extends React.Component {
   }
 
   getHitDialogProps() {
+    // Returns properies need for rendering player's hitDialog
     if (!this.state.hitDialogOpen) return {};
 
     const playerInfo = this.props.players.find(p => p.id === this.state.playerID);
@@ -50,6 +60,7 @@ export default class Scoreboard extends React.Component {
   }
 
   getWinnerDialogProps() {
+    // Returns properies need for rendering winnerDialog
     if (this.props.winnerID === null) return {};
 
     const playerInfo = this.props.players.find(p => p.id === this.props.winnerID);
@@ -59,6 +70,7 @@ export default class Scoreboard extends React.Component {
   }
 
   render() {
+    // Create player components with child targets
     const players = this.props.players.map(player => {
       return (
         <Player

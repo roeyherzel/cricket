@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Divider from 'material-ui/Divider';
-
 import styles from './list.css';
 
+/*
+  List Players
+  ------------
+  renders list of current players or none
+*/
 export default class List extends React.Component {
   render() {
     return (this.props.children.length > 0) ? (

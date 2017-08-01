@@ -5,19 +5,25 @@ import List from './components/List';
 import Edit from './components/Edit';
 import Add from './components/Add';
 import DartboardSVG from 'images/dartboard.inline.svg';
-
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import styles from './playersDetails.css';
 
+/*
+  PlayersDetails view
+  -------------------
+  - render add player widget
+  - render players editable players list
+*/
 export default function PlayersDetails(props) {
   return (
     <div>
       <Header />
       <main>
         <Paper className={styles.players}>
+
           <Add handleAdd={props.addPlayer} />
+
           <List>
             {
               props.players.map(p => (
@@ -30,6 +36,7 @@ export default function PlayersDetails(props) {
                 />))
             }
           </List>
+
           {
             (props.players.length > 0) ? (
               <RaisedButton
@@ -42,6 +49,7 @@ export default function PlayersDetails(props) {
               <DartboardSVG className={styles.dartboardSVG}/>
             )
           }
+
         </Paper>
       </main>
     </div>

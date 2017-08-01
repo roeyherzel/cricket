@@ -1,68 +1,48 @@
 import React from 'react';
-
 import PlayersDetails from 'views/PlayersDetails';
 import Scoreboard from 'views/Scoreboard';
 import defs from 'utils/defs';
-
+import * as utils from 'utils/funcs';
 import styles from './app.css';
 
-const validatePlayerName = (name, allnames, maxPlayers = 4) => {
-  let errorMsg = undefined;
-
-  // Validate name
-  if (name === '' || name === 0 || !name) {
-    errorMsg = `invalid player name (${name})`;
-    return errorMsg;
-  }
-  // Validate players count
-  if (allnames.length === maxPlayers) {
-    errorMsg = `cannot add player, reached max-players (${maxPlayers})`;
-    return errorMsg;
-  }
-  // Check if name already exists
-  if (allnames.length > 0) {
-    const found = allnames.find(x => (x.toLowerCase() === name.toLowerCase()));
-    if (found !== undefined) {
-      errorMsg = `player name already exists (${name})`;
-      return errorMsg;
-    }
-  }
-  return errorMsg;
-};
-
+/*
+  Main Game logic and states
+  --------------------------
+*/
 export default class App extends React.Component {
   constructor() {
     super();
-    this.isGameStatus      = this.isGameStatus.bind(this);
-    this.restartGame           = this.restartGame.bind(this);
-    this.startGame         = this.startGame.bind(this);
-    this.addPlayer         = this.addPlayer.bind(this);
-    this.removePlayer      = this.removePlayer.bind(this);
-    this.updatePlayer      = this.updatePlayer.bind(this);
-    this.findPlayerIndex   = this.findPlayerIndex.bind(this);
-    this.getCleanStats     = this.getCleanStats.bind(this);
-    this.updateHit         = this.updateHit.bind(this);
+    // Bind class methods
+    this.restartGame     = this.restartGame.bind(this);
+    this.startGame       = this.startGame.bind(this);
+    this.addPlayer       = this.addPlayer.bind(this);
+    this.removePlayer    = this.removePlayer.bind(this);
+    this.updatePlayer    = this.updatePlayer.bind(this);
+    this.getCleanStats   = this.getCleanStats.bind(this);
+    this.updateHit       = this.updateHit.bind(this);
+    /*
+      Non-statefull variables
+      -----------------------
+    */
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
+    // Counter for allocating new playerID
     this.playerIDs = 0;
+    // Max players per game
     this.maxPlayers = 4;
+    /*
+      Statefull variables
+      -------------------
+    */
     this.state = {
-      gameState: 'new',
-      winnerID: null,
-      leaderID: null,
-      players: [],
-      alert: '',
+      gameState: 'new', // one of new/on/over
+      winnerID: null,   // winning playerID
+      leaderID: null,   // leading playerID
+      players: [],      // players and thier targets
     };
   }
 
-  findPlayerIndex(playerId, players) {
-    const index = players.findIndex(p => p.id === playerId);
-    if (index === -1) {
-      throw new Error(`didn\'t find playerId (${playerId})`);
-    }
-    return index;
-  }
-
   getCleanStats() {
+    // Set players targets hitCount and score to 0
     return {
       score: 0,
       targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
@@ -70,56 +50,59 @@ export default class App extends React.Component {
   }
 
   addPlayer(name) {
-    const error = validatePlayerName(name, this.state.players.map(p => p.name));
+    // Validate name and state
+    const error = utils.validatePlayerName(name, this.state.players.map(p => p.name));
     if (error) return error;
-
     // Pass validations adding player
     this.setState(prevState => {
+      // Copy players state
       const players = prevState.players.slice();
+      // Add player with clean stats
       players.push({
         id: this.playerIDs++,
         name: name,
         ...this.getCleanStats(),
       });
+      // Return new state
       return {players};
     });
   }
 
   updatePlayer(playerId, newName) {
+    // Update player's name
+    // TODO: validate player newName
     this.setState(prevState => {
-      // TODO: validate player name
-      const newState = {
-        alert: '',
-        players: prevState.players.slice(),
-      };
-      const idx = this.findPlayerIndex(playerId, newState.players);
-      newState.players[idx].name = newName;
-      return newState;
+      // Copy players state
+      const players = prevState.players.slice();
+      // Override player's name
+      const idx = utils.findPlayerIndex(playerId, players);
+      players[idx].name = newName;
+      // return new state
+      return {players};
     });
   }
 
   removePlayer(playerId) {
     this.setState(prevState => {
-      const newState = {
-        alert: '',
-        players: prevState.players.slice(),
-      };
-      const idx = this.findPlayerIndex(playerId, newState.players);
-      newState.players.splice(idx, 1);
-      return newState;
+      // Copy players state
+      const players = prevState.players.slice();
+      // Remove player
+      const idx = utils.findPlayerIndex(playerId, players);
+      players.splice(idx, 1);
+      // return new state
+      return {players};
     });
   }
 
   updateHit(playerID, targetId, amount = 1) {
-    // Update players target hit count and score
+    // Update players target hitCount and score
     this.setState(prevState => {
       // Get prev state and cache indexes
       const players   = prevState.players.slice();
-      const playerIdx = this.findPlayerIndex(playerID, players);
+      const playerIdx = utils.findPlayerIndex(playerID, players);
       const targetIdx = players[playerIdx].targets.findIndex(t => t.id === targetId);
       const hitCount  = players[playerIdx].targets[targetIdx].hitCount;
 
-      // Validate hit count
       // on add, exit if target is closed
       if (amount > 0 && hitCount >= 3) {
         console.log('Target is closed');
@@ -146,6 +129,7 @@ export default class App extends React.Component {
         newState.gameState = 'over';
         newState.winnerID = playerID;
       }
+      // Return new state
       return newState;
     });
   }
@@ -155,7 +139,9 @@ export default class App extends React.Component {
   }
 
   restartGame() {
+    // Clean players targets and score
     const players = this.state.players.map(p => ( { ...p, ...this.getCleanStats() }));
+    // Reset game state
     this.setState({
       players,
       gameState: 'new',
@@ -164,11 +150,8 @@ export default class App extends React.Component {
     });
   }
 
-  isGameStatus(status) {
-    return (this.state.gameState === status);
-  }
-
   componentDidMount() {
+    // for testing purposes
     defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
   }
 
@@ -176,7 +159,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.app}>
         {
-          (this.isGameStatus('new')) ? (
+          (this.state.gameState === 'new') ? (
             <PlayersDetails
               players={this.state.players}
               updatePlayer={this.updatePlayer}

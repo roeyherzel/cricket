@@ -1,40 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Toggle from 'material-ui/Toggle';
 import SVGIconRemove from 'material-ui/svg-icons/action/delete';
-
 import styles from './edit.css';
+
+/*
+  Edit Player
+  -----------
+  - controled component
+  - toggle edit mode
+    - enables edit player name
+    - render remove player button
+*/
 
 export default class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.toggleEdit   = this.toggleEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSave   = this.handleSave.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.state = {
       value: this.props.name,
-      disabled: true,
+      disabled: true, // Controls edit mode
     };
   }
 
   toggleEdit() {
     this.setState(prevState => {
       const disabled = !prevState.disabled;
-      if (disabled === true) this.handleSave();
+      // Update player's name if toggle is off now
+      if (disabled === true) this.props.updatePlayer(this.props.id, this.state.value);
       return {disabled};
     });
   }
 
   handleChange(e) {
+    // Control input value
     this.setState({value: e.target.value});
-  }
-
-  handleSave() {
-    this.props.updatePlayer(this.props.id, this.state.value);
   }
 
   handleRemove() {
@@ -45,6 +49,7 @@ export default class Edit extends React.Component {
     return (
       <div className={styles.container}>
         <Toggle className={styles.toggleEdit} onToggle={this.toggleEdit} />
+
         <TextField
           className={styles.textField}
           name="edit"

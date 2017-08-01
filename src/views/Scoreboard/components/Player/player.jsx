@@ -1,8 +1,12 @@
-import styles from './player.css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './player.css';
 
+/*
+  Player
+  ------
+  - Renders player component with players info
+*/
 export default class Player extends React.Component {
   render() {
     return (

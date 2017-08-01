@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import DartboardSVG from 'images/dart.inline.svg';
 import styles from './targetHeaders.css';
 
+/*
+  TargetHeaders
+  -------------
+  - Renders first column of the scoreboard with target numbers
+*/
 export default class TargetHeaders extends React.Component {
   render() {
     return (

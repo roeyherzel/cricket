@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import UndoSVG from 'material-ui/svg-icons/content/undo';
-
 import DartSVG from 'images/dart.inline.svg';
 import styles from './hitDialog.css';
+
+/*
+  HitDialog
+  ---------
+  - Renders dialog with target info and buttons/actions:
+    - Target: to add hit
+    - undo/remove hit
+    - done
+*/
 
 export default class HitDialog extends React.Component {
   render() {
