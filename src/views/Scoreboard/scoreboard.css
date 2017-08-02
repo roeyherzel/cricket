@@ -10,6 +10,5 @@
   grid-template-columns: min-content;
   grid-template-rows: max-content repeat(7, 1fr);
   grid-gap: 1px;
-  border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.2);
 }
