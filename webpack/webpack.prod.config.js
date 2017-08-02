@@ -15,7 +15,7 @@ const config = {
     path: path.resolve('build'),
     chunkFilename: '[name].[chunkhash:8].js',
     filename: '[name].[chunkhash:8].js',
-    // Match GitHub project name
+    // Match GitHub project name, loading the site from fs won't work
     publicPath: '/cricket/',
   },
 

@@ -1,6 +1,7 @@
 const path                       = require('path');
 const HTMLWebpackPlugin          = require('html-webpack-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
+const FaviconsWebpackPlugin      = require('favicons-webpack-plugin');
 
 module.exports = {
   // change webpack root context to src/
@@ -25,6 +26,10 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       template: 'index.html',
+    }),
+    new FaviconsWebpackPlugin({
+      title: 'Cricket Darts',
+      logo: 'images/dart.png',
     }),
   ],
 };
