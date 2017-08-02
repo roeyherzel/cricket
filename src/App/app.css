@@ -8,10 +8,8 @@
   height: 100vh;
   width: 100vw;
   margin: auto;
-}
 
-@media (min-width: 426px) {
-  .app {
+  @media (min-width: 426px) {
     /* Mobile L */
     max-width: 425px;
     max-height: 963px;
