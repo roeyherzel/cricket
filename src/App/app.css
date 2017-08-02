@@ -1,6 +1,6 @@
 @import 'common/styles/reset.css';
 
-.app {
+.container {
   composes: body from 'common/styles/typography.css';
   position: relative;
   background-color: white;
@@ -8,8 +8,6 @@
   height: 100vh;
   width: 100vw;
   margin: auto;
-  display: grid;
-  grid-template-rows: min-content 1fr;
 }
 
 @media (min-width: 426px) {

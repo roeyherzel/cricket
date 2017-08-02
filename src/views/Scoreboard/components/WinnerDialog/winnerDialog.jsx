@@ -22,7 +22,7 @@ export default class WinnerDialog extends React.Component {
         bodyClassName={styles.body}
         overlayClassName={styles.overlay}
         >
-         <p>Winner</p>
+         <p>We have a Winner!</p>
          <WinnerSVG />
          <h1>{this.props.playerName}</h1>
          <RaisedButton label="new game" onClick={this.props.closeDialog} secondary={true}/>

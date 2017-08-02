@@ -1,5 +1,7 @@
 .container {
-  display: contents;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr 1rem;
 }
 
 .board {
@@ -11,4 +13,8 @@
   grid-template-rows: max-content repeat(7, 1fr);
   grid-gap: 1px;
   background: rgba(255, 255, 255, 0.2);
+}
+
+.footer {
+  background: #333;
 }

@@ -157,7 +157,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.app}>
+      <div className={styles.container}>
         {
           (this.state.gameState === 'new') ? (
             <PlayersDetails

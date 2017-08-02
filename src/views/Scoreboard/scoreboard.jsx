@@ -119,6 +119,8 @@ export default class Scoreboard extends React.Component {
             { ...this.getWinnerDialogProps() }
           />
         </main>
+
+        <footer className={styles.footer} />
       </div>
     );
   }
