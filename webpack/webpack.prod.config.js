@@ -15,6 +15,8 @@ const config = {
     path: path.resolve('build'),
     chunkFilename: '[name].[chunkhash:8].js',
     filename: '[name].[chunkhash:8].js',
+    // Match GitHub project name
+    publicPath: '/cricket/',
   },
 
   plugins: [

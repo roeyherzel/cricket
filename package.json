@@ -5,9 +5,9 @@
   "main": "src/index.jsx",
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.dev.config.js --hot --progress",
-    "dev": "webpack-dashboard -- npm start",
     "build": "webpack --config webpack/webpack.prod.config.js --progress",
-    "lint": "eslint src --ext .js*",
+    "dev": "webpack-dashboard -- npm start",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Roey Herzel",
