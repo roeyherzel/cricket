@@ -4,7 +4,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const baseConfig      = require('./webpack.base.config');
 const parts           = require('./parts');
 
-const devConfig = {
+const config = {
   devServer: {
     hot: true,
     historyApiFallback: true,
@@ -12,6 +12,11 @@ const devConfig = {
       errors: true,
       // warnings: true,
     },
+  },
+
+  output: {
+    // devTools sources - display absolute path to project dir
+    devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
   },
 
   plugins: [
@@ -22,7 +27,9 @@ const devConfig = {
 
 module.exports = merge([
   baseConfig,
-  devConfig,
-  // parts.srcMaps('eval-source-map'),
-  parts.srcMaps('source-map'),
+  config,
+  parts.css.load(),
+  parts.javaScript.load(),
+  parts.sourcemap('source-map'), // 'eval-source-map'
+  parts.images(),
 ]);

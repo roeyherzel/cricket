@@ -1,32 +1,38 @@
-const webpack           = require('webpack');
-const path              = require('path');
-const merge             = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const commonConfig      = require('./webpack.config');
+const merge              = require('webpack-merge');
+const path               = require('path');
+const baseConfig         = require('./webpack.base.config');
+const parts              = require('./parts');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const extractSass = new ExtractTextPlugin({ filename: 'styles.css', allChunks: true });
+const config = {
+  performance: {
+    hints: 'warning', // 'error' or false are valid too
+    maxEntrypointSize: 100000, // in bytes
+    maxAssetSize: 450000, // in bytes
+  },
 
-module.exports = merge(commonConfig, {
-  devtool: 'source-map',
+  output: {
+    path: path.resolve('build'),
+    chunkFilename: '[name].[chunkhash:8].js',
+    filename: '[name].[chunkhash:8].js',
+  },
 
   plugins: [
-    extractSass,
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true, comments: false }),
-    new HTMLWebpackPlugin({
-      template: path.resolve('src/index.html'),
+    new CleanWebpackPlugin('build', {
+      root: path.resolve(__dirname, '../'),
     }),
   ],
+};
 
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: extractSass.extract({
-          use: ['css-loader', 'sass-loader'],
-          fallback: 'style-loader',
-        }),
-      },
-    ],
-  },
-});
+module.exports = merge([
+  baseConfig,
+  config,
+  parts.css.extract(),
+  parts.javaScript.load(),
+  parts.javaScript.minify(),
+  parts.sourcemap('source-map'),
+  parts.images({
+    limit: 15000,
+    name: '[name].[hash:8].[ext]',
+  }),
+]);
