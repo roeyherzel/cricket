@@ -7,7 +7,6 @@ import Add from './components/Add';
 import DartboardSVG from 'images/dartboard.inline.svg';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
 import styles from './playersDetails.css';
 
 /*

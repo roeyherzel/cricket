@@ -10,7 +10,7 @@
 .container {
   composes: body from 'common/styles/typo.css';
   position: relative;
-  background: var(--bg-image);
+  background: var(--bg-image) no-repeat center/cover;
   height: 100vh;
   width: 100vw;
   margin: auto;

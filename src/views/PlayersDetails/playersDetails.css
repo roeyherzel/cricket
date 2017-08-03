@@ -8,7 +8,7 @@
   grid-column-gap: var(--space-md);
   align-items: center;
   padding: var(--space-md);
-  margin: var(--space-xs) var(--space-lg);
+  margin: 0 var(--space-lg);
 }
 
 .startGameBtn {

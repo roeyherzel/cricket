@@ -33,8 +33,5 @@ module.exports = merge([
   parts.javaScript.load(),
   parts.javaScript.minify(),
   parts.sourcemap('source-map'),
-  parts.images({
-    limit: 15000,
-    name: '[name].[hash:8].[ext]',
-  }),
+  parts.images(),
 ]);

@@ -1,12 +1,12 @@
-module.exports = ({ options } = {}) => ({
+module.exports = () => ({
   module: {
     rules: [
       {
         test: /\.(png|jpg|svg)$/,
         exclude: /\.inline.svg$/,
-        use: {
-          loader: 'url-loader',
-          options,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[hash].[ext]',
         },
       },
       {
