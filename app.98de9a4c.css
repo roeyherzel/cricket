@@ -530,7 +530,7 @@ section.hitDialog__actions___KfBQ0 {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
-  grid-template-columns: auto;
+  grid-template-columns: 2rem;
   grid-template-rows: auto repeat(7, 1fr);
   grid-gap: 1px;
   background: rgba(255, 255, 255, 0.2);
@@ -1047,4 +1047,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.d73848c4.css.map*/
+/*# sourceMappingURL=app.98de9a4c.css.map*/
