@@ -106,20 +106,42 @@
   margin-bottom: 16px !important;
   margin-bottom: 1rem !important;
 }
+/*
+ Fonts
+ -----
+*/
+:root { /* 12px */
+}
+/*
+ Colors
+ ------
+*/
+/*
+ Spacing
+ -------
+*/
+:root { /* 5px */
+}
+/*
+ Media Queries
+ -------------
+*/
 .edit__container___3Dblz {
-  display: contents;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-
-.edit__textField___xXsxD {
-  grid-column: 2;
-}
-
 .edit__toggleEdit___pax_y {
-  grid-column: 1;
-}
-
-.edit__removeBtn___1rFFO {
-  grid-column: 3;
+  /* override material-ui TextField */
+  width: auto !important;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
+  margin-right: 16px;
+  margin-right: 1rem;
 }
 /*
  Fonts
@@ -142,19 +164,16 @@
  -------------
 */
 .add__form___2Fhej {
-  display: contents;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .add__button___1hs-B {
-  grid-column: 1;
-  -ms-flex-item-align: start;
-      align-self: start;
-  margin-bottom: 16px;
-  margin-bottom: 1rem;
+  /* override material-ui button */
+  margin-right: 16px !important;
+  margin-right: 1rem !important;
 }
 .add__input___AAyng {
-  grid-column: 2;
-  -ms-flex-item-align: start;
-      align-self: start;
   margin-bottom: 16px;
   margin-bottom: 1rem;
 }
@@ -178,45 +197,35 @@
  Media Queries
  -------------
 */
-.playersDetails__players___3aPGp {
+.playersDetails__container___14NXr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: relative;
   max-width: 100%;
-  display: grid;
-  grid-template-columns: -webkit-min-content 1fr -webkit-min-content;
-  grid-template-columns: min-content 1fr min-content;
-  grid-column-gap: 1rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   padding: 16px;
   padding: 1rem;
   margin: 0 32px;
   margin: 0 2rem;
 }
 .playersDetails__startGameBtn___N39fY {
-  grid-column: span 3;
+  /* grid-column: span 3;
+  justify-self: center; */
   max-width: 120px;
-  justify-self: center;
   margin-top: 32px;
   margin-top: 2rem;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 .playersDetails__dartboardSVG___1LiT7 {
   position: absolute;
   top: 100%;
   left: 16px;
   left: 1rem;
-}
-.playersDetails__demo___39uyx {
-  display: contents;
-}
-.playersDetails__hr___2yD8a {
-  grid-column: span 3;
-}
-.playersDetails__demoBtn___2cfgj {
-  grid-column: 2;
-  max-width: 64px;
-  max-width: 4rem;
-  justify-self: end;
 }
 /*
  Fonts
@@ -1016,7 +1025,7 @@ template {
 
 .app__container___2GarX {
   position: relative;
-  background: url(/cricket/images/background2.c7e8d322ddaf471454d9d7b5b6ebf129.svg) no-repeat center/cover;
+  background: url(/cricket/images/background.c7e8d322ddaf471454d9d7b5b6ebf129.svg) no-repeat center/cover;
   height: 100vh;
   width: 100vw;
   margin: auto;
@@ -1041,4 +1050,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.ac47d3ff.css.map*/
+/*# sourceMappingURL=app.940e91cb.css.map*/
