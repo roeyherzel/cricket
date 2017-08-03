@@ -7,6 +7,7 @@ import Add from './components/Add';
 import DartboardSVG from 'images/dartboard.inline.svg';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
 import styles from './playersDetails.css';
 
 /*
@@ -46,7 +47,15 @@ export default function PlayersDetails(props) {
                 secondary={true}
               />
             ) : (
-              <DartboardSVG className={styles.dartboardSVG}/>
+              <div className={styles.demo}>
+                <RaisedButton
+                  className={styles.demoBtn}
+                  label="demo"
+                  onClick={props.loadDemoPlayers}
+                />
+                <DartboardSVG className={styles.dartboardSVG}/>
+              </div>
+
             )
           }
 
@@ -62,4 +71,5 @@ PlayersDetails.propTypes = {
   removePlayer: PropTypes.func.isRequired,
   addPlayer: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  loadDemoPlayers: PropTypes.func.isRequired,
 };

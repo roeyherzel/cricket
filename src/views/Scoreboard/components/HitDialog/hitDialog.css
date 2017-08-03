@@ -20,7 +20,7 @@ section.info {
 
 section.targetBtn {
   grid-column: span 4;
-  border-bottom: 1px solid var(--color-whitesmoke);
+  border: 1px solid var(--color-whitesmoke);
 }
 
 section.actions {

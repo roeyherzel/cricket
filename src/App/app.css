@@ -14,6 +14,7 @@
   height: 100vh;
   width: 100vw;
   margin: auto;
+  overflow: hidden;
 
   @media (--lg-viewport) {
     /* Mobile L */

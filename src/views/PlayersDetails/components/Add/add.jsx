@@ -52,7 +52,7 @@ export default class Add extends React.Component {
           onChange={this.handleChange}
           errorText={this.state.errorMsg}
           fullWidth={true}
-          underlineShow={false}
+          underlineShow={true}
         />
 
       </form>
