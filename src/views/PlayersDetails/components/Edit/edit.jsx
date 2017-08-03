@@ -56,6 +56,7 @@ export default class Edit extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           disabled={this.state.disabled}
+          floatingLabelText={ !this.state.disabled && 'Edit' }
           fullWidth={true}
         />
         {
