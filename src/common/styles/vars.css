@@ -1,0 +1,41 @@
+/*
+ Fonts
+ -----
+*/
+:root {
+  --font-size-sm: 0.75rem; /* 12px */
+  --font-size-md: 1rem;
+  --font-size-lg: 2rem;
+}
+
+/*
+ Colors
+ ------
+*/
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-whitesmoke: whitesmoke;
+  --color-white-gray: #f0f0f0;
+  --color-green: #eaffa9;
+  --color-red: #EB5767;
+  --color-yellow: #FECD5F;
+}
+
+/*
+ Spacing
+ -------
+*/
+:root {
+  --space-xs: .3125rem; /* 5px */
+  --space-sm: .5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+}
+
+/*
+ Media Queries
+ -------------
+*/
+@custom-media --lg-viewport (min-width: 426px);

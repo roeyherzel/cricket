@@ -1,23 +1,25 @@
+@import 'common/styles/vars.css';
+
 .players {
   position: relative;
   max-width: 100%;
   display: grid;
   grid-template-columns: min-content 1fr min-content;
-  grid-column-gap: 1rem;
+  grid-column-gap: var(--space-md);
   align-items: center;
-  padding: 1rem;
-  margin: 1rem 2rem;
+  padding: var(--space-md);
+  margin: var(--space-md) var(--space-lg);
 }
 
 .startGameBtn {
   grid-column: span 3;
   max-width: 120px;
   justify-self: center;
-  margin-top: 2rem;
+  margin-top: var(--space-lg);
 }
 
 .dartboardSVG {
   position: absolute;
   top: 100%;
-  margin: 1rem auto;
+  margin: var(--space-md) auto;
 }

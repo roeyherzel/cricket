@@ -1,27 +1,33 @@
 @import 'common/styles/reset.css';
+@import 'common/styles/vars.css';
+
+:root {
+  --bg-image: url('images/background.svg');
+  --max-width: 425px;
+  --max-height: 963px;
+}
 
 .container {
-  composes: body from 'common/styles/typography.css';
+  composes: body from 'common/styles/typo.css';
   position: relative;
-  background-color: white;
-  background: url('images/background.svg');
+  background: var(--bg-image);
   height: 100vh;
   width: 100vw;
   margin: auto;
 
-  @media (min-width: 426px) {
+  @media (--lg-viewport) {
     /* Mobile L */
-    max-width: 425px;
-    max-height: 963px;
-    margin-top: 3rem;
-    border: 1px solid black;
+    max-width: var(--max-width);
+    max-height: var(--max-height);
+    margin-top: var(--space-xl);
+    border: 1px solid var(--color-black);
   }
 }
 
 .dartboardSVG {
-  position: absolute;
-  left: 0;
   max-height: 50%;
   max-width: 100%;
+  position: absolute;
   bottom: 0;
+  left: 0;
 }

@@ -1,37 +1,38 @@
+@import 'common/styles/vars.css';
+
 .container {
   display: flex;
   max-width: 100%;
   max-height: 100%;
-  font-weight: lighter;
-  border: none;
   padding: 0;
-  margin: 10px;
+  margin: var(--space-xs);
   background: none;
   outline: none;
+  border: none;
 }
 
 /* defaults */
 .target {
   width: 100%;
   max-height: 100%; /* makes grid cell fluid*/
-  stroke: #f0f0f0;
+  stroke: var(--color-white-gray);
   fill: none;
-  padding: 5px;
+  padding: var(--space-sm);
 
   /* 1 hit mark 1 line */
   &[data-hits="1"] line:last-of-type {
-    stroke: black;
+    stroke: var(--color-black);
   }
 
   /* 2 hits mark lines */
   &[data-hits="2"] line {
-    stroke: black;
+    stroke: var(--color-black);
   }
 
   /* 3 hits mark lines & ellipse */
   &[data-hits="3"] {
-    stroke: black;
-    fill: #eaffa9;
+    stroke: var(--color-black);
+    fill: var(--color-green);
     padding: 0;
   }
 }

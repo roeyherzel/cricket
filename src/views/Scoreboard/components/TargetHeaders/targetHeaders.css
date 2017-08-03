@@ -1,3 +1,5 @@
+@import 'common/styles/vars.css';
+
 .targetHeaders,
 .targetIDs {
   display: contents;
@@ -6,15 +8,16 @@
 .colHeader {
   display: flex;
   align-items: center;
-  padding: 0 5px;
-  background: #333;
+  padding: 0 var(--space-xs);
+  background: var(--color-white);
 }
 
 .rowHeader {
-  padding: 0 0.5rem;
   display: flex;
-  background: #333;
-  color: #f0f0f0;
+  padding: 0 var(--space-sm);
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: var(--font-size-sm);
 
   & span {
     margin: auto;

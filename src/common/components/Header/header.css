@@ -1,20 +1,22 @@
+@import 'common/styles/vars.css';
+
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: var(--space-md);
   text-align: center;
 
   &[data-child="true"] {
     justify-content: space-between;
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-lg);
   }
 }
 
 .title {
-  composes: title from 'common/styles/typography.css';
+  composes: title from 'common/styles/typo.css';
 }
 
 .header[data-child="true"] .title {
-  font-size: 1.5rem;
+  font-size: calc(var(--font-size-lg) - .5rem);
 }

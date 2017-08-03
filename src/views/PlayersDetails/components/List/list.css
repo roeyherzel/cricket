@@ -1,9 +1,12 @@
+@import 'common/styles/vars.css';
+
 .container {
   display: contents;
 }
 
+/* override material-ui Divider */
 .hr {
   grid-column: span 3;
-  margin: 0 -1rem !important;
-  margin-bottom: 1rem !important;
+  margin: 0 calc(var(--space-md) * -1) !important;
+  margin-bottom: var(--space-md) !important;
 }

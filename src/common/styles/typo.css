@@ -1,8 +1,11 @@
+@import './vars';
+
 .title {
   font-family: 'Montserrat Subrayada', sans-serif;
-  font-size: 2rem;
+  font-size: var(--font-size-lg);
 }
 
 .body {
   font-family: 'Roboto', sans-serif;
+  font-size: var(--font-size-md);
 }
