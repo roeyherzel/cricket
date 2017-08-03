@@ -4,6 +4,6 @@ const GAME_STATES = [
   'over',
 ];
 
-const DEMO_PLAYERS = ['Roey', 'Alizah', 'Herzel', 'Davis'];
+const DEMO_PLAYERS = ['Joey', 'Johnny', 'Dee Dee', 'Tommy'];
 
 export default {GAME_STATES, DEMO_PLAYERS};

@@ -1,39 +1,23 @@
 @import 'common/styles/vars.css';
 
-.players {
+.container {
+  display: flex;
+  flex-direction: column;
   position: relative;
   max-width: 100%;
-  display: grid;
-  grid-template-columns: min-content 1fr min-content;
-  grid-column-gap: var(--space-md);
-  align-items: center;
   padding: var(--space-md);
   margin: 0 var(--space-lg);
 }
 
 .startGameBtn {
-  grid-column: span 3;
   max-width: 120px;
-  justify-self: center;
   margin-top: var(--space-lg);
+  align-self: center;
 }
 
 .dartboardSVG {
   position: absolute;
   top: 100%;
-  left: 1rem;
-}
-
-.demo {
-  display: contents;
-}
-
-.hr {
-  grid-column: span 3;
-}
-
-.demoBtn {
-  grid-column: 2;
-  max-width: 4rem;
-  justify-self: end;
+  left: 0;
+  width: 100%;
 }

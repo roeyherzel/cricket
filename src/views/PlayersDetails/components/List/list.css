@@ -6,7 +6,6 @@
 
 /* override material-ui Divider */
 .hr {
-  grid-column: span 3;
   margin: 0 calc(var(--space-md) * -1) !important;
   margin-bottom: var(--space-md) !important;
 }

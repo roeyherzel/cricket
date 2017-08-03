@@ -20,7 +20,7 @@ export default function PlayersDetails(props) {
     <div>
       <Header />
       <main>
-        <Paper className={styles.players}>
+        <Paper className={styles.container}>
 
           <Add handleAdd={props.addPlayer} />
 
@@ -46,15 +46,7 @@ export default function PlayersDetails(props) {
                 secondary={true}
               />
             ) : (
-              <div className={styles.demo}>
-                <RaisedButton
-                  className={styles.demoBtn}
-                  label="demo"
-                  onClick={props.loadDemoPlayers}
-                />
-                <DartboardSVG className={styles.dartboardSVG}/>
-              </div>
-
+              <DartboardSVG className={styles.dartboardSVG}/>
             )
           }
 
@@ -70,5 +62,4 @@ PlayersDetails.propTypes = {
   removePlayer: PropTypes.func.isRequired,
   addPlayer: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
-  loadDemoPlayers: PropTypes.func.isRequired,
 };

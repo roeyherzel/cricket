@@ -1,15 +1,13 @@
-.container {
-  display: contents;
-}
+@import 'common/styles/vars.css';
 
-.textField {
-  grid-column: 2;
+.container {
+  display: flex;
+  align-items: center;
 }
 
 .toggleEdit {
-  grid-column: 1;
-}
-
-.removeBtn {
-  grid-column: 3;
+  /* override material-ui TextField */
+  width: auto !important;
+  flex: 1 1;
+  margin-right: var(--space-md);
 }

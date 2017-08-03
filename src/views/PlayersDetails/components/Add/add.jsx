@@ -51,7 +51,6 @@ export default class Add extends React.Component {
           value={this.state.value}
           onChange={this.handleChange}
           errorText={this.state.errorMsg}
-          fullWidth={true}
           underlineShow={true}
         />
 

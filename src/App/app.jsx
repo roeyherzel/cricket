@@ -20,7 +20,6 @@ export default class App extends React.Component {
     this.updatePlayer    = this.updatePlayer.bind(this);
     this.getCleanStats   = this.getCleanStats.bind(this);
     this.updateHit       = this.updateHit.bind(this);
-    this.loadDemoPlayers = this.loadDemoPlayers.bind(this);
     /*
       Non-statefull variables
       -----------------------
@@ -151,7 +150,7 @@ export default class App extends React.Component {
     });
   }
 
-  loadDemoPlayers() {
+  componentWillMount() {
     defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
   }
 
@@ -166,7 +165,6 @@ export default class App extends React.Component {
               removePlayer={this.removePlayer}
               addPlayer={this.addPlayer}
               startGame={this.startGame}
-              loadDemoPlayers={this.loadDemoPlayers}
             />
           ) : (
             <Scoreboard

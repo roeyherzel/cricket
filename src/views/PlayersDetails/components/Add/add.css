@@ -1,17 +1,14 @@
 @import 'common/styles/vars.css';
 
 .form {
-  display: contents;
+  display: flex;
 }
 
 .button {
-  grid-column: 1;
-  align-self: start;
-  margin-bottom: var(--space-md);
+  /* override material-ui button */
+  margin-right: var(--space-md) !important;
 }
 
 .input {
-  grid-column: 2;
-  align-self: start;
   margin-bottom: var(--space-md);
 }

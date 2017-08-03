@@ -51,17 +51,15 @@ export default class Edit extends React.Component {
         <Toggle className={styles.toggleEdit} onToggle={this.toggleEdit} />
 
         <TextField
-          className={styles.textField}
           name="edit"
           value={this.state.value}
           onChange={this.handleChange}
           disabled={this.state.disabled}
           floatingLabelText={ !this.state.disabled && 'Edit' }
-          fullWidth={true}
         />
         {
           (!this.state.disabled) && (
-            <IconButton className={styles.removeBtn} onClick={this.handleRemove}>
+            <IconButton onClick={this.handleRemove}>
               <SVGIconRemove />
             </IconButton>
           )
