@@ -224,8 +224,8 @@
 .playersDetails__dartboardSVG___1LiT7 {
   position: absolute;
   top: 100%;
-  left: 16px;
-  left: 1rem;
+  left: 0;
+  max-width: 100%;
 }
 /*
  Fonts
@@ -1050,4 +1050,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.940e91cb.css.map*/
+/*# sourceMappingURL=app.dd4ff274.css.map*/
