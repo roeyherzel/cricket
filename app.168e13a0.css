@@ -248,6 +248,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 1px;
 }
 .row__head___12pb_ {
   display: -webkit-box;
@@ -308,8 +309,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 5px;
-  padding: .3125rem;
+  padding: 8px 5px;
+  padding: .5rem .3125rem;
   background: #FECD5F;
   color: #000;
   text-align: center
@@ -317,7 +318,7 @@
 .player__container___xiwyN[data-leader="true"] .player__name___3iKBE {
  background: #EB5767;
  color: #fff;
- border: 1px solid #fff;
+ border: 1px solid #000;
 }
 .player__name___3iKBE {
   padding: 3px 5px;
@@ -433,6 +434,7 @@
           flex-direction: column;
   margin: auto;
   text-align: center;
+  max-width: 300px;
 }
 section.hitDialog__info___3nJfz {
   display: -webkit-box;
@@ -449,7 +451,8 @@ section.hitDialog__info___3nJfz {
   width: 3rem;
 }
 section.hitDialog__targetBtn___27Sfs {
-  border: 1px solid whitesmoke
+  border: 1px solid whitesmoke;
+  margin: auto
 }
 section.hitDialog__targetBtn___27Sfs svg {
  max-width: 100%;
@@ -551,13 +554,12 @@ section.hitDialog__actions___KfBQ0 {
   border-top: 1px solid #000;
   border-bottom: 2px solid #000
 }
-.scoreboard__board___3OiBx > div {/*
+.scoreboard__board___3OiBx > div:not(:first-child) {/*
  stretch Rows across free vertical space
 */
  -webkit-box-flex: 1;
      -ms-flex: 1;
          flex: 1;
- margin-bottom: 1px;
 }
 .scoreboard__dartboardSVG___3o1yU {
   width: 100%;
@@ -1061,7 +1063,7 @@ template {
   .app__container___2GarX {/*Mobile L */
     max-width: 425px;
     max-height: 963px;
-    margin-top: 3rem;
+    margin: 3rem auto;
     border: 1px solid #000;
   }
 }
@@ -1074,4 +1076,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.95ca8219.css.map*/
+/*# sourceMappingURL=app.168e13a0.css.map*/
