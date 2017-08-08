@@ -1,11 +1,14 @@
-const path                       = require('path');
+const merge                      = require('webpack-merge');
 const HTMLWebpackPlugin          = require('html-webpack-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const FaviconsWebpackPlugin      = require('favicons-webpack-plugin');
+const path                       = require('path');
+const parts                      = require('./parts');
+const PATHS                      = require('./paths');
 
-module.exports = {
+const baseConfig = {
   // change webpack root context to src/
-  context: path.resolve(__dirname, '../src'),
+  context: PATHS.src,
 
   entry: {
     app: [
@@ -24,12 +27,22 @@ module.exports = {
       suppressWarning: true,
       sound: false,
     }),
+
     new HTMLWebpackPlugin({
       template: 'index.html',
     }),
+
     new FaviconsWebpackPlugin({
       title: 'Cricket Darts',
       logo: 'images/dart.png',
+      emitStats: true,
     }),
   ],
 };
+
+module.exports = merge([
+  baseConfig,
+  parts.images(),
+  parts.sourcemap('source-map'), // 'eval-source-map'
+  parts.javaScript.load({include: PATHS.src}),
+]);

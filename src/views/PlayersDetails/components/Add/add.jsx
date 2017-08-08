@@ -52,6 +52,10 @@ export default class Add extends React.Component {
           onChange={this.handleChange}
           errorText={this.state.errorMsg}
           underlineShow={true}
+          autoComplete="off"
+          autoFocus
+          maxLength="6"
+          minLength="1"
         />
 
       </form>

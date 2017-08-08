@@ -3,6 +3,7 @@ const merge           = require('webpack-merge');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const baseConfig      = require('./webpack.base.config');
 const parts           = require('./parts');
+const PATHS           = require('./paths');
 
 const config = {
   devServer: {
@@ -28,8 +29,5 @@ const config = {
 module.exports = merge([
   baseConfig,
   config,
-  parts.css.load(),
-  parts.javaScript.load(),
-  parts.sourcemap('source-map'), // 'eval-source-map'
-  parts.images(),
+  parts.css.load({include: PATHS.src}),
 ]);

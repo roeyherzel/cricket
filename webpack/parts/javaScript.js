@@ -1,11 +1,10 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
-module.exports.load = () => ({
+module.exports.load = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        include,
+        exclude,
         use: [
           {
             loader: 'babel-loader',
@@ -25,11 +24,14 @@ module.exports.load = () => ({
   },
 });
 
-module.exports.minify = () => ({
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+module.exports.minify = ({ include, exclude } = {}) => ({
   plugins: [
     new UglifyJSPlugin({
+      include,
+      exclude,
       test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
     }),
   ],
 });

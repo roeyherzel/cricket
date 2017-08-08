@@ -30,8 +30,5 @@ module.exports = merge([
   baseConfig,
   config,
   parts.css.extract(),
-  parts.javaScript.load(),
   parts.javaScript.minify(),
-  parts.sourcemap('source-map'),
-  parts.images(),
 ]);

@@ -21,11 +21,13 @@ const cssLoader = {
   },
 };
 
-module.exports.extract = () => ({
+module.exports.extract = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
         test: /\.css$/,
+        include,
+        exclude,
         use: extractPlugin.extract({
           use: [
             cssLoader,
@@ -40,11 +42,13 @@ module.exports.extract = () => ({
   plugins: [extractPlugin, linterPlugin],
 });
 
-module.exports.load = () => ({
+module.exports.load = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
         test: /\.css$/,
+        include,
+        exclude,
         use: [
           'style-loader',
           cssLoader,
