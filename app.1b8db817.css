@@ -540,6 +540,8 @@ section.hitDialog__actions___KfBQ0 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-size: 14px;
+  font-size: 0.875rem;
   background: rgba(255, 255, 255, 0.2);
   border-top: 1px solid #000;
   border-bottom: 1px solid #000
@@ -555,6 +557,8 @@ section.hitDialog__actions___KfBQ0 {
 .scoreboard__dartboardSVG___3o1yU {
   width: 100%;
   height: 100%;
+  padding: 5px;
+  padding: .3125rem;
 }
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -1065,4 +1069,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.10c6bb6f.css.map*/
+/*# sourceMappingURL=app.1b8db817.css.map*/
