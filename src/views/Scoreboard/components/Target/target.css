@@ -18,7 +18,7 @@
   max-height: 4rem;
   stroke: var(--color-white-gray);
   fill: none;
-  padding: var(--space-sm);
+  padding: var(--space-md);
   margin: auto;
 
   /* 1 hit mark 1 line */
@@ -35,5 +35,6 @@
   &[data-hits="3"] {
     stroke: var(--color-black);
     fill: var(--color-green);
+    padding: var(--space-sm);
   }
 }
