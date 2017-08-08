@@ -19,7 +19,7 @@
     /* Mobile L */
     max-width: var(--max-width);
     max-height: var(--max-height);
-    margin-top: var(--space-xl);
+    margin: var(--space-xl) auto;
     border: 1px solid var(--color-black);
   }
 }
