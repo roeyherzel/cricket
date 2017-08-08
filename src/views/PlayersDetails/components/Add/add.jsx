@@ -53,7 +53,6 @@ export default class Add extends React.Component {
           errorText={this.state.errorMsg}
           underlineShow={true}
           autoComplete="off"
-          autoFocus
           maxLength="6"
           minLength="1"
         />
