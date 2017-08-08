@@ -309,8 +309,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 8px 5px;
-  padding: .5rem .3125rem;
+  padding: 5px;
+  padding: .3125rem;
+  padding-bottom: 8px;
+  padding-bottom: .5rem;
   background: #FECD5F;
   color: #000;
   text-align: center
@@ -1076,4 +1078,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.168e13a0.css.map*/
+/*# sourceMappingURL=app.c46874e8.css.map*/
