@@ -12,7 +12,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -42,7 +42,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -89,7 +89,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -119,7 +119,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -156,7 +156,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -190,7 +190,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -238,7 +238,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -291,7 +291,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -312,21 +312,25 @@
   padding: .3125rem;
   background: #FECD5F;
   color: #000;
-  text-align: center;
+  text-align: center
 }
-.player__score___2NEtq {
-  padding: 5px;
-  padding: .3125rem;
-  -ms-flex-item-align: stretch;
-      align-self: stretch;
-  background: whitesmoke;
-  color: #000;
-}
-.player__header___2gtPz[data-leader="true"] .player__score___2NEtq {
-  background: #EB5767;
-  color: #fff;
+.player__container___xiwyN[data-leader="true"] .player__name___3iKBE {
+ background: #EB5767;
+ color: #fff;
+ border: 1px solid #fff;
 }
 .player__name___3iKBE {
+  padding: 3px 5px;
+  padding: .1875rem .3125rem;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  background: #fff;
+  color: #000;
+  border-radius: 4px;
+}
+.player__score___2NEtq {
+  font-size: 16px;
+  font-size: 1rem;
   padding: 5px;
   padding: .3125rem;
 }
@@ -344,7 +348,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -411,7 +415,7 @@
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -476,7 +480,7 @@ section.hitDialog__actions___KfBQ0 {
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -512,7 +516,7 @@ section.hitDialog__actions___KfBQ0 {
  Spacing
  -------
 */
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 /*
  Media Queries
@@ -543,11 +547,11 @@ section.hitDialog__actions___KfBQ0 {
   font-size: 0.875rem;
   background: rgba(255, 255, 255, 0.2);
   border-top: 1px solid #000;
-  border-bottom: 1px solid #000
-
-  /* stretch Rows across free vertical space  */
+  border-bottom: 2px solid #000
 }
-.scoreboard__board___3OiBx > div {
+.scoreboard__board___3OiBx > div {/*
+ stretch Rows across free vertical space
+*/
  -webkit-box-flex: 1;
      -ms-flex: 1;
          flex: 1;
@@ -1034,7 +1038,7 @@ template {
  -------
 */
 
-:root { /* 5px */
+:root { /* 3px */ /* 5px */
 }
 
 /*
@@ -1068,4 +1072,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.8aa3f982.css.map*/
+/*# sourceMappingURL=app.dc040043.css.map*/
