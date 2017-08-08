@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Row from './components/Row';
 import Header from 'common/components/header';
-import TargetHeaders from './components/TargetHeaders';
+import DartboardSVG from 'images/dart.inline.svg';
 import Player from './components/Player';
 import Target from './components/Target';
 import HitDialog from './components/HitDialog';
@@ -70,25 +71,30 @@ export default class Scoreboard extends React.Component {
   }
 
   render() {
+    const targets = {};
+    for (let t of this.props.targetIDs) {
+      targets[t] = [];
+    }
     // Create player components with child targets
-    const players = this.props.players.map(player => {
+    const players = this.props.players.map(p => {
+
+      for (let t of p.targets) {
+        targets[t.id].push(
+          <Target
+            key={p.id}
+            hitCount={t.hitCount}
+            handleClick={() => this.openHitDialog(p.id, t.id)}
+          />
+        );
+      }
+
       return (
         <Player
-          key={player.id}
-          name={player.name}
-          score={player.score}
-          isLeader={(this.props.leaderID === player.id)}
-          >
-          {
-            player.targets.map(target => (
-              <Target
-                key={target.id}
-                hitCount={target.hitCount}
-                handleClick={() => this.openHitDialog(player.id, target.id)}
-              />
-            ))
-          }
-        </Player>
+          key={p.id}
+          name={p.name}
+          score={p.score}
+          isLeader={(this.props.leaderID === p.id)}
+        />
       );
     });
 
@@ -97,15 +103,27 @@ export default class Scoreboard extends React.Component {
         <Header>
           <RaisedButton
             label="new game"
-            labelStyle={{fontSize: '12px'}}
+            labelStyle={{fontSize: '10px'}}
             onClick={this.props.restartGame}
           />
         </Header>
 
         <main className={styles.board}>
-          <TargetHeaders targetIDs={this.props.targetIDs} />
 
-          { players }
+          <Row
+            head={<DartboardSVG className={styles.dartboardSVG} />}
+            data={players}
+          />
+
+          {
+            this.props.targetIDs.map(t => (
+              <Row
+                key={t}
+                head={<span>{t}</span>}
+                data={targets[t]}
+              />
+            ))
+          }
 
           <HitDialog
             open={this.state.hitDialogOpen}

@@ -1,11 +1,6 @@
 @import 'common/styles/vars.css';
 
-.player,
-.targets {
-  display: contents;
-}
-
-.header {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;

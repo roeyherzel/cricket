@@ -1,17 +1,16 @@
 @import 'common/styles/vars.css';
 
-.dialog {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: min-content 1fr min-content;
-  justify-items: center;
-  align-items: center;
+.container {
+  display: flex;
+  flex-direction: column;
   margin: auto;
   text-align: center;
 }
 
 section.info {
-  display: contents;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .dartIcon {
@@ -19,22 +18,17 @@ section.info {
 }
 
 section.targetBtn {
-  grid-column: span 4;
   border: 1px solid var(--color-whitesmoke);
+
+  & svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 section.actions {
-  grid-column: span 4;
   display: flex;
-  justify-self: stretch;
+  align-items: center;
   justify-content: space-between;
   padding: var(--space-md) 0;
-}
-
-.undoBtn {
-  flex: 1 1;
-}
-
-.doneBtn {
-  flex: 2 2;
 }

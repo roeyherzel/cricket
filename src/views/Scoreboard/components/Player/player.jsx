@@ -10,12 +10,9 @@ import styles from './player.css';
 export default class Player extends React.Component {
   render() {
     return (
-      <div className={styles.player}>
-         <div className={styles.header} data-leader={this.props.isLeader}>
-          <div className={styles.score}>{this.props.score}</div>
-          <div className={styles.name}>{this.props.name}</div>
-        </div>
-        <div className={styles.targets}>{this.props.children}</div>
+      <div className={styles.container} data-leader={this.props.isLeader}>
+        <div className={styles.score}>{this.props.score}</div>
+        <div className={styles.name}>{this.props.name}</div>
       </div>
     );
   }
@@ -29,6 +26,5 @@ Player.defaultProps = {
 Player.propTypes = {
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
-  children: PropTypes.array,
   isLeader: PropTypes.bool,
 };

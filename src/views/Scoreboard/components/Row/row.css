@@ -1,0 +1,22 @@
+@import 'common/styles/vars.css';
+
+.container {
+  display: flex;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 2rem;
+  background: var(--color-white);
+}
+
+.data {
+  display: flex;
+  width: 100%;
+
+  & > * {
+    flex: 1;
+  }
+}

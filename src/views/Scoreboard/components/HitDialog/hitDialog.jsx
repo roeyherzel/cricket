@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import UndoSVG from 'material-ui/svg-icons/content/undo';
 import DartSVG from 'images/dart.inline.svg';
 import styles from './hitDialog.css';
@@ -23,10 +23,9 @@ export default class HitDialog extends React.Component {
         open={this.props.open}
         onRequestClose={this.props.closeDialog}
         >
-        <div className={styles.dialog}>
+        <div className={styles.container}>
           <section className={styles.info}>
              <h3 className={styles.playerName}>{this.props.playerName}</h3>
-             <DartSVG className={styles.dartIcon} />
              <h3 className={styles.targetID}>{this.props.targetID}</h3>
           </section>
 
@@ -35,12 +34,15 @@ export default class HitDialog extends React.Component {
           </section>
 
           <section className={styles.actions}>
-            <RaisedButton
+            <FlatButton
               className={styles.undoBtn}
               icon={<UndoSVG />}
               onClick={this.props.handleUndo}
             />
-            <RaisedButton
+
+            <DartSVG className={styles.dartIcon} />
+
+            <FlatButton
               className={styles.doneBtn}
               label="Done"
               primary={true}
