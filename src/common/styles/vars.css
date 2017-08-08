@@ -27,6 +27,7 @@
  -------
 */
 :root {
+  --space-xxs: .1875rem; /* 3px */
   --space-xs: .3125rem; /* 5px */
   --space-sm: .5rem;
   --space-md: 1rem;

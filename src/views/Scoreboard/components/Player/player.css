@@ -8,20 +8,23 @@
   background: var(--color-yellow);
   color: var(--color-black);
   text-align: center;
-}
 
-.score {
-  padding: var(--space-xs);
-  align-self: stretch;
-  background: var(--color-whitesmoke);
-  color: var(--color-black);
-}
-
-.header[data-leader="true"] .score {
-  background: var(--color-red);
-  color: var(--color-white);
+  &[data-leader="true"] .name {
+    background: var(--color-red);
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+  }
 }
 
 .name {
+  padding: var(--space-xxs) var(--space-xs);
+  align-self: stretch;
+  background: var(--color-white);
+  color: var(--color-black);
+  border-radius: 4px;
+}
+
+.score {
+  font-size: var(--font-size-md);
   padding: var(--space-xs);
 }

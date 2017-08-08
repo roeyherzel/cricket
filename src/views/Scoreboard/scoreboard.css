@@ -13,10 +13,9 @@
   font-size: var(--font-size-sm);
   background: color(var(--color-white) a(20%));
   border-top: 1px solid var(--color-black);
-  border-bottom: 1px solid var(--color-black);
+  border-bottom: 2px solid var(--color-black);
 
-  /* stretch Rows across free vertical space  */
-  & > div {
+  & > div { /* stretch Rows across free vertical space  */
     flex: 1;
     margin-bottom: 1px;
   }
