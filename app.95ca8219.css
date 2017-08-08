@@ -377,8 +377,8 @@
   max-height: 4rem;
   stroke: #f0f0f0;
   fill: none;
-  padding: 8px;
-  padding: .5rem;
+  padding: 16px;
+  padding: 1rem;
   margin: auto
 
   /* 1 hit mark 1 line */
@@ -400,6 +400,8 @@
 .target__target___1ojAN[data-hits="3"] {
  stroke: #000;
  fill: #eaffa9;
+ padding: 8px;
+ padding: .5rem;
 }
 /*
  Fonts
@@ -1072,4 +1074,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.dc040043.css.map*/
+/*# sourceMappingURL=app.95ca8219.css.map*/
