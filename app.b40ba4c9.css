@@ -1051,7 +1051,7 @@ template {
   height: 100vh;
   width: 100vw;
   margin: auto;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @media (min-width: 426px) {
@@ -1072,4 +1072,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.f8f14968.css.map*/
+/*# sourceMappingURL=app.b40ba4c9.css.map*/
