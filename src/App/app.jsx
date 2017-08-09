@@ -18,6 +18,7 @@ export default class App extends React.Component {
     this.addPlayer       = this.addPlayer.bind(this);
     this.removePlayer    = this.removePlayer.bind(this);
     this.updatePlayer    = this.updatePlayer.bind(this);
+    this.loadDemoPlayers = this.loadDemoPlayers.bind(this);
     this.getCleanStats   = this.getCleanStats.bind(this);
     this.updateHit       = this.updateHit.bind(this);
     /*
@@ -150,7 +151,7 @@ export default class App extends React.Component {
     });
   }
 
-  componentWillMount() {
+  loadDemoPlayers() {
     defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
   }
 
@@ -165,6 +166,7 @@ export default class App extends React.Component {
               removePlayer={this.removePlayer}
               addPlayer={this.addPlayer}
               startGame={this.startGame}
+              loadDemoPlayers={this.loadDemoPlayers}
             />
           ) : (
             <Scoreboard

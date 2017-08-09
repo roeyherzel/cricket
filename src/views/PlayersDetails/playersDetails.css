@@ -10,14 +10,24 @@
 }
 
 .startGameBtn {
-  max-width: 120px;
   margin-top: var(--space-lg);
   align-self: center;
 }
 
-.dartboardSVG {
+.noplayers {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-sm);
+}
+
+.demoBtn {
+  align-self: flex-end;
+}
+
+.dartboardSVG {
+  margin-top: var(--space-md);
 }

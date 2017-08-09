@@ -33,7 +33,8 @@ export default function PlayersDetails(props) {
                   name={p.name}
                   updatePlayer={props.updatePlayer}
                   removePlayer={props.removePlayer}
-                />))
+                />
+              ))
             }
           </List>
 
@@ -46,7 +47,15 @@ export default function PlayersDetails(props) {
                 secondary={true}
               />
             ) : (
-              <DartboardSVG className={styles.dartboardSVG}/>
+              <div className={styles.noplayers}>
+                <RaisedButton
+                  className={styles.demoBtn}
+                  label="demo players"
+                  onClick={props.loadDemoPlayers}
+                  secondary={true}
+                />
+                <DartboardSVG className={styles.dartboardSVG} />
+              </div>
             )
           }
 
@@ -61,5 +70,6 @@ PlayersDetails.propTypes = {
   updatePlayer: PropTypes.func.isRequired,
   removePlayer: PropTypes.func.isRequired,
   addPlayer: PropTypes.func.isRequired,
+  loadDemoPlayers: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
 };
