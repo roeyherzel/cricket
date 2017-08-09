@@ -1,9 +1,14 @@
+const path            = require('path');
 const webpack         = require('webpack');
 const merge           = require('webpack-merge');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const baseConfig      = require('./webpack.base.config');
 const parts           = require('./parts');
-const PATHS           = require('./paths');
+
+const PATHS = {
+  src: path.join(__dirname, '../src'),
+  build: path.join(__dirname, '../build'),
+};
 
 const config = {
   devServer: {
@@ -11,7 +16,6 @@ const config = {
     historyApiFallback: true,
     overlay: {
       errors: true,
-      // warnings: true,
     },
   },
 

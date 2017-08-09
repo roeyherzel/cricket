@@ -1,10 +1,14 @@
+const path                       = require('path');
 const merge                      = require('webpack-merge');
 const HTMLWebpackPlugin          = require('html-webpack-plugin');
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 const FaviconsWebpackPlugin      = require('favicons-webpack-plugin');
-const path                       = require('path');
 const parts                      = require('./parts');
-const PATHS                      = require('./paths');
+
+const PATHS = {
+  src: path.join(__dirname, '../src'),
+  build: path.join(__dirname, '../build'),
+};
 
 const baseConfig = {
   // change webpack root context to src/
