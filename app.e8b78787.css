@@ -1052,6 +1052,10 @@ template {
  -------------
 */
 
+:root {
+  /* IPhone 6 plus */
+}
+
 .app__container___2GarX {
   position: relative;
   background: url(/cricket/images/background.c7e8d322ddaf471454d9d7b5b6ebf129.svg) no-repeat center/cover;
@@ -1063,8 +1067,8 @@ template {
 @media (min-width: 426px) {
 
   .app__container___2GarX {/*Mobile L */
-    max-width: 425px;
-    max-height: 963px;
+    max-width: 414px;
+    max-height: 736px;
     margin: 3rem auto;
     border: 1px solid #000;
   }
@@ -1078,4 +1082,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.c46874e8.css.map*/
+/*# sourceMappingURL=app.e8b78787.css.map*/
