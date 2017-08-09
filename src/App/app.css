@@ -3,8 +3,9 @@
 
 :root {
   --bg-image: url('images/background.svg');
-  --max-width: 425px;
-  --max-height: 963px;
+  /* IPhone 6 plus */
+  --max-width: 414px;
+  --max-height: 736px;
 }
 
 .container {
