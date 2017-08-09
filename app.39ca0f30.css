@@ -212,17 +212,33 @@
   margin: 0 2rem;
 }
 .playersDetails__startGameBtn___N39fY {
-  max-width: 120px;
   margin-top: 32px;
   margin-top: 2rem;
   -ms-flex-item-align: center;
       align-self: center;
 }
-.playersDetails__dartboardSVG___1LiT7 {
+.playersDetails__noplayers___120IT {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 8px;
+  margin-top: .5rem;
+}
+.playersDetails__demoBtn___2cfgj {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+.playersDetails__dartboardSVG___1LiT7 {
+  margin-top: 16px;
+  margin-top: 1rem;
 }
 /*
  Fonts
@@ -1082,4 +1098,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.e8b78787.css.map*/
+/*# sourceMappingURL=app.39ca0f30.css.map*/
