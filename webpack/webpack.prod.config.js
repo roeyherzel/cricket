@@ -1,3 +1,4 @@
+const webpack            = require('webpack');
 const merge              = require('webpack-merge');
 const path               = require('path');
 const baseConfig         = require('./webpack.base.config');
@@ -22,6 +23,12 @@ const config = {
   plugins: [
     new CleanWebpackPlugin('build', {
       root: path.resolve(__dirname, '../'),
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
   ],
 };

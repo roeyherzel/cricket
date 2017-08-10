@@ -24,14 +24,10 @@ module.exports.load = ({ include, exclude } = {}) => ({
   },
 });
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BabiliPlugin = require('babili-webpack-plugin');
 
-module.exports.minify = ({ include, exclude } = {}) => ({
+module.exports.minify = () => ({
   plugins: [
-    new UglifyJSPlugin({
-      include,
-      exclude,
-      test: /\.(js|jsx)$/,
-    }),
+    new BabiliPlugin(),
   ],
 });
