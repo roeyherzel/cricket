@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayersDetails from 'views/PlayersDetails';
-import Scoreboard from 'views/Scoreboard';
+import PlayersDetails from '../PlayersDetails';
+import Scoreboard from '../Scoreboard';
 import defs from 'utils/defs';
 import * as utils from 'utils/funcs';
 import styles from './app.css';
