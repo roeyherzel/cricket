@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPlayer, editPlayer, deletePlayer } from 'actions';
+import { addPlayer, editPlayer, deletePlayer, startGame } from 'actions';
 
 import Header from 'common/components/header';
 import PlayerList from 'components/PlayerList';
@@ -47,7 +47,7 @@ function Players(props) {
               <RaisedButton
                 className={styles.startGameBtn}
                 label="start game"
-                onClick={this.startGame}
+                onClick={props.onStartGame}
                 secondary={true}
               />
             ) : (
@@ -74,6 +74,7 @@ Players.propTypes = {
   onAdd: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onStartGame: PropTypes.func.isRequired,
 
   // loadDemoPlayers: PropTypes.func.isRequired,
   // startGame: PropTypes.func.isRequired,
@@ -82,7 +83,6 @@ Players.propTypes = {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    status: state.gameState,
   };
 };
 
@@ -90,6 +90,7 @@ const mapDispatchToProps = dispatch => ({
   onAdd: name => dispatch(addPlayer(name)),
   onDelete: id => dispatch(deletePlayer(id)),
   onEdit: (id, name) => dispatch(editPlayer(id, name)),
+  onStartGame: () => dispatch(startGame()),
 });
 
 export default connect(

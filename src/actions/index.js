@@ -1,3 +1,8 @@
+/*
+ * Player Actions
+ * --------------
+ */
+
 let nextPlayerID = 0;
 
 export const addPlayer = name => {
@@ -20,5 +25,16 @@ export const deletePlayer = id => {
   return {
     type: 'PLAYER_DELETE',
     id,
+  };
+};
+
+/*
+ * Game Actions
+ * ------------
+ */
+
+export const startGame = () => {
+  return {
+    type: 'GAME_START',
   };
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Players from 'containers/Players';
 import Scoreboard from '../Scoreboard';
@@ -14,7 +15,7 @@ import styles from './app.css';
  * --------------------------
  */
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor() {
     super();
@@ -169,3 +170,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default connect()(App);

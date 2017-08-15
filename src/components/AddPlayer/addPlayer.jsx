@@ -24,13 +24,13 @@ export default class AddPlayer extends React.Component {
   };
 
   handleChange = (e) => {
-    // control input value
     this.setState({value: e.target.value});
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onAdd(this.state.value);
+    this.setState({value: ''});
   }
 
   render() {
