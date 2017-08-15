@@ -1,15 +1,21 @@
 import React from 'react';
-import PlayersDetails from '../PlayersDetails';
+import PropTypes from 'prop-types';
+
+import Players from 'containers/Players';
 import Scoreboard from '../Scoreboard';
+
 import defs from 'utils/defs';
 import * as utils from 'utils/funcs';
 import styles from './app.css';
 
+
 /*
-  Main Game logic and states
-  --------------------------
-*/
+ * Main Game logic and states
+ * --------------------------
+ */
+
 export default class App extends React.Component {
+
   constructor() {
     super();
     // Bind class methods
@@ -34,12 +40,12 @@ export default class App extends React.Component {
       Statefull variables
       -------------------
     */
-    this.state = {
-      gameState: 'new', // one of new/on/over
-      winnerID: null,   // winning playerID
-      leaderID: null,   // leading playerID
-      players: [],      // players and thier targets
-    };
+    // this.state = {
+    //   gameState: 'new', // one of new/on/over
+    //   winnerID: null,   // winning playerID
+    //   leaderID: null,   // leading playerID
+    //   players: [],      // players and thier targets
+    // };
   }
 
   getCleanStats() {
@@ -158,27 +164,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        {
-          (this.state.gameState === 'new') ? (
-            <PlayersDetails
-              players={this.state.players}
-              updatePlayer={this.updatePlayer}
-              removePlayer={this.removePlayer}
-              addPlayer={this.addPlayer}
-              startGame={this.startGame}
-              loadDemoPlayers={this.loadDemoPlayers}
-            />
-          ) : (
-            <Scoreboard
-              targetIDs={this.targetIDs}
-              players={this.state.players}
-              updateHit={this.updateHit}
-              restartGame={this.restartGame}
-              leaderID={this.state.leaderID}
-              winnerID={this.state.winnerID}
-            />
-          )
-        }
+         <Players />
       </div>
     );
   }

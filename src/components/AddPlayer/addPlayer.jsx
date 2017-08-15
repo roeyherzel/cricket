@@ -1,38 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import TextField from 'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import SVGIconAdd from 'material-ui/svg-icons/content/add';
-import styles from './add.css';
+import styles from './addPlayer.css';
 
 /*
-  Add Player
-  ----------
-  - controled form component
-  - renders error message if submit fails
-*/
+ * Add Player
+ * ----------
+ * - controled form component
+ * - renders error message if submit fails
+ */
 
-export default class Add extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      value: '',
-      errorMsg: '',
-    };
+export default class AddPlayer extends React.Component {
+  static propTypes = {
+    onAdd: PropTypes.func.isRequired,
   }
 
-  handleChange(e) {
+  state = {
+    value: '',
+    errorMsg: '',
+  };
+
+  handleChange = (e) => {
     // control input value
     this.setState({value: e.target.value});
   }
 
-  handleSubmit(e) {
-    // submit form and set error (if returned)
+  handleSubmit = (e) => {
     e.preventDefault();
-    const errorMsg = this.props.handleAdd(this.state.value);
-    this.setState({value: '', errorMsg});
+    this.props.onAdd(this.state.value);
   }
 
   render() {
@@ -61,7 +59,3 @@ export default class Add extends React.Component {
     );
   }
 }
-
-Add.propTypes = {
-  handleAdd: PropTypes.func.isRequired,
-};
