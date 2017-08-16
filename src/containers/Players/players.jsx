@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPlayer, editPlayer, deletePlayer, startGame } from 'actions';
+import * as actions from 'actions';
 
 import Header from 'common/components/header';
 import PlayerList from 'components/PlayerList';
 import PlayerItem from 'components/PlayerItem';
 import AddPlayer from 'components/AddPlayer';
 
-import DartboardSVG from 'images/dartboard.inline.svg';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+
+import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './players.css';
 
 /*
@@ -55,7 +56,7 @@ function Players(props) {
                 <RaisedButton
                   className={styles.demoBtn}
                   label="demo players"
-                  onClick={this.loadDemoPlayers}
+                  onClick={props.onDemoPlayers}
                   secondary={true}
                 />
                 <DartboardSVG className={styles.dartboardSVG} />
@@ -75,9 +76,7 @@ Players.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onStartGame: PropTypes.func.isRequired,
-
-  // loadDemoPlayers: PropTypes.func.isRequired,
-  // startGame: PropTypes.func.isRequired,
+  onDemoPlayers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -86,14 +85,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onAdd: name => dispatch(addPlayer(name)),
-  onDelete: id => dispatch(deletePlayer(id)),
-  onEdit: (id, name) => dispatch(editPlayer(id, name)),
-  onStartGame: () => dispatch(startGame()),
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    onAdd: actions.addPlayer,
+    onEdit: actions.editPlayer,
+    onDelete: actions.deletePlayer,
+    onStartGame: actions.startGame,
+    onDemoPlayers: actions.loadDemoPlayers,
+  }
 )(Players);

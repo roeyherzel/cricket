@@ -1,6 +1,9 @@
 
 export default function players(state = [], action) {
   switch (action.type) {
+    case 'DEMO_PLAYERS':
+      return action.players;
+
     case 'PLAYER_ADD':
       return [
         ...state,
