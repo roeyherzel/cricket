@@ -7,7 +7,7 @@ export default class Row extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.head}>{this.props.head}</div>
-        <div className={styles.data}>{this.props.data}</div>
+        <div className={styles.data}>{this.props.children}</div>
       </div>
     );
   }
@@ -15,5 +15,5 @@ export default class Row extends React.Component {
 
 Row.propTypes = {
   head: PropTypes.element,
-  data: PropTypes.array,
+  children: PropTypes.array,
 };

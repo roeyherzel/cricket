@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { initScores } from 'actions/scoreActions';
-import { initTargets } from 'actions/targetActions';
 
 import Row from './components/Row';
 import Header from 'common/components/header';
@@ -75,47 +73,7 @@ class Scoreboard extends React.Component {
     };
   }
 
-  //componentWillMount() {
-  //}
-
   render() {
-    console.log(this.props.scores[0], typeof this.props.scores[0]);
-    const playersInfo = this.props.players.map(p => (
-      <Player
-        key={p.id}
-        name={p.name}
-        score={this.props.scores[p.id]}
-        isLeader={(this.props.leaderID === p.id)}
-      />
-    ));
-
-    // const targets = {};
-    // for (let t of this.props.targetIDs) {
-    //   targets[t] = [];
-    // }
-    // Create player components with child targets
-    // const players = this.props.players.map(p => {
-
-    //   for (let t of p.targets) {
-    //     targets[t.id].push(
-    //       <Target
-    //         key={p.id}
-    //         hitCount={t.hitCount}
-    //         handleClick={() => this.openHitDialog(p.id, t.id)}
-    //       />
-    //     );
-    //   }
-
-    //   return (
-    //     <Player
-    //       key={p.id}
-    //       name={p.name}
-    //       score={p.score}
-    //       isLeader={(this.props.leaderID === p.id)}
-    //     />
-    //   );
-    // });
-
     return (
       <div className={styles.container}>
         <Header>
@@ -128,20 +86,34 @@ class Scoreboard extends React.Component {
 
         <main className={styles.board}>
 
-          <Row
-            head={<DartboardSVG className={styles.dartboardSVG} />}
-            data={playersInfo}
-          />
+          <Row key="players" head={<DartboardSVG className={styles.dartboardSVG} />}>
+            {
+              this.props.players.map(p => (
+                <Player
+                  key={p.id}
+                  name={p.name}
+                  score={this.props.scores[p.id]}
+                  isLeader={(this.props.leaderID === p.id)}
+                />
+              ))
+            }
+          </Row>
 
-          {/* {
-            this.props.targetIDs.map(t => (
-              <Row
-                key={t}
-                head={<span>{t}</span>}
-                data={targets[t]}
-              />
+           {
+            this.props.targets.map(target => (
+              <Row key={target.id} head={<span>{target.id}</span>}>
+                {
+                  target.players.map(player => (
+                    <Target
+                      key={player.playerID}
+                      hitCount={player.hitCount}
+                      handleClick={() => this.openHitDialog(player.playerID, target.id)}
+                    />
+                  ))
+                }
+              </Row>
             ))
-          } */}
+          }
 
           <HitDialog
             open={this.state.hitDialogOpen}
@@ -172,9 +144,8 @@ Scoreboard.propTypes = {
   leaderID: PropTypes.number,
   winnerID: PropTypes.number,
 
-  handleInitScores: PropTypes.func.isRequired,
-  handleInitTargets: PropTypes.func.isRequired,
   scores: PropTypes.object.isRequired,
+  targets: PropTypes.array.isRequired,
   players: PropTypes.array.isRequired,
 };
 
@@ -187,8 +158,4 @@ const mapStoreToProps = state => ({
 
 export default connect(
   mapStoreToProps,
-  {
-    handleInitScores: initScores,
-    handleInitTargets: initTargets,
-  }
 )(Scoreboard);
