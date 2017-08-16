@@ -7,7 +7,7 @@ const initialState = {
 export default function game(state = initialState, action) {
   switch (action.type) {
     case 'GAME_START':
-      return { status: 'on' };
+      return { ...state, status: 'on' };
 
     default:
       return state;

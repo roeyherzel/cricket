@@ -15,7 +15,7 @@ import styles from './addPlayer.css';
 
 export default class AddPlayer extends React.Component {
   static propTypes = {
-    onAdd: PropTypes.func.isRequired,
+    handleAdd: PropTypes.func.isRequired,
   }
 
   state = {
@@ -29,7 +29,7 @@ export default class AddPlayer extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onAdd(this.state.value);
+    this.props.handleAdd(this.state.value);
     this.setState({value: ''});
   }
 

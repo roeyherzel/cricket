@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { initScores } from 'actions/scoreActions';
+import { initTargets } from 'actions/targetActions';
+
 import Row from './components/Row';
 import Header from 'common/components/header';
 import DartboardSVG from 'images/dart.inline.svg';
@@ -7,6 +11,7 @@ import Player from './components/Player';
 import Target from './components/Target';
 import HitDialog from './components/HitDialog';
 import WinnerDialog from './components/WinnerDialog';
+
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './scoreboard.css';
 
@@ -20,7 +25,7 @@ import styles from './scoreboard.css';
   - render winner dialog
 */
 
-export default class Scoreboard extends React.Component {
+class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
     this.openHitDialog        = this.openHitDialog.bind(this);
@@ -70,33 +75,46 @@ export default class Scoreboard extends React.Component {
     };
   }
 
+  //componentWillMount() {
+  //}
+
   render() {
-    const targets = {};
-    for (let t of this.props.targetIDs) {
-      targets[t] = [];
-    }
+    console.log(this.props.scores[0], typeof this.props.scores[0]);
+    const playersInfo = this.props.players.map(p => (
+      <Player
+        key={p.id}
+        name={p.name}
+        score={this.props.scores[p.id]}
+        isLeader={(this.props.leaderID === p.id)}
+      />
+    ));
+
+    // const targets = {};
+    // for (let t of this.props.targetIDs) {
+    //   targets[t] = [];
+    // }
     // Create player components with child targets
-    const players = this.props.players.map(p => {
+    // const players = this.props.players.map(p => {
 
-      for (let t of p.targets) {
-        targets[t.id].push(
-          <Target
-            key={p.id}
-            hitCount={t.hitCount}
-            handleClick={() => this.openHitDialog(p.id, t.id)}
-          />
-        );
-      }
+    //   for (let t of p.targets) {
+    //     targets[t.id].push(
+    //       <Target
+    //         key={p.id}
+    //         hitCount={t.hitCount}
+    //         handleClick={() => this.openHitDialog(p.id, t.id)}
+    //       />
+    //     );
+    //   }
 
-      return (
-        <Player
-          key={p.id}
-          name={p.name}
-          score={p.score}
-          isLeader={(this.props.leaderID === p.id)}
-        />
-      );
-    });
+    //   return (
+    //     <Player
+    //       key={p.id}
+    //       name={p.name}
+    //       score={p.score}
+    //       isLeader={(this.props.leaderID === p.id)}
+    //     />
+    //   );
+    // });
 
     return (
       <div className={styles.container}>
@@ -112,10 +130,10 @@ export default class Scoreboard extends React.Component {
 
           <Row
             head={<DartboardSVG className={styles.dartboardSVG} />}
-            data={players}
+            data={playersInfo}
           />
 
-          {
+          {/* {
             this.props.targetIDs.map(t => (
               <Row
                 key={t}
@@ -123,7 +141,7 @@ export default class Scoreboard extends React.Component {
                 data={targets[t]}
               />
             ))
-          }
+          } */}
 
           <HitDialog
             open={this.state.hitDialogOpen}
@@ -143,11 +161,34 @@ export default class Scoreboard extends React.Component {
 
 }
 
+Scoreboard.defaultProps = {
+  leaderID: null,
+  winnerID: null,
+};
+
 Scoreboard.propTypes = {
-  targetIDs: PropTypes.array.isRequired,
-  players: PropTypes.array.isRequired,
-  updateHit: PropTypes.func.isRequired,
-  restartGame: PropTypes.func.isRequired,
+  updateHit: PropTypes.func,
+  restartGame: PropTypes.func,
   leaderID: PropTypes.number,
   winnerID: PropTypes.number,
+
+  handleInitScores: PropTypes.func.isRequired,
+  handleInitTargets: PropTypes.func.isRequired,
+  scores: PropTypes.object.isRequired,
+  players: PropTypes.array.isRequired,
 };
+
+const mapStoreToProps = state => ({
+  status: state.game.status,
+  players: state.players,
+  targets: state.targets,
+  scores: state.scores,
+});
+
+export default connect(
+  mapStoreToProps,
+  {
+    handleInitScores: initScores,
+    handleInitTargets: initTargets,
+  }
+)(Scoreboard);

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Players from 'containers/Players';
 import Scoreboard from '../Scoreboard';
 
-import defs from 'utils/defs';
 import * as utils from 'utils/funcs';
 import styles from './app.css';
 
@@ -14,17 +14,12 @@ import styles from './app.css';
  * --------------------------
  */
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor() {
     super();
     // Bind class methods
     this.restartGame     = this.restartGame.bind(this);
-    this.startGame       = this.startGame.bind(this);
-    this.addPlayer       = this.addPlayer.bind(this);
-    this.removePlayer    = this.removePlayer.bind(this);
-    this.updatePlayer    = this.updatePlayer.bind(this);
-    this.loadDemoPlayers = this.loadDemoPlayers.bind(this);
     this.getCleanStats   = this.getCleanStats.bind(this);
     this.updateHit       = this.updateHit.bind(this);
     /*
@@ -33,19 +28,8 @@ export default class App extends React.Component {
     */
     this.targetIDs = ['20', '19', '18', '17', '16', '15', 'B'];
     // Counter for allocating new playerID
-    this.playerIDs = 0;
     // Max players per game
     this.maxPlayers = 4;
-    /*
-      Statefull variables
-      -------------------
-    */
-    // this.state = {
-    //   gameState: 'new', // one of new/on/over
-    //   winnerID: null,   // winning playerID
-    //   leaderID: null,   // leading playerID
-    //   players: [],      // players and thier targets
-    // };
   }
 
   getCleanStats() {
@@ -54,51 +38,6 @@ export default class App extends React.Component {
       score: 0,
       targets: this.targetIDs.map(t => ({ id: t, hitCount: 0 })),
     };
-  }
-
-  addPlayer(name) {
-    // Validate name and state
-    const error = utils.validatePlayerName(name, this.state.players.map(p => p.name));
-    if (error) return error;
-    // Pass validations adding player
-    this.setState(prevState => {
-      // Copy players state
-      const players = prevState.players.slice();
-      // Add player with clean stats
-      players.push({
-        id: this.playerIDs++,
-        name: name,
-        ...this.getCleanStats(),
-      });
-      // Return new state
-      return {players};
-    });
-  }
-
-  updatePlayer(playerId, newName) {
-    // Update player's name
-    // TODO: validate player newName
-    this.setState(prevState => {
-      // Copy players state
-      const players = prevState.players.slice();
-      // Override player's name
-      const idx = utils.findPlayerIndex(playerId, players);
-      players[idx].name = newName;
-      // return new state
-      return {players};
-    });
-  }
-
-  removePlayer(playerId) {
-    this.setState(prevState => {
-      // Copy players state
-      const players = prevState.players.slice();
-      // Remove player
-      const idx = utils.findPlayerIndex(playerId, players);
-      players.splice(idx, 1);
-      // return new state
-      return {players};
-    });
   }
 
   updateHit(playerID, targetId, amount = 1) {
@@ -141,10 +80,6 @@ export default class App extends React.Component {
     });
   }
 
-  startGame() {
-    this.setState({gameState: 'on'});
-  }
-
   restartGame() {
     // Clean players targets and score
     const players = this.state.players.map(p => ( { ...p, ...this.getCleanStats() }));
@@ -157,15 +92,24 @@ export default class App extends React.Component {
     });
   }
 
-  loadDemoPlayers() {
-    defs.DEMO_PLAYERS.forEach(name => this.addPlayer(name));
-  }
-
   render() {
+    const isNewGame = (this.props.status === 'new');
     return (
       <div className={styles.container}>
-         <Players />
+        {
+          (isNewGame) ? <Players /> : <Scoreboard />
+        }
       </div>
     );
   }
 }
+
+App.propTypes = {
+  status: PropTypes.oneOf(['new', 'on', 'over']),
+};
+
+const mapStoreToProps = state => ({
+  status: state.game.status,
+});
+
+export default connect(mapStoreToProps)(App);

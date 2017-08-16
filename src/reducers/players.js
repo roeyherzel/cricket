@@ -1,4 +1,3 @@
-
 export default function players(state = [], action) {
   switch (action.type) {
     case 'DEMO_PLAYERS':

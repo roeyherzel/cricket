@@ -14,8 +14,8 @@ class PlayerItem extends React.Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    onEdit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+    handleEdit: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
   }
 
   state = {
@@ -32,12 +32,12 @@ class PlayerItem extends React.Component {
   }
 
   handleDone = () => {
-    this.props.onEdit(this.props.id, this.state.name);
+    this.props.handleEdit(this.props.id, this.state.name);
     this.setState({editMode: false});
   }
 
   handleDelete = () => {
-    this.props.onDelete(this.props.id);
+    this.props.handleDelete(this.props.id);
   }
 
   render() {

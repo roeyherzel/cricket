@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from 'actions';
+import { addPlayer, deletePlayer, editPlayer, loadDemoPlayers } from 'actions/playerActions';
+import { startGame } from 'actions/gameActions';
 
 import Header from 'common/components/header';
 import PlayerList from 'components/PlayerList';
@@ -14,12 +15,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DartboardSVG from 'images/dartboard.inline.svg';
 import styles from './players.css';
 
-/*
- * PlayersDetails view
- * -------------------
- * - render add player widget
- * - render players editable players list
- */
 
 function Players(props) {
   return (
@@ -28,7 +23,7 @@ function Players(props) {
       <main>
         <Paper className={styles.container}>
 
-          <AddPlayer onAdd={props.onAdd} />
+          <AddPlayer handleAdd={props.handleAdd} />
           <PlayerList>
             {
               props.players.map(p => (
@@ -36,8 +31,8 @@ function Players(props) {
                   key={p.id}
                   id={p.id}
                   name={p.name}
-                  onEdit={props.onEdit}
-                  onDelete={props.onDelete}
+                  handleEdit={props.handleEdit}
+                  handleDelete={props.handleDelete}
                 />
               ))
             }
@@ -48,7 +43,7 @@ function Players(props) {
               <RaisedButton
                 className={styles.startGameBtn}
                 label="start game"
-                onClick={props.onStartGame}
+                onClick={props.handleStartGame}
                 secondary={true}
               />
             ) : (
@@ -56,7 +51,7 @@ function Players(props) {
                 <RaisedButton
                   className={styles.demoBtn}
                   label="demo players"
-                  onClick={props.onDemoPlayers}
+                  onClick={props.handleDemoPlayers}
                   secondary={true}
                 />
                 <DartboardSVG className={styles.dartboardSVG} />
@@ -72,26 +67,24 @@ function Players(props) {
 
 Players.propTypes = {
   players: PropTypes.array.isRequired,
-  onAdd: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onStartGame: PropTypes.func.isRequired,
-  onDemoPlayers: PropTypes.func.isRequired,
+  handleAdd: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleStartGame: PropTypes.func.isRequired,
+  handleDemoPlayers: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
-  return {
-    players: state.players,
-  };
-};
+const mapStateToProps = state => ({
+  players: state.players,
+});
 
 export default connect(
   mapStateToProps,
   {
-    onAdd: actions.addPlayer,
-    onEdit: actions.editPlayer,
-    onDelete: actions.deletePlayer,
-    onStartGame: actions.startGame,
-    onDemoPlayers: actions.loadDemoPlayers,
+    handleAdd: addPlayer,
+    handleEdit: editPlayer,
+    handleDelete: deletePlayer,
+    handleStartGame: startGame,
+    handleDemoPlayers: loadDemoPlayers,
   }
 )(Players);
