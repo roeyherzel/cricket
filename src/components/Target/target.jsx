@@ -19,11 +19,7 @@ export default class Target extends React.Component {
 
 }
 
-Target.defaultProps = {
-  hitCount: 0,
-};
-
 Target.propTypes = {
-  hitCount: PropTypes.number,
-  handleClick: PropTypes.func,
+  hitCount: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };

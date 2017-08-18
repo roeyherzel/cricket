@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { openHitDialog } from 'actions/gameActions';
 
-import Row from './components/Row';
 import Header from 'common/components/header';
-import DartboardSVG from 'images/dart.inline.svg';
-import Player from './components/Player';
-import Target from './components/Target';
-import HitDialog from './components/HitDialog';
-import WinnerDialog from './components/WinnerDialog';
+import Row from 'components/Row';
+import Player from 'components/Player';
+import Target from 'components/Target';
+import HitDialog from 'containers/HitDialog';
+// import WinnerDialog from './components/WinnerDialog';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import DartboardSVG from 'images/dart.inline.svg';
 import styles from './scoreboard.css';
 
 /*
@@ -24,44 +25,6 @@ import styles from './scoreboard.css';
 */
 
 class Scoreboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.openHitDialog        = this.openHitDialog.bind(this);
-    this.closeHitDialog       = this.closeHitDialog.bind(this);
-    this.getHitDialogProps    = this.getHitDialogProps.bind(this);
-    this.getWinnerDialogProps = this.getWinnerDialogProps.bind(this);
-    // HitDialog related states
-    this.state = {
-      hitDialogOpen: false,
-      playerID: null,
-      targetID: null,
-    };
-  }
-
-  openHitDialog(playerID, targetID) {
-    this.setState({ hitDialogOpen: true, playerID, targetID });
-  }
-
-  closeHitDialog() {
-    this.setState({ hitDialogOpen: false });
-  }
-
-  getHitDialogProps() {
-    // Returns properies need for rendering player's hitDialog
-    if (!this.state.hitDialogOpen) return {};
-
-    const playerInfo = this.props.players.find(p => p.id === this.state.playerID);
-    const targetInfo = playerInfo.targets.find(t => t.id === this.state.targetID);
-    const handleUndo = () => this.props.updateHit(this.state.playerID, this.state.targetID, -1);
-    const handleHit  = () => this.props.updateHit(this.state.playerID, this.state.targetID);
-
-    return {
-      target: (<Target hitCount={targetInfo.hitCount} handleClick={handleHit} />),
-      targetID: this.state.targetID,
-      playerName: playerInfo.name,
-      handleUndo,
-    };
-  }
 
   getWinnerDialogProps() {
     // Returns properies need for rendering winnerDialog
@@ -103,11 +66,11 @@ class Scoreboard extends React.Component {
             this.props.targets.map(target => (
               <Row key={target.id} head={<span>{target.id}</span>}>
                 {
-                  target.players.map(player => (
+                  target.players.map(p => (
                     <Target
-                      key={player.playerID}
-                      hitCount={player.hitCount}
-                      handleClick={() => this.openHitDialog(player.playerID, target.id)}
+                      key={p.id}
+                      hitCount={p.hitCount}
+                      handleClick={() => this.props.handleHit(target.id, p.id)}
                     />
                   ))
                 }
@@ -115,17 +78,13 @@ class Scoreboard extends React.Component {
             ))
           }
 
-          <HitDialog
-            open={this.state.hitDialogOpen}
-            closeDialog={this.closeHitDialog}
-            { ...this.getHitDialogProps() }
-          />
+          <HitDialog />
 
-          <WinnerDialog
+          {/* <WinnerDialog
             open={(this.props.winnerID !== null)}
             closeDialog={this.props.restartGame}
             { ...this.getWinnerDialogProps() }
-          />
+          /> */}
         </main>
       </div>
     );
@@ -147,6 +106,7 @@ Scoreboard.propTypes = {
   scores: PropTypes.object.isRequired,
   targets: PropTypes.array.isRequired,
   players: PropTypes.array.isRequired,
+  handleHit: PropTypes.func.isRequired,
 };
 
 const mapStoreToProps = state => ({
@@ -158,4 +118,7 @@ const mapStoreToProps = state => ({
 
 export default connect(
   mapStoreToProps,
+  {
+    handleHit: openHitDialog,
+  }
 )(Scoreboard);
