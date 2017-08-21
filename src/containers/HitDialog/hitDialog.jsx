@@ -8,6 +8,7 @@ import Target from 'components/Target';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import UndoSVG from 'material-ui/svg-icons/content/undo';
+
 import DartSVG from 'images/dart.inline.svg';
 import styles from './hitDialog.css';
 
