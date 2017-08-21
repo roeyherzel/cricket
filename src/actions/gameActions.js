@@ -1,42 +1,61 @@
+// Initialize players scores
 const initScores = playerIDs => ({
   type: 'SCORES_INIT',
   playerIDs,
 });
 
+// Initialize targets hit count
 const initTargets = playerIDs => ({
   type: 'TARGETS_INIT',
   targetIDs: ['20', '19', '18', '17', '16', '15', 'B'],
   playerIDs,
 });
 
+// Aggregates players and targets initialization
 export function startGame() {
-  const action = {
-    type: 'GAME_START',
-  };
-
   return function (dispatch, getState) {
     const state = getState();
     const playerIDs = state.players.map(p => p.id);
     dispatch(initScores(playerIDs));
     dispatch(initTargets(playerIDs));
-    dispatch(action);
+    dispatch({ type: 'GAME_START' });
   };
 }
 
+// New game
+export const newGame = () => ({ type: 'GAME_NEW' });
+
+// Open hit dialog
 export const openHitDialog = (targetID, playerID) => ({
-  type: 'HIT_OPEN',
+  type: 'HIT_DIALOG_OPEN',
   targetID,
   playerID,
 });
 
-export const closeHitDialog = () => ({
-  type: 'HIT_CLOSE',
-});
+// Close hit dialog and set leading player
+export function closeHitDialog() {
 
+  return function(dispatch, getState) {
+    // Get updated scores state and set leading player
+    const { scores } = getState();
+    const leaderID = Object.keys(scores).reduce((prev, curr) => {
+      return parseInt(scores[prev] > scores[curr] ? prev : curr);
+    }, 0);
+
+    dispatch({ type: 'HIT_DIALOG_CLOSE' });
+    dispatch({
+      type: 'GAME_LEADER',
+      leaderID,
+      score: scores[leaderID],
+    });
+  };
+}
+
+// Aggregates target / score changes driven by target hit count change
 function hit(targetID, playerID, oper) {
 
   return function(dispatch, getState) {
-    let { targets, scores } = getState();
+    const { targets }  = getState();
     const { players }  = targets.find(t => t.id === targetID);
     const { hitCount } = players.find(p => p.id === playerID);
 
@@ -67,20 +86,9 @@ function hit(targetID, playerID, oper) {
       playerID,
     });
 
-    // Get updated scores state and set leading player
-    scores = getState().scores;
-    const leaderID = Object.keys(scores).reduce((prev, curr) => {
-      return scores[prev] > scores[curr] ? prev : curr;
-    }, 0);
-
-    dispatch({
-      type: 'GAME_LEADER',
-      leaderID,
-      score: scores[leaderID],
-    });
-
   };
 }
 
+// Interface for add/remove hit count
 export const addHit = (targetID, playerID) => hit(targetID, playerID, 'INC');
 export const removeHit = (targetID, playerID) => hit(targetID, playerID, 'DEC');
