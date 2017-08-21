@@ -1,8 +1,15 @@
 @import 'styles/vars.css';
 
+:root {
+  --space-cell: 1px;
+}
+
 .container {
   display: flex;
-  margin-bottom: 1px;
+
+  &:not(:last-child) {
+    margin-bottom: var(--space-cell);
+  }
 }
 
 .head {
@@ -10,6 +17,7 @@
   justify-content: center;
   align-items: center;
   flex: 0 0 2rem;
+  margin-right: var(--space-cell);
   background: var(--color-yellow);
 }
 
@@ -19,5 +27,9 @@
 
   & > * {
     flex: 1;
+
+    &:not(:last-child) {
+      margin-right: var(--space-cell);
+    }
   }
 }
