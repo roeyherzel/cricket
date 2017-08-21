@@ -14,15 +14,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DartboardSVG from 'images/dart.inline.svg';
 import styles from './scoreboard.css';
 
-/*
-  Scoreboard
-  ----------
-  - Renders grid scoreboard with
-    - target headers column
-    - columns containing a player and it's targets
-  - render & manage the state of hit dialog open/close
-  - render winner dialog
-*/
 
 const Scoreboard = (props) => (
   <div className={styles.container}>
@@ -51,7 +42,7 @@ const Scoreboard = (props) => (
 
        {
         props.targets.map(target => (
-          <Row key={target.id} head={<span>{target.id}</span>}>
+          <Row key={target.id} head={<span className={styles.targetID}>{target.id}</span>}>
             {
               target.players.map(p => (
                 <Target

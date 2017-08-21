@@ -10,22 +10,24 @@
   color: var(--color-black);
   text-align: center;
 
-  &[data-leader="true"] .name {
+  &[data-leader="true"] {
     background: var(--color-red);
-    color: var(--color-white);
-    border: 1px solid var(--color-black);
   }
 }
 
 .name {
-  padding: var(--space-xxs) var(--space-xs);
   align-self: stretch;
+  padding: var(--space-xxs) var(--space-xs);
   background: var(--color-white);
   color: var(--color-black);
   border-radius: 4px;
 }
 
 .score {
+  padding: var(--space-xxs) var(--space-sm);
+  margin: var(--space-xs) 0;
   font-size: var(--font-size-md);
-  padding: var(--space-xs);
+  color: var(--color-white);
+  background: var(--color-black);
+  border-radius: 4px;
 }

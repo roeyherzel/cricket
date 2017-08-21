@@ -24,4 +24,15 @@
   width: 100%;
   height: 100%;
   padding: var(--space-xs);
+  background: var(--color-yellow);
+}
+
+.targetID {
+  width: 100%;
+  margin: var(--space-xs);
+  padding: var(--space-xxs) 0;
+  text-align: center;
+  color: var(--color-black);
+  background: var(--color-white);
+  border-radius: 4px;
 }
