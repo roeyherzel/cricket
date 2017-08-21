@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openHitDialog, newGame } from 'actions/gameActions';
 
-import Header from 'common/components/header';
+import Header from 'components/header';
 import Row from 'components/Row';
 import Player from 'components/Player';
 import Target from 'components/Target';

@@ -1,5 +1,5 @@
-@import 'common/styles/reset.css';
-@import 'common/styles/vars.css';
+@import 'styles/reset.css';
+@import 'styles/vars.css';
 
 :root {
   --bg-image: url('images/background.svg');
@@ -9,7 +9,7 @@
 }
 
 .container {
-  composes: body from 'common/styles/typo.css';
+  composes: body from 'styles/typo.css';
   position: relative;
   background: var(--bg-image) no-repeat center/cover;
   height: 100vh;

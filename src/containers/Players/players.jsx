@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addPlayer, deletePlayer, editPlayer, loadDemoPlayers } from 'actions/playerActions';
 import { startGame } from 'actions/gameActions';
 
-import Header from 'common/components/header';
+import Header from 'components/header';
 import PlayerList from 'components/PlayerList';
 import PlayerItem from 'components/PlayerItem';
 import AddPlayer from 'components/AddPlayer';

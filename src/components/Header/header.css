@@ -1,4 +1,4 @@
-@import 'common/styles/vars.css';
+@import 'styles/vars.css';
 
 .header {
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 .title {
-  composes: title from 'common/styles/typo.css';
+  composes: title from 'styles/typo.css';
 }
 
 .header[data-child="true"] .title {
