@@ -36,9 +36,9 @@ export const closeHitDialog = () => ({
 function hit(targetID, playerID, oper) {
 
   return function(dispatch, getState) {
-    const state = getState();
-    const target = state.targets.find(t => t.id === targetID);
-    const { hitCount } = target.players.find(p => p.id === playerID);
+    let { targets, scores } = getState();
+    const { players }  = targets.find(t => t.id === targetID);
+    const { hitCount } = players.find(p => p.id === playerID);
 
     // on add, exit if target is closed
     if (oper === 'INC' && hitCount >= 3) {
@@ -66,8 +66,21 @@ function hit(targetID, playerID, oper) {
       change,
       playerID,
     });
+
+    // Get updated scores state and set leading player
+    scores = getState().scores;
+    const leaderID = Object.keys(scores).reduce((prev, curr) => {
+      return scores[prev] > scores[curr] ? prev : curr;
+    }, 0);
+
+    dispatch({
+      type: 'GAME_LEADER',
+      leaderID,
+      score: scores[leaderID],
+    });
+
   };
 }
 
-export const addHit    = (targetID, playerID) => hit(targetID, playerID, 'INC');
+export const addHit = (targetID, playerID) => hit(targetID, playerID, 'INC');
 export const removeHit = (targetID, playerID) => hit(targetID, playerID, 'DEC');
