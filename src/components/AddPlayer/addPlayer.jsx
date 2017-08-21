@@ -6,12 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import SVGIconAdd from 'material-ui/svg-icons/content/add';
 import styles from './addPlayer.css';
 
-/*
- * Add Player
- * ----------
- * - controled form component
- * - renders error message if submit fails
- */
+// Controled form component, renders error message if submit fails
 
 export default class AddPlayer extends React.Component {
   static propTypes = {
