@@ -19,8 +19,9 @@ class PlayerItem extends React.Component {
   }
 
   state = {
-    editMode: false,
     name: this.props.name,
+    editMode: false,
+    errorMsg: '',
   };
 
   handleInputChange = e => {
@@ -32,8 +33,12 @@ class PlayerItem extends React.Component {
   }
 
   handleDone = () => {
-    this.props.handleEdit(this.props.id, this.state.name);
-    this.setState({editMode: false});
+    const errorMsg = this.props.handleEdit(this.props.id, this.state.name);
+    if (errorMsg) {
+      this.setState({ errorMsg });
+    } else {
+      this.setState({ editMode: false, errorMsg: '' });
+    }
   }
 
   handleDelete = () => {
@@ -51,6 +56,7 @@ class PlayerItem extends React.Component {
           name="edit"
           value={this.state.name}
           onChange={this.handleInputChange}
+          errorText={this.state.errorMsg}
           disabled={!this.state.editMode}
           floatingLabelText={this.state.editMode && 'Edit'}
         />

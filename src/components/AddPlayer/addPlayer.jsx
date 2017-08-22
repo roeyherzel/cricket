@@ -24,8 +24,8 @@ export default class AddPlayer extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleAdd(this.state.value);
-    this.setState({value: ''});
+    const errorMsg = this.props.handleAdd(this.state.value);
+    this.setState({value: '', errorMsg});
   }
 
   render() {
