@@ -18,12 +18,12 @@
  Media Queries
  -------------
 */
-.typo__title___3TBow {
+.typo__title___2zEbM {
   font-family: 'Montserrat Subrayada', sans-serif;
   font-size: 32px;
   font-size: 2rem;
 }
-.typo__body___3XRC2 {
+.typo__body___1Xlj- {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-size: 1rem;
@@ -48,7 +48,7 @@
  Media Queries
  -------------
 */
-.header__header___O8HiU {
+.header__header___3b7Ca {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,16 +62,16 @@
   padding: 1rem;
   text-align: center
 }
-.header__header___O8HiU[data-child="true"] {
+.header__header___3b7Ca[data-child="true"] {
  -webkit-box-pack: justify;
      -ms-flex-pack: justify;
          justify-content: space-between;
  padding-bottom: 32px;
  padding-bottom: 2rem;
 }
-.header__title___1zneu {
+.header__title___2NyXZ {
 }
-.header__header___O8HiU[data-child="true"] .header__title___1zneu {
+.header__header___3b7Ca[data-child="true"] .header__title___2NyXZ {
   font-size: 24px;
   font-size: 1.5rem;
 }
@@ -95,11 +95,11 @@
  Media Queries
  -------------
 */
-.list__container___1zJEP {
+.playerList__container___In44X {
   display: contents;
 }
 /* override material-ui Divider */
-.list__hr___NgWlO {
+.playerList__hr___2Hfb2 {
   margin: 0 -16px !important;
   margin: 0 -1rem !important;
   margin-bottom: 16px !important;
@@ -125,54 +125,13 @@
  Media Queries
  -------------
 */
-.edit__container___3Dblz {
+.playerItem__container___1siaQ {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-.edit__toggleEdit___pax_y {
-  /* override material-ui TextField */
-  width: auto !important;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1;
-          flex: 1 1;
-  margin-right: 16px;
-  margin-right: 1rem;
-}
-/*
- Fonts
- -----
-*/
-:root { /* 14px */
-}
-/*
- Colors
- ------
-*/
-/*
- Spacing
- -------
-*/
-:root { /* 3px */ /* 5px */
-}
-/*
- Media Queries
- -------------
-*/
-.add__form___2Fhej {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.add__button___1hs-B {
-  /* override material-ui button */
-  margin-right: 16px !important;
-  margin-right: 1rem !important;
-}
-.add__input___AAyng {
   margin-bottom: 16px;
   margin-bottom: 1rem;
 }
@@ -196,7 +155,40 @@
  Media Queries
  -------------
 */
-.playersDetails__container___14NXr {
+.addPlayer__form___2Ehga {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.addPlayer__button___q90Sz {
+  /* override material-ui button */
+  /* margin-right: var(--space-md) !important; */
+}
+.addPlayer__input___35kcv {
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
+}
+/*
+ Fonts
+ -----
+*/
+:root { /* 14px */
+}
+/*
+ Colors
+ ------
+*/
+/*
+ Spacing
+ -------
+*/
+:root { /* 3px */ /* 5px */
+}
+/*
+ Media Queries
+ -------------
+*/
+.players__container___2bNRn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -211,13 +203,13 @@
   margin: 0 32px;
   margin: 0 2rem;
 }
-.playersDetails__startGameBtn___N39fY {
+.players__startGameBtn___3Z7QA {
   margin-top: 32px;
   margin-top: 2rem;
   -ms-flex-item-align: center;
       align-self: center;
 }
-.playersDetails__noplayers___120IT {
+.players__noplayers___2XGWj {
   position: absolute;
   top: 100%;
   left: 0;
@@ -232,11 +224,11 @@
   margin-top: 8px;
   margin-top: .5rem;
 }
-.playersDetails__demoBtn___2cfgj {
+.players__demoBtn___2PvES {
   -ms-flex-item-align: end;
       align-self: flex-end;
 }
-.playersDetails__dartboardSVG___1LiT7 {
+.players__dartboardSVG___2aMsf {
   margin-top: 16px;
   margin-top: 1rem;
 }
@@ -260,13 +252,15 @@
  Media Queries
  -------------
 */
-.row__container___1Nki7 {
+.row__container___DQpwc {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 1px;
+  display: flex
 }
-.row__head___12pb_ {
+.row__container___DQpwc:not(:last-child) {
+ margin-bottom: 1px;
+}
+.row__head___3gd57 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -281,18 +275,22 @@
           flex: 0 0 32px;
   -ms-flex: 0 0 2rem;
       flex: 0 0 2rem;
-  background: #fff;
+  margin-right: 1px;
+  background: #FECD5F;
 }
-.row__data___3u0ID {
+.row__data___1_eNq {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%
 }
-.row__data___3u0ID > * {
+.row__data___1_eNq > * {
  -webkit-box-flex: 1;
      -ms-flex: 1;
-         flex: 1;
+         flex: 1
+}
+.row__data___1_eNq > *:not(:last-child) {
+ margin-right: 1px;
 }
 /*
  Fonts
@@ -314,7 +312,7 @@
  Media Queries
  -------------
 */
-.player__container___xiwyN {
+.player__container___Zx1mc {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -333,25 +331,28 @@
   color: #000;
   text-align: center
 }
-.player__container___xiwyN[data-leader="true"] .player__name___3iKBE {
- background: #EB5767;
- color: #fff;
- border: 1px solid #000;
+.player__container___Zx1mc[data-leader="true"] {
+ background: #FF4081;
 }
-.player__name___3iKBE {
-  padding: 3px 5px;
-  padding: .1875rem .3125rem;
+.player__name___1jV-r {
   -ms-flex-item-align: stretch;
       align-self: stretch;
+  padding: 3px 5px;
+  padding: .1875rem .3125rem;
   background: #fff;
   color: #000;
   border-radius: 4px;
 }
-.player__score___2NEtq {
+.player__score___2f2VE {
+  padding: 3px 8px;
+  padding: .1875rem .5rem;
+  margin: 5px 0;
+  margin: .3125rem 0;
   font-size: 16px;
   font-size: 1rem;
-  padding: 5px;
-  padding: .3125rem;
+  color: #fff;
+  background: #000;
+  border-radius: 4px;
 }
 /*
  Fonts
@@ -373,7 +374,7 @@
  Media Queries
  -------------
 */
-.target__container___3GN3v {
+.target__container___2EvPW {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -387,7 +388,7 @@
   border: none;
 }
 /* defaults */
-.target__target___1ojAN {
+.target__target___3VcyP {
   width: 100%;
   height: 100%;
   max-width: 64px;
@@ -402,21 +403,21 @@
 
   /* 1 hit mark 1 line */
 }
-.target__target___1ojAN[data-hits="1"] line:last-of-type {
+.target__target___3VcyP[data-hits="1"] line:last-of-type {
  stroke: #000;
 }
-.target__target___1ojAN {/*
+.target__target___3VcyP {/*
  2 hits mark lines
 */
 }
-.target__target___1ojAN[data-hits="2"] line {
+.target__target___3VcyP[data-hits="2"] line {
  stroke: #000;
 }
-.target__target___1ojAN {/*
+.target__target___3VcyP {/*
  3 hits mark lines & ellipse
 */
 }
-.target__target___1ojAN[data-hits="3"] {
+.target__target___3VcyP[data-hits="3"] {
  stroke: #000;
  fill: #eaffa9;
  padding: 8px;
@@ -442,7 +443,7 @@
  Media Queries
  -------------
 */
-.hitDialog__container___xzTD8 {
+.hitDialog__container___zV6z3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -454,7 +455,7 @@
   text-align: center;
   max-width: 300px;
 }
-section.hitDialog__info___3nJfz {
+section.hitDialog__info___2hCMP {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -464,19 +465,19 @@ section.hitDialog__info___3nJfz {
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
-.hitDialog__dartIcon___3deOg {
+.hitDialog__dartIcon___3nxqv {
   width: 48px;
   width: 3rem;
 }
-section.hitDialog__targetBtn___27Sfs {
+section.hitDialog__targetBtn___3N7EP {
   border: 1px solid whitesmoke;
   margin: auto
 }
-section.hitDialog__targetBtn___27Sfs svg {
+section.hitDialog__targetBtn___3N7EP svg {
  max-width: 100%;
  max-height: 100%;
 }
-section.hitDialog__actions___KfBQ0 {
+section.hitDialog__actions___1mFd1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -509,7 +510,7 @@ section.hitDialog__actions___KfBQ0 {
  Media Queries
  -------------
 */
-.winnerDialog__body___IV3Ju {
+.winnerDialog__body___RDgWJ {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -522,7 +523,7 @@ section.hitDialog__actions___KfBQ0 {
           align-items: center;
 }
 /* override material-ui Dialog */
-.winnerDialog__overlay___w3kkX {
+.winnerDialog__overlay___3Qcr3 {
   background-color: #000 !important;
 }
 /*
@@ -545,7 +546,7 @@ section.hitDialog__actions___KfBQ0 {
  Media Queries
  -------------
 */
-.scoreboard__container___1Ov3N {
+.scoreboard__container___1HgD5 {
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -555,7 +556,7 @@ section.hitDialog__actions___KfBQ0 {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.scoreboard__board___3OiBx {
+.scoreboard__board___9N-rw {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -572,18 +573,29 @@ section.hitDialog__actions___KfBQ0 {
   border-top: 1px solid #000;
   border-bottom: 2px solid #000
 }
-.scoreboard__board___3OiBx > div:not(:first-child) {/*
+.scoreboard__board___9N-rw > div:not(:first-child) {/*
  stretch Rows across free vertical space
 */
  -webkit-box-flex: 1;
      -ms-flex: 1;
          flex: 1;
 }
-.scoreboard__dartboardSVG___3o1yU {
+.scoreboard__dartboardSVG___1F5iy {
   width: 100%;
   height: 100%;
   padding: 5px;
   padding: .3125rem;
+}
+.scoreboard__targetID___iMAQj {
+  width: 100%;
+  margin: 5px;
+  margin: .3125rem;
+  padding: 3px 0;
+  padding: .1875rem 0;
+  text-align: center;
+  color: #000;
+  background: #fff;
+  border-radius: 4px;
 }
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -1042,6 +1054,10 @@ template {
           box-sizing: border-box;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 /*
  Fonts
  -----
@@ -1072,7 +1088,7 @@ template {
   /* IPhone 6 plus */
 }
 
-.app__container___2GarX {
+.app__container___2TXwI {
   position: relative;
   background: url(/cricket/images/background.c7e8d322ddaf471454d9d7b5b6ebf129.svg) no-repeat center/cover;
   height: 100vh;
@@ -1082,7 +1098,7 @@ template {
 
 @media (min-width: 426px) {
 
-  .app__container___2GarX {/*Mobile L */
+  .app__container___2TXwI {/*Mobile L */
     max-width: 414px;
     max-height: 736px;
     margin: 3rem auto;
@@ -1090,7 +1106,7 @@ template {
   }
 }
 
-.app__dartboardSVG___3MNZj {
+.app__dartboardSVG___3w1v2 {
   max-height: 50%;
   max-width: 100%;
   position: absolute;
@@ -1098,4 +1114,4 @@ template {
   left: 0;
 }
 
-/*# sourceMappingURL=app.39ca0f30.css.map*/
+/*# sourceMappingURL=app.afc51559.css.map*/
